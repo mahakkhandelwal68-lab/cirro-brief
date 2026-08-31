@@ -12,7 +12,7 @@ export function ContactChannels() {
   const message =
     intent === "purchase"
       ? plan === "custom"
-        ? `Hi! I'd like to purchase the Custom plan (${n} newsletters/month, ${billing} billing) for Cirro Brief.`
+        ? `Hi! I'd like to request the Custom plan (${n} newsletters/month, ${billing} billing) for Cirro Brief. Please confirm the price and send a payment link.`
         : plan
         ? `Hi! I'd like to purchase the ${plan.charAt(0).toUpperCase() + plan.slice(1)} plan for Cirro Brief.`
         : "Hi! I'd like to purchase a Cirro Brief plan."

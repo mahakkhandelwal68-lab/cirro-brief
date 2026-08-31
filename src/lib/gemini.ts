@@ -7,7 +7,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 const TARGET_WORDS = "220-260";
 
 export async function summarizeForDemo(title: string, textContent: string): Promise<string> {
-  const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+  const model = genAI.getGenerativeModel({ model: "gemini-3.6-flash" });
 
   const prompt = `You are writing a short spoken-word audio briefing script based on a newsletter/blog article.
 
@@ -41,7 +41,7 @@ export interface FullBriefOptions {
 // Full (paid) briefings run 2-3 min spoken, uncapped/unwatermarked, styled
 // to the customer's chosen tone - the actual product, not the demo teaser.
 export async function generateFullBriefScript({ title, textContent, style, specialInstructions, pronunciations }: FullBriefOptions): Promise<string> {
-  const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+  const model = genAI.getGenerativeModel({ model: "gemini-3.6-flash" });
 
   const pronunciationNote = pronunciations?.length
     ? `\n\nWhen the script includes these words, phonetically spell them out so they read the way they sound (do not add the phonetic spelling in parentheses - just write the word the way it should be pronounced):\n${pronunciations.map((p) => `- ${p.word} -> ${p.pronunciation}`).join("\n")}`

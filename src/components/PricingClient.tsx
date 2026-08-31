@@ -387,8 +387,11 @@ export function PricingClient() {
                       className="btn-pop"
                       style={{ display: "inline-flex", alignItems: "center", gap: 7, background: "var(--btn)", color: "var(--btn-text)", fontSize: 14.5, fontWeight: 500, padding: "12px 18px", borderRadius: 10 }}
                     >
-                      Build a Custom Plan <span style={{ opacity: 0.7 }}>→</span>
+                      Request This Plan <span style={{ opacity: 0.7 }}>→</span>
                     </Link>
+                    <div style={{ fontSize: 12, color: "var(--text3)", marginTop: 10 }}>
+                      This is an estimate. Our team confirms it and sends you a payment link separately.
+                    </div>
                   </>
                 ) : (
                   <span style={{ color: "var(--text3)", fontSize: 14 }}>Calculating...</span>

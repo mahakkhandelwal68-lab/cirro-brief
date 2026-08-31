@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { ConsultantWidget } from "@/components/ConsultantWidget";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -26,7 +27,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         />
       </head>
       <body className="min-h-full flex flex-col" style={{ fontFamily: "var(--font-body)" }}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          {children}
+          <ConsultantWidget />
+        </ThemeProvider>
       </body>
     </html>
   );
