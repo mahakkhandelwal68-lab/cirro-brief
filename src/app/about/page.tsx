@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Cirro Brief helps newsletter publishers give their audience another way to experience the content they already create — as audio.",
+};
 
 const WHAT_WE_DO = [
   ["🎧", "Listen", "An audio briefing designed around your newsletter."],

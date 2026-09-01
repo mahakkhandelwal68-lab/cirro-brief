@@ -1,9 +1,15 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ContactChannels } from "@/components/ContactChannels";
 import { SupportForm } from "@/components/SupportForm";
+
+export const metadata: Metadata = {
+  title: "Contact & Support",
+  description: "Questions before purchasing, need help with an existing Brief, or want a custom plan? Reach the Cirro Brief team by WhatsApp, email, or message.",
+};
 
 const HELP_TOPICS = [
   ["💬", "I have a question before purchasing", "Want to understand Cirro Brief, plans, features, or whether it fits your publication?", "Talk to us"],

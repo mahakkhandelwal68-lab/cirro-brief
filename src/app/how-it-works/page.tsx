@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+
+export const metadata: Metadata = {
+  title: "How It Works",
+  description:
+    "See the full Cirro Brief process: submit a newsletter link, choose your style and voice, optionally review the script, then get a complete audio briefing plus publishing assets.",
+};
 
 const STYLES = ["Direct", "Conversational", "Analytical", "Engaging"];
 const REVIEW_POINTS = ["View the script before audio generation", "Choose from available script variations", "Make edits where needed", "Continue when you're ready"];

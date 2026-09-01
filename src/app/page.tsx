@@ -1,8 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { HomeInteractive } from "@/components/HomeInteractive";
 import { Reveal } from "@/components/Reveal";
+
+export const metadata: Metadata = {
+  title: "Your newsletter, ready to listen — Cirro Brief",
+  description:
+    "Turn every newsletter edition into a concise audio briefing—created in your preferred style and voice, plus ready-to-use publishing assets. Try the free demo on your own newsletter.",
+};
 
 const MOMENTS = [
   ["Commuting", "Hands and eyes busy."],

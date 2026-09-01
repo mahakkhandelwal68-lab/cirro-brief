@@ -1,0 +1,36 @@
+# Cirro Brief
+
+> Cirro Brief turns a newsletter or blog edition into a spoken-word audio briefing, plus a package of ready-to-use content assets — a full script, key insights, promotional copy for social platforms, a shareable public page, and a QR code.
+
+Cirro Brief is built for independent newsletter publishers, media/publication teams, industry analysts, and businesses with regular written publications who want to give their audience another way to experience their content: by listening, while commuting, walking, exercising, or anywhere reading isn't convenient.
+
+## How it works
+1. The customer submits a link to a newsletter or blog edition they've already published.
+2. They choose a briefing style (e.g. Conversational, Analytical, Energetic, Clear & Professional) and can add special instructions.
+3. They can optionally review and edit the generated script before audio is created, or skip straight to automatic generation.
+4. They choose a voice from a library of voices, or use a saved custom voice (Monthly/Annual plans).
+5. They can add pronunciation guidance for names, brands, or industry terms — reusable across future briefings.
+6. Cirro Brief generates the audio briefing plus the full asset package.
+7. The finished Brief appears in the customer's dashboard, with an option to make it publicly shareable via a link and QR code.
+
+## Free demo
+Visitors can try a free, simplified demo before purchasing: paste a newsletter/blog link and get a short (~1.5 minute) automated preview audio briefing. No account signup required beyond providing an email and phone number. The demo is intentionally limited in length and rate-limited; the full paid product produces complete 2-3 minute briefings with full customization.
+
+## Plans
+- **One-Time**: a single complete audio briefing, no subscription.
+- **Monthly**: 4 complete briefings per month, plus custom voice creation and saved preferences.
+- **Annual**: 48 briefings per year, the lowest per-briefing cost.
+- **Custom**: for publishers with different volume needs — an instant calculator on the Pricing page gives an estimated price, which the Cirro Brief team then confirms before sending a payment link.
+
+Regional pricing is shown automatically based on the visitor's location (India, UK/Europe, UAE, and a global default in USD).
+
+## Key pages
+- Homepage: /
+- Try the free demo: /try-demo
+- Pricing (all plans, custom calculator): /pricing
+- How It Works: /how-it-works
+- About: /about
+- Contact & Support: /contact
+
+## Company
+Cirro Brief is a product by Cirro.
