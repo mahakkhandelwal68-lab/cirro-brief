@@ -64,6 +64,7 @@ export function FlowHeroGraphic() {
             width: 320,
             borderRadius: 16,
             background: "var(--card)",
+            color: "var(--text)",
             border: "1px solid var(--border)",
             padding: "18px 20px",
             boxShadow: "var(--shadow), var(--glow-purple)",
@@ -96,7 +97,7 @@ export function FlowHeroGraphic() {
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 10 }}>
         {MINI_CARDS.map(([icon, title, note]) => (
-          <div key={title} style={{ border: "1px solid var(--border)", borderRadius: 12, background: "var(--card)", padding: "12px 10px", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
+          <div key={title} style={{ border: "1px solid var(--border)", borderRadius: 12, background: "var(--card)", color: "var(--text)", padding: "12px 10px", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
             <span style={{ color: "var(--accent2)" }}>{icon}</span>
             <span style={{ fontSize: 12, fontWeight: 600 }}>{title}</span>
             <span style={{ fontSize: 10.5, color: "var(--text3)" }}>{note}</span>
