@@ -69,7 +69,7 @@ const structuredData = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" data-cirro="light" className={`${geistSans.variable} h-full antialiased`}>
+    <html lang="en" data-cirro="dark" className={`${geistSans.variable} h-full antialiased`}>
       <head>
         <link rel="preconnect" href="https://api.fontshare.com" />
         <link
