@@ -313,6 +313,33 @@ export function CodeIcon({ size = 20 }: IconProps) {
   );
 }
 
+export function MailIcon({ size = 20 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="M4 6.5l8 6 8-6" />
+    </svg>
+  );
+}
+export function InstagramIcon({ size = 20 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4.2" />
+      <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+export function HeadsetIcon({ size = 20 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+      <path d="M4 14v-2a8 8 0 0 1 16 0v2" />
+      <rect x="2" y="14" width="5" height="7" rx="1.5" /><rect x="17" y="14" width="5" height="7" rx="1.5" />
+      <path d="M19.5 21a3 3 0 0 1-3 2h-2" />
+    </svg>
+  );
+}
+
 export function GradientArrowDownIcon({ size = 22 }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none">

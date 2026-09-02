@@ -1,6 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
+import { WhatsAppIcon, MailIcon, InstagramIcon } from "./icons";
 
 export function ContactChannels() {
   const params = useSearchParams();
@@ -25,8 +26,10 @@ export function ContactChannels() {
   return (
     <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16 }}>
       <div className="hover-pop" style={{ border: "2px solid var(--accent2)", borderRadius: 18, background: "var(--tint)", padding: "28px 26px", display: "flex", flexDirection: "column", gap: 10 }}>
-        <span style={{ fontSize: 11, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--accent2)" }}>Fastest</span>
-        <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 19 }}>💬 WhatsApp</span>
+        <span className="icon-badge icon-glow" style={{ width: 44, height: 44, borderRadius: "50%", background: "var(--card)", color: "var(--accent2)" }}>
+          <WhatsAppIcon size={21} />
+        </span>
+        <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 18 }}>WhatsApp</span>
         <span style={{ fontSize: 14.5, color: "var(--text2)", flex: 1 }}>For quick questions and support.</span>
         <a
           href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(message)}`}
@@ -39,8 +42,13 @@ export function ContactChannels() {
       </div>
 
       <div className="hover-pop" style={{ border: "1px solid var(--border)", borderRadius: 18, background: "var(--card)", padding: "28px 26px", display: "flex", flexDirection: "column", gap: 10 }}>
-        <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 19 }}>✉️ Email</span>
-        <span style={{ fontSize: 14.5, color: "var(--text2)" }}>For detailed questions, account support, or specific requests.</span>
+        <span className="icon-badge icon-glow" style={{ width: 44, height: 44, borderRadius: "50%", background: "var(--tint-lavender)", color: "var(--purple)" }}>
+          <MailIcon size={21} />
+        </span>
+        <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 18 }}>Email</span>
+        <span style={{ fontSize: 14.5, color: "var(--text2)" }}>
+          For account questions, detailed requests, or anything that needs more context.
+        </span>
         <span style={{ fontSize: 14.5, fontWeight: 500, color: "var(--text)", flex: 1 }}>{email}</span>
         <a
           href={`mailto:${email}?subject=${encodeURIComponent(intent === "purchase" ? "Cirro Brief - Purchase Request" : "Cirro Brief - Support")}&body=${encodeURIComponent(message)}`}
@@ -51,8 +59,11 @@ export function ContactChannels() {
       </div>
 
       <div className="hover-pop" style={{ border: "1px solid var(--border)", borderRadius: 18, background: "var(--card)", padding: "28px 26px", display: "flex", flexDirection: "column", gap: 10 }}>
-        <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 19 }}>◎ Instagram</span>
-        <span style={{ fontSize: 14.5, color: "var(--text2)", flex: 1 }}>Prefer social? Message us there instead.</span>
+        <span className="icon-badge icon-glow" style={{ width: 44, height: 44, borderRadius: "50%", background: "var(--orange-tint)", color: "var(--orange)" }}>
+          <InstagramIcon size={21} />
+        </span>
+        <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 18 }}>Instagram</span>
+        <span style={{ fontSize: 14.5, color: "var(--text2)", flex: 1 }}>Prefer messaging there? Reach out to us directly.</span>
         <a
           href={`https://instagram.com/${instagram}`}
           target="_blank"
