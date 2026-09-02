@@ -24,10 +24,10 @@ export function PricingTeaser() {
   }, []);
 
   const plans = [
-    { key: "one", icon: <LightningIcon />, name: "One-Time", note: "Perfect for trying out the full experience.", value: pricing ? `From ${fmt(pricing.symbol, pricing.oneTime)}` : "—", iconColor: "var(--accent2)", iconBg: "var(--tint)", cta: "View Pricing" },
-    { key: "monthly", icon: <CalendarIcon />, name: "Monthly", note: "For publishers creating audio briefs regularly.", value: pricing ? `From ${fmt(pricing.symbol, pricing.monthly)}/month` : "—", iconColor: "var(--accent2)", iconBg: "var(--tint)", cta: "View Pricing" },
-    { key: "annual", icon: <CrownIcon />, name: "Annual", note: "For regular publishing with the best value — the lowest cost per Brief.", value: pricing ? `From ${fmt(pricing.symbol, pricing.annual)}/year` : "—", cta: "View Pricing", badge: "Best Value", featured: true },
-    { key: "custom", icon: <ChatIcon />, name: "Custom", note: "Need something built around your publication?", value: "Let's talk →", iconColor: "var(--purple)", iconBg: "var(--purple-tint)", cta: "Contact Us" },
+    { key: "one", icon: <LightningIcon />, name: "One-Time", note: "Perfect for trying the complete Brief experience.", value: pricing ? `From ${fmt(pricing.symbol, pricing.oneTime)}` : "—", iconColor: "var(--accent2)", iconBg: "var(--tint)", cta: "View Pricing" },
+    { key: "monthly", icon: <CalendarIcon />, name: "Monthly", note: "For publishers creating audio Briefs regularly.", value: pricing ? `From ${fmt(pricing.symbol, pricing.monthly)}/month` : "—", iconColor: "var(--accent2)", iconBg: "var(--tint)", cta: "View Pricing" },
+    { key: "annual", icon: <CrownIcon />, name: "Annual", note: "For regular publishing with the best value per Brief.", value: pricing ? `From ${fmt(pricing.symbol, pricing.annual)}/year` : "—", cta: "View Pricing", badge: "Best Value", featured: true },
+    { key: "custom", icon: <ChatIcon />, name: "Custom", note: "A tailored setup for your publication and publishing needs.", value: "Let's talk →", iconColor: "var(--purple)", iconBg: "var(--purple-tint)", cta: "Contact Us" },
   ];
 
   return (
@@ -35,7 +35,11 @@ export function PricingTeaser() {
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 40px" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
           <div style={{ fontSize: 11.5, letterSpacing: ".16em", textTransform: "uppercase", color: "var(--accent2)", marginBottom: 14 }}>Plans for every publisher</div>
-          <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 38, letterSpacing: "-.025em", margin: 0 }}>Choose the plan that fits you.</h2>
+          <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 38, letterSpacing: "-.025em", margin: "0 0 12px" }}>Choose the plan that fits you.</h2>
+          <p style={{ fontSize: 15.5, color: "var(--text2)", margin: 0, maxWidth: "34em", marginLeft: "auto", marginRight: "auto" }}>
+            Every edition is delivered as a complete Brief—not just an audio file. Choose how often you want to
+            publish.
+          </p>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 16, alignItems: "stretch" }}>
           {plans.map((p, i) => (

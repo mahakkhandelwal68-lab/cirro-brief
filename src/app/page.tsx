@@ -15,7 +15,7 @@ import {
 export const metadata: Metadata = {
   title: "Your newsletter, ready to listen — Cirro Brief",
   description:
-    "Turn every newsletter edition into a concise audio briefing—created in your preferred style and voice, plus ready-to-use publishing assets. Try the free demo on your own newsletter.",
+    "Turn every newsletter edition into a ready-to-use Brief—audio, publishing assets, and everything organised for sharing. Try the free demo on your own newsletter.",
 };
 
 const MOMENTS: [React.ReactNode, string, string][] = [
@@ -31,12 +31,12 @@ const STEPS: [string, React.ReactNode, string, string, string][] = [
   ["01", <DocumentIcon key="1" />, "var(--purple)", "Your content", "Submit your newsletter content or link."],
   ["02", <PencilIcon key="2" />, "var(--accent2)", "Your style", "Choose how you want the briefing to feel."],
   ["03", <MicIcon key="3" />, "var(--orange)", "Your voice", "Select a voice that fits your publication."],
-  ["04", <WaveformIcon key="4" />, "var(--purple)", "Your audio + assets", "Receive your audio briefing and publishing assets."],
+  ["04", <WaveformIcon key="4" />, "var(--purple)", "Your complete Brief", "Receive your audio, publishing assets, and everything ready to use."],
 ];
 
 const ASSETS: [React.ReactNode, string, string][] = [
   [<HeadphonesIcon key="a" />, "Audio Briefing (MP3)", "High-quality audio, ready to listen."],
-  [<MegaphoneIcon key="b" />, "Publishing Assets", "Promotional copy, social posts & more."],
+  [<MegaphoneIcon key="b" />, "Ready-to-share Assets", "Promotional copy and assets prepared for publishing."],
   [<StarIcon key="c" />, "Brand Voice", "Consistent with your tone and identity."],
   [<BookmarkIcon key="d" />, "Saved Pronunciations", "Your terms, names and pronunciations saved."],
   [<EyeIcon key="e" />, "Preview Editions", "Review before publishing."],
@@ -82,8 +82,8 @@ export default function HomePage() {
             Turn your newsletter into an <span className="gradient-text">audio experience.</span>
           </h1>
           <p style={{ fontSize: 18, lineHeight: 1.6, color: "var(--text2)", margin: "0 0 34px", maxWidth: "30em" }}>
-            Transform every edition into a concise audio briefing in your style and voice — with publishing assets
-            that help you share, grow and engage your audience.
+            Transform every edition into a ready-to-use Brief—with audio, publishing assets, and everything
+            organised for sharing.
           </p>
           <div style={{ display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
             <Link
@@ -143,8 +143,8 @@ export default function HomePage() {
               Your readers don&apos;t always have <span style={{ color: "var(--accent2)" }}>time to read.</span>
             </h2>
             <p style={{ fontSize: 16, color: "var(--text2)", margin: 0, maxWidth: "32em" }}>
-              Your newsletter may contain valuable ideas, updates, analysis and stories. But not every subscriber
-              experiences it the same way. Cirro Brief gives them another way to stay informed.
+              Your newsletter may contain valuable ideas, updates and analysis. But not every subscriber experiences
+              it the same way. Cirro Brief gives them another way to stay informed.
             </p>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 12 }}>
@@ -192,8 +192,8 @@ export default function HomePage() {
               A complete Brief, <span style={{ color: "var(--accent2)" }}>ready to use.</span>
             </h2>
             <p style={{ fontSize: 16, opacity: 0.9, margin: 0 }}>
-              Every edition comes with audio, insights, and publishing assets — so you can publish, share and grow
-              your audience effortlessly.
+              Every edition comes with more than audio. Get your finished Brief, publishing assets, saved
+              preferences, and everything organised in one place.
             </p>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 12 }}>
@@ -217,11 +217,11 @@ export default function HomePage() {
         <div>
           <div style={{ fontSize: 11.5, letterSpacing: ".16em", textTransform: "uppercase", color: "var(--text3)", marginBottom: 16 }}>Try it before you commit</div>
           <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 36, lineHeight: 1.08, letterSpacing: "-.025em", margin: "0 0 16px" }}>
-            See your newsletter <span className="gradient-text">come to life.</span>
+            See what your newsletter <span className="gradient-text">can become.</span>
           </h2>
           <p style={{ fontSize: 16, color: "var(--text2)", margin: "0 0 30px", maxWidth: "32em" }}>
-            Paste a newsletter link and experience how Cirro Brief transforms your written edition into an audio
-            briefing.
+            Paste a newsletter link and experience how Cirro Brief transforms your edition into a complete,
+            ready-to-use Brief.
           </p>
           <Link href="/try-demo" className="btn-pop" style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "var(--btn)", color: "var(--btn-text)", fontSize: 16, fontWeight: 500, padding: "15px 26px", borderRadius: 12 }}>
             Try Your Newsletter — It&apos;s Free <span style={{ opacity: 0.75 }}>→</span>
@@ -265,7 +265,7 @@ export default function HomePage() {
               <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: 30, lineHeight: 1.15, letterSpacing: "-.025em", margin: "0 0 8px" }}>
                 Give every newsletter another way to be <span style={{ color: "var(--accent2)" }}>experienced.</span>
               </h2>
-              <p style={{ fontSize: 15, opacity: 0.85, margin: 0 }}>Audio that engages. Assets that grow. Effortless for you.</p>
+              <p style={{ fontSize: 15, opacity: 0.85, margin: 0 }}>Turn your written edition into a complete audio experience, with assets ready to share.</p>
             </div>
           </div>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
