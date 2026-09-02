@@ -186,6 +186,68 @@ export function ArrowDownIcon({ size = 20 }: IconProps) {
   );
 }
 
+export function ShareUpIcon({ size = 20 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+      <path d="M12 16V4M7 9l5-5 5 5" />
+      <path d="M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4" />
+    </svg>
+  );
+}
+export function ForwardIcon({ size = 20 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+      <path d="M14 4l7 7-7 7M3 11h18" />
+    </svg>
+  );
+}
+export function LinkIcon({ size = 20 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+      <path d="M9 15l6-6" />
+      <path d="M11 5l1-1a4 4 0 0 1 6 6l-1 1M13 19l-1 1a4 4 0 0 1-6-6l1-1" />
+    </svg>
+  );
+}
+export function SlidersIcon({ size = 20 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+      <path d="M4 6h10M18 6h2M4 18h2M10 18h10" />
+      <circle cx="16" cy="6" r="2.2" /><circle cx="6" cy="18" r="2.2" />
+    </svg>
+  );
+}
+export function ChevronDownIcon({ size = 16 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+      <path d="M6 9l6 6 6-6" />
+    </svg>
+  );
+}
+export function DotsIcon({ size = 20 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+      <circle cx="5" cy="12" r="1.4" /><circle cx="12" cy="12" r="1.4" /><circle cx="19" cy="12" r="1.4" />
+    </svg>
+  );
+}
+export function GlobeIcon({ size = 20 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3 12h18M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18z" />
+    </svg>
+  );
+}
+export function WhatsAppIcon({ size = 20 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+      <path d="M4 20l1.3-3.8A8 8 0 1 1 8.6 19L4 20z" />
+      <path d="M9 9.5c0 3 2.5 5.5 5.5 5.5" />
+    </svg>
+  );
+}
+
 export function GradientArrowDownIcon({ size = 22 }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none">

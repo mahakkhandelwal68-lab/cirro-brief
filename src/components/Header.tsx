@@ -45,7 +45,7 @@ export function Header({ ctaLabel = "Try Your Newsletter", ctaHref = "/try-demo"
         </div>
       </Link>
       <nav style={{ display: "flex", alignItems: "center", gap: 30, fontSize: 14.5, color: "var(--text2)" }}>
-        <Link href="/how-it-works" className="link-underline" style={{ color: "inherit" }}>How It Works</Link>
+        <Link href="/flow" className="link-underline" style={{ color: "inherit" }}>Flow</Link>
         <Link href="/pricing" className="link-underline" style={{ color: "inherit" }}>Pricing</Link>
         <Link href="/about" className="link-underline" style={{ color: "inherit" }}>About</Link>
         <Link href="/contact" className="link-underline" style={{ color: "inherit" }}>Support</Link>

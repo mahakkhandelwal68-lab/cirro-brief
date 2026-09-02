@@ -42,7 +42,7 @@ export function Footer() {
           <Link href="/">Home</Link>
           <Link href="/try-demo">Try Demo</Link>
           <Link href="/pricing">Pricing</Link>
-          <Link href="/how-it-works">How It Works</Link>
+          <Link href="/flow">Flow</Link>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 9, fontSize: 14.5 }}>
           <span style={{ fontSize: 10.5, letterSpacing: ".16em", textTransform: "uppercase", color: "var(--text3)", marginBottom: 4 }}>

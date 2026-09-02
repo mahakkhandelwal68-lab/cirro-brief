@@ -19,7 +19,7 @@ const HELP_TOPICS = [
 ];
 
 const QUICK_LINKS: [string, string, string][] = [
-  ["How does Cirro Brief work?", "Read How It Works", "/how-it-works"],
+  ["How does Cirro Brief work?", "See the Flow", "/flow"],
   ["What is included with each plan?", "View Pricing", "/pricing"],
   ["Can I try Cirro Brief first?", "Try the Demo", "/try-demo"],
   ["Do you offer custom plans?", "Explore Custom Plans", "/pricing"],

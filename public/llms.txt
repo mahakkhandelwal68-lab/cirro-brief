@@ -28,7 +28,7 @@ Regional pricing is shown automatically based on the visitor's location (India, 
 - Homepage: /
 - Try the free demo: /try-demo
 - Pricing (all plans, custom calculator): /pricing
-- How It Works: /how-it-works
+- Flow (how it works): /flow
 - About: /about
 - Contact & Support: /contact
 
