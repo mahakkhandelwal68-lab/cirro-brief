@@ -53,7 +53,7 @@ export function PricingTeaser() {
                     {p.badge}
                   </span>
                 )}
-                <div className="icon-badge" style={{ background: p.featured ? "rgba(255,255,255,.15)" : p.iconBg, color: p.featured ? "#fff" : p.iconColor }}>{p.icon}</div>
+                <div className="icon-badge icon-glow" style={{ background: p.featured ? "rgba(255,255,255,.15)" : p.iconBg, color: p.featured ? "#fff" : p.iconColor }}>{p.icon}</div>
                 <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 18 }}>{p.name}</span>
                 <span style={{ fontSize: 14, color: p.featured ? "rgba(255,255,255,.85)" : "var(--text2)", flex: 1 }}>{p.note}</span>
                 <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 15, color: p.featured ? "#fff" : "var(--text)" }}>{p.value}</span>

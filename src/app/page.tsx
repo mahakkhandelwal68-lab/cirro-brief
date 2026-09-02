@@ -121,7 +121,7 @@ export default function HomePage() {
                 <div style={{ height: 8, borderRadius: 4, background: "linear-gradient(90deg, var(--purple), var(--accent2))", width: "88%", opacity: 0.55 }} />
               </div>
             </div>
-            <div className="float-slow icon-badge" style={{ width: 60, height: 60, borderRadius: 14, background: "linear-gradient(135deg, var(--purple-tint), var(--tint))", color: "var(--accent2)" }}>
+            <div className="float-slow icon-badge icon-glow" style={{ width: 60, height: 60, borderRadius: 14, background: "linear-gradient(135deg, var(--purple-tint), var(--tint))", color: "var(--accent2)" }}>
               <DocumentIcon size={26} />
             </div>
           </div>
@@ -151,7 +151,7 @@ export default function HomePage() {
             {MOMENTS.map(([icon, title, note], i) => (
               <Reveal key={title} delay={i * 60}>
                 <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 4px", borderBottom: "1px solid var(--border2)" }}>
-                  <span style={{ color: "var(--accent2)", flex: "none", display: "flex" }}>{icon}</span>
+                  <span className="icon-glow-bare" style={{ color: "var(--accent2)", flex: "none", display: "flex" }}>{icon}</span>
                   <div>
                     <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 14.5, color: "var(--text)" }}>{title}</span>
                     <span style={{ fontSize: 12.5, color: "var(--text2)" }}> — {note}</span>
@@ -174,7 +174,7 @@ export default function HomePage() {
               <div className="hover-pop" style={{ borderTop: `3px solid ${color}`, borderLeft: "1px solid var(--border)", borderRight: "1px solid var(--border)", borderBottom: "1px solid var(--border)", borderRadius: 16, padding: "24px 22px 26px", background: "var(--card)", display: "flex", flexDirection: "column", gap: 12, minHeight: 190 }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                   <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 12.5, color, letterSpacing: ".04em" }}>{n}</span>
-                  <div className="icon-badge" style={{ width: 44, height: 44, borderRadius: 13, background: `color-mix(in srgb, ${color} 14%, var(--card))`, color }}>{icon}</div>
+                  <div className="icon-badge icon-glow" style={{ width: 44, height: 44, borderRadius: 13, background: `color-mix(in srgb, ${color} 14%, var(--card))`, color }}>{icon}</div>
                 </div>
                 <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 19, letterSpacing: "-.015em" }}>{title}</span>
                 <span style={{ fontSize: 14.5, color: "var(--text2)" }}>{body}</span>
@@ -200,7 +200,7 @@ export default function HomePage() {
             {ASSETS.map(([icon, label, note], i) => (
               <Reveal key={label} delay={i * 60}>
                 <div className="hover-pop" style={{ border: "1px solid rgba(255,255,255,.18)", borderRadius: 14, padding: "20px 18px", background: "rgba(255,255,255,.06)", display: "flex", gap: 13, alignItems: "flex-start" }}>
-                  <div className="icon-badge" style={{ background: "rgba(255,255,255,.12)", color: "#fff" }}>{icon}</div>
+                  <div className="icon-badge icon-glow" style={{ background: "rgba(255,255,255,.12)", color: "#fff" }}>{icon}</div>
                   <div>
                     <div style={{ fontWeight: 500, fontSize: 15, marginBottom: 3 }}>{label}</div>
                     <div style={{ fontSize: 13, opacity: 0.75 }}>{note}</div>
@@ -258,7 +258,7 @@ export default function HomePage() {
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: 24, flex: 1, minWidth: 280 }}>
-            <div className="icon-badge" style={{ width: 56, height: 56, borderRadius: 16, background: "rgba(255,255,255,.12)", color: "#fff" }}>
+            <div className="icon-badge icon-glow" style={{ width: 56, height: 56, borderRadius: 16, background: "rgba(255,255,255,.12)", color: "#fff" }}>
               <HeadphonesIcon size={26} />
             </div>
             <div>

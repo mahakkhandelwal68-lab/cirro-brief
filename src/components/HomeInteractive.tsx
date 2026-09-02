@@ -19,7 +19,7 @@ export function HomeInteractive() {
         <button
           onClick={() => setPlaying((p) => !p)}
           className="btn-pop"
-          style={{ width: 48, height: 48, flex: "none", border: "none", borderRadius: "50%", background: "var(--btn)", color: "var(--btn-text)", fontSize: 15, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}
+          style={{ width: 48, height: 48, flex: "none", border: "none", borderRadius: "50%", background: "var(--btn)", color: "var(--btn-text)", fontSize: 15, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "var(--glow-teal)" }}
         >
           {playing ? "❚❚" : "▶"}
         </button>

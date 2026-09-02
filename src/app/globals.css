@@ -199,6 +199,14 @@ button {
   color: transparent;
 }
 
+.icon-glow {
+  box-shadow: 0 0 0 6px color-mix(in srgb, currentColor 8%, transparent), 0 0 18px color-mix(in srgb, currentColor 45%, transparent);
+}
+
+.icon-glow-bare {
+  filter: drop-shadow(0 0 5px color-mix(in srgb, currentColor 65%, transparent));
+}
+
 .icon-badge {
   width: 40px;
   height: 40px;
