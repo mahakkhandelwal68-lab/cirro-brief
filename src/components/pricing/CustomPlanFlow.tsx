@@ -1,11 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { PlusIcon, MinusIcon } from "../icons";
 
 function Modal({ onClose, children }: { onClose: () => void; children: React.ReactNode }) {
-  return (
+  // Rendered via a portal into document.body: a position:fixed element is
+  // otherwise contained by the nearest ancestor with a CSS transform (even
+  // translateY(0) counts), so nesting this inside e.g. the scroll-reveal
+  // wrapper would trap it inside that card's box instead of the viewport.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
+
+  return createPortal(
     <div
       onClick={onClose}
       style={{
@@ -45,7 +54,8 @@ function Modal({ onClose, children }: { onClose: () => void; children: React.Rea
         </button>
         {children}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 
