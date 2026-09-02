@@ -18,6 +18,12 @@
   --shadow: 0 1px 2px rgba(11, 21, 18, 0.05), 0 8px 24px rgba(11, 21, 18, 0.05);
   --font-heading: "Satoshi", var(--font-geist-sans), system-ui, sans-serif;
   --font-body: var(--font-geist-sans), system-ui, sans-serif;
+
+  --purple: #7c6fee;
+  --purple-tint: #f1eefe;
+  --orange: #ee9c46;
+  --orange-tint: #fdf1e3;
+  --gradient-hero: linear-gradient(90deg, #4f8ef7, var(--purple));
 }
 
 [data-cirro="dark"] {
@@ -36,6 +42,12 @@
   --btn: #498b75;
   --btn-text: #06120f;
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.35);
+
+  --purple: #a897ff;
+  --purple-tint: #221d3a;
+  --orange: #f0ab63;
+  --orange-tint: #3a2a17;
+  --gradient-hero: linear-gradient(90deg, #6fa5ff, var(--purple));
 }
 
 * {
@@ -166,6 +178,23 @@ button {
 
 .float-slow {
   animation: floatSlow 4s ease-in-out infinite;
+}
+
+.gradient-text {
+  background: var(--gradient-hero);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.icon-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

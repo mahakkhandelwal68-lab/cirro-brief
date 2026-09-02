@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ThemeToggle } from "./ThemeToggle";
+import { LockIcon } from "./icons";
 
 export function Header({ ctaLabel = "Try Your Newsletter", ctaHref = "/try-demo" }: { ctaLabel?: string; ctaHref?: string }) {
   return (
@@ -38,8 +39,8 @@ export function Header({ ctaLabel = "Try Your Newsletter", ctaHref = "/try-demo"
           <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 16.5, letterSpacing: "-.01em", color: "var(--text)" }}>
             Cirro Brief
           </span>
-          <span style={{ fontSize: 9.5, letterSpacing: ".16em", textTransform: "uppercase", color: "var(--text3)" }}>
-            A product by Cirro
+          <span style={{ fontSize: 11.5, color: "var(--text3)" }}>
+            Turn newsletters into audio experiences
           </span>
         </div>
       </Link>
@@ -51,7 +52,9 @@ export function Header({ ctaLabel = "Try Your Newsletter", ctaHref = "/try-demo"
       </nav>
       <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
         <ThemeToggle />
-        <Link href="/login" className="link-underline" style={{ fontSize: 14.5, color: "var(--text2)" }}>Access Workspace</Link>
+        <Link href="/login" className="link-underline" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 14.5, color: "var(--text2)" }}>
+          <LockIcon size={14} /> Access Workspace
+        </Link>
         <Link
           href={ctaHref}
           className="btn-pop"
