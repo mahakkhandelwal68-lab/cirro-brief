@@ -15,8 +15,6 @@ interface CustomResult {
   billing: "monthly" | "annual";
 }
 
-const NEEDS = ["Audio Brief", "Ready-to-share assets", "Custom voice or training", "Priority support", "API access / Integrations", "Other custom requirements"];
-
 function Modal({ step, onClose, children }: { step: number; onClose: () => void; children: React.ReactNode }) {
   // Rendered via a portal into document.body: a position:fixed element is
   // otherwise contained by the nearest ancestor with a CSS transform (even
@@ -77,7 +75,7 @@ function Modal({ step, onClose, children }: { step: number; onClose: () => void;
 export function CustomPlanFlow() {
   const [step, setStep] = useState<Step>("closed");
   const [n, setN] = useState(4);
-  const [needs, setNeeds] = useState<Set<string>>(new Set(["Audio Brief", "Ready-to-share assets", "Priority support"]));
+  const [billing, setBilling] = useState<"monthly" | "annual">("monthly");
   const [result, setResult] = useState<CustomResult | null>(null);
   const [loadingEstimate, setLoadingEstimate] = useState(false);
 
@@ -88,15 +86,6 @@ export function CustomPlanFlow() {
   const [error, setError] = useState<string | null>(null);
   const [sending, setSending] = useState(false);
 
-  function toggleNeed(need: string) {
-    setNeeds((s) => {
-      const next = new Set(s);
-      if (next.has(need)) next.delete(need);
-      else next.add(need);
-      return next;
-    });
-  }
-
   async function getEstimate() {
     setLoadingEstimate(true);
     setError(null);
@@ -104,7 +93,7 @@ export function CustomPlanFlow() {
       const res = await fetch("/api/pricing/custom", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ newslettersPerMonth: n, billing: "monthly" }),
+        body: JSON.stringify({ newslettersPerMonth: n, billing }),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -135,9 +124,9 @@ export function CustomPlanFlow() {
           name,
           email,
           publication,
-          requirements: `${requirements}${requirements ? " | " : ""}Needs: ${Array.from(needs).join(", ")}`,
+          requirements,
           newslettersPerMonth: n,
-          billing: "monthly",
+          billing,
           estimatedPrice: result?.price,
           currency: result?.currency,
         }),
@@ -200,17 +189,26 @@ export function CustomPlanFlow() {
             </button>
           </div>
 
-          <div style={labelStyle}>What do you need?</div>
-          <div style={{ fontSize: 12, color: "var(--text3)", marginBottom: 12 }}>Select all that apply</div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 4, marginBottom: 22 }}>
-            {NEEDS.map((need) => (
-              <label key={need} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 14, color: "var(--text)", cursor: "pointer", padding: "7px 0" }}>
-                <input type="checkbox" checked={needs.has(need)} onChange={() => toggleNeed(need)} />
-                <span style={{ flex: 1 }}>{need}</span>
-                <span title="This helps us tailor your estimate" style={{ width: 16, height: 16, borderRadius: "50%", border: "1px solid var(--border)", color: "var(--text3)", fontSize: 10, display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}>
-                  i
-                </span>
-              </label>
+          <div style={labelStyle}>Billing</div>
+          <div style={{ display: "flex", gap: 8, marginBottom: 22 }}>
+            {(["monthly", "annual"] as const).map((b) => (
+              <button
+                key={b}
+                onClick={() => setBilling(b)}
+                className="btn-pop"
+                style={{
+                  flex: 1,
+                  cursor: "pointer",
+                  fontSize: 13.5,
+                  padding: "9px 12px",
+                  borderRadius: 9,
+                  border: `1px solid ${billing === b ? "var(--accent2)" : "var(--border)"}`,
+                  background: billing === b ? "var(--tint)" : "var(--card)",
+                  color: billing === b ? "var(--accent2)" : "var(--text)",
+                }}
+              >
+                {b === "monthly" ? "Monthly" : "Annual"}
+              </button>
             ))}
           </div>
 
@@ -239,7 +237,7 @@ export function CustomPlanFlow() {
           <div style={{ fontSize: 13, color: "var(--text3)", marginBottom: 4 }}>Starting from</div>
           <div style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: 32, marginBottom: 4 }}>
             {result.symbol}
-            {result.price.toLocaleString()} / month
+            {result.price.toLocaleString()} / {result.billing === "monthly" ? "month" : "year"}
           </div>
           <div style={{ fontSize: 13, color: "var(--text3)", marginBottom: 22 }}>For {n} edition{n === 1 ? "" : "s"} per month</div>
 
