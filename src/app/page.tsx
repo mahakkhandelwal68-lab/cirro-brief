@@ -4,6 +4,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { HomeInteractive } from "@/components/HomeInteractive";
 import { PricingTeaser } from "@/components/PricingTeaser";
+import { CompleteBriefGraphic } from "@/components/CompleteBriefGraphic";
 import { Reveal } from "@/components/Reveal";
 import {
   CarIcon, WalkIcon, LaptopIcon, DumbbellIcon, SparkleIcon, PlaneIcon,
@@ -34,13 +35,13 @@ const STEPS: [string, React.ReactNode, string, string, string][] = [
   ["04", <WaveformIcon key="4" />, "var(--purple)", "Your complete Brief", "Receive your audio, publishing assets, and everything ready to use."],
 ];
 
-const ASSETS: [React.ReactNode, string, string][] = [
-  [<HeadphonesIcon key="a" />, "Audio Briefing (MP3)", "High-quality audio, ready to listen."],
-  [<MegaphoneIcon key="b" />, "Ready-to-share Assets", "Promotional copy and assets prepared for publishing."],
-  [<StarIcon key="c" />, "Brand Voice", "Consistent with your tone and identity."],
-  [<BookmarkIcon key="d" />, "Saved Pronunciations", "Your terms, names and pronunciations saved."],
-  [<EyeIcon key="e" />, "Preview Editions", "Review before publishing."],
-  [<GridIcon key="f" />, "Delivery Dashboard", "Everything organized in one place."],
+const ASSETS: [React.ReactNode, string, string, string][] = [
+  [<HeadphonesIcon key="a" />, "Audio Briefing (MP3)", "High-quality audio, ready to listen.", "var(--accent2)"],
+  [<MegaphoneIcon key="b" />, "Ready-to-share Assets", "Promotional copy and assets prepared for publishing.", "var(--orange)"],
+  [<StarIcon key="c" />, "Brand Voice", "Consistent with your tone and identity.", "var(--orange)"],
+  [<BookmarkIcon key="d" />, "Saved Pronunciations", "Your terms, names and pronunciations saved.", "var(--purple)"],
+  [<EyeIcon key="e" />, "Preview Editions", "Review before publishing.", "var(--accent2)"],
+  [<GridIcon key="f" />, "Delivery Dashboard", "Everything organized in one place.", "var(--accent2)"],
 ];
 
 export default function HomePage() {
@@ -186,23 +187,43 @@ export default function HomePage() {
 
       <section style={{ background: "var(--band)", color: "#fff" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 40px" }}>
-          <div style={{ maxWidth: "36em", marginBottom: 40 }}>
-            <div style={{ fontSize: 11.5, letterSpacing: ".16em", textTransform: "uppercase", opacity: 0.6, marginBottom: 16 }}>More than an audio file</div>
-            <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 36, lineHeight: 1.1, letterSpacing: "-.025em", margin: "0 0 16px" }}>
-              A complete Brief, <span style={{ color: "var(--accent2)" }}>ready to use.</span>
-            </h2>
-            <p style={{ fontSize: 16, opacity: 0.9, margin: 0 }}>
-              Every edition comes with more than audio. Get your finished Brief, publishing assets, saved
-              preferences, and everything organised in one place.
-            </p>
+          <div style={{ display: "grid", gridTemplateColumns: "1.1fr 1fr", gap: 48, alignItems: "center", marginBottom: 48 }}>
+            <div>
+              <div
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  fontSize: 11.5,
+                  letterSpacing: ".1em",
+                  textTransform: "uppercase",
+                  color: "#fff",
+                  background: "rgba(255,255,255,.1)",
+                  border: "1px solid rgba(255,255,255,.18)",
+                  borderRadius: 999,
+                  padding: "7px 14px",
+                  marginBottom: 20,
+                }}
+              >
+                ✦ More than an audio file
+              </div>
+              <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: 40, lineHeight: 1.1, letterSpacing: "-.03em", margin: "0 0 16px" }}>
+                A complete Brief, <span style={{ color: "var(--accent2)" }}>ready to use.</span>
+              </h2>
+              <p style={{ fontSize: 16.5, opacity: 0.85, margin: 0, maxWidth: "32em" }}>
+                Every edition comes with more than audio. Get your finished Brief, publishing assets, saved
+                preferences, and everything organised in one place.
+              </p>
+            </div>
+            <CompleteBriefGraphic />
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 12 }}>
-            {ASSETS.map(([icon, label, note], i) => (
+            {ASSETS.map(([icon, label, note, color], i) => (
               <Reveal key={label} delay={i * 60}>
-                <div className="hover-pop" style={{ border: "1px solid rgba(255,255,255,.18)", borderRadius: 14, padding: "20px 18px", background: "rgba(255,255,255,.06)", display: "flex", gap: 13, alignItems: "flex-start" }}>
-                  <div className="icon-badge icon-glow" style={{ background: "rgba(255,255,255,.12)", color: "#fff" }}>{icon}</div>
+                <div className="hover-pop" style={{ borderLeft: `3px solid ${color}`, borderTop: "1px solid rgba(255,255,255,.18)", borderRight: "1px solid rgba(255,255,255,.18)", borderBottom: "1px solid rgba(255,255,255,.18)", borderRadius: 14, padding: "20px 18px", background: "rgba(255,255,255,.06)", display: "flex", gap: 13, alignItems: "flex-start" }}>
+                  <div className="icon-badge icon-glow" style={{ background: "rgba(255,255,255,.12)", color }}>{icon}</div>
                   <div>
-                    <div style={{ fontWeight: 500, fontSize: 15, marginBottom: 3 }}>{label}</div>
+                    <div style={{ fontWeight: 600, fontSize: 15, marginBottom: 3 }}>{label}</div>
                     <div style={{ fontSize: 13, opacity: 0.75 }}>{note}</div>
                   </div>
                 </div>
