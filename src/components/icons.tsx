@@ -185,3 +185,17 @@ export function ArrowDownIcon({ size = 20 }: IconProps) {
     </svg>
   );
 }
+
+export function GradientArrowDownIcon({ size = 22 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <defs>
+        <linearGradient id="cb-arrow-gradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="var(--purple)" />
+          <stop offset="100%" stopColor="var(--accent2)" />
+        </linearGradient>
+      </defs>
+      <path d="M12 4v16M6 14l6 6 6-6" stroke="url(#cb-arrow-gradient)" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}

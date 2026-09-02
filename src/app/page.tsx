@@ -9,7 +9,7 @@ import {
   CarIcon, WalkIcon, LaptopIcon, DumbbellIcon, SparkleIcon, PlaneIcon,
   DocumentIcon, PencilIcon, MicIcon, WaveformIcon,
   HeadphonesIcon, MegaphoneIcon, StarIcon, BookmarkIcon, EyeIcon, GridIcon,
-  CheckCircleIcon, ClockIcon, ArrowDownIcon,
+  CheckCircleIcon, ClockIcon, GradientArrowDownIcon,
 } from "@/components/icons";
 
 export const metadata: Metadata = {
@@ -48,7 +48,8 @@ export default function HomePage() {
     <>
       <Header ctaLabel="Try Your Newsletter" />
 
-      <section
+      <section style={{ background: "var(--tint-warm)", borderBottom: "1px solid var(--border2)" }}>
+      <div
         style={{
           maxWidth: 1200,
           margin: "0 auto",
@@ -104,7 +105,7 @@ export default function HomePage() {
         </Reveal>
 
         <Reveal delay={150} style={{ display: "flex", flexDirection: "column", gap: 14, alignItems: "stretch" }}>
-          <div style={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: 16, padding: "24px 26px", boxShadow: "var(--shadow)", display: "flex", gap: 16, alignItems: "flex-start" }}>
+          <div style={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: 16, padding: "24px 26px", boxShadow: `var(--shadow), var(--glow-purple)`, display: "flex", gap: 16, alignItems: "flex-start" }}>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
                 <span style={{ fontSize: 10.5, letterSpacing: ".16em", textTransform: "uppercase", color: "var(--accent2)" }}>Your newsletter · Edition 128</span>
@@ -114,20 +115,24 @@ export default function HomePage() {
                 What the new funding round means for indie media
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
-                {[100, 94, 88].map((w) => (
+                {[100, 94].map((w) => (
                   <div key={w} style={{ height: 8, borderRadius: 4, background: "var(--border2)", width: `${w}%` }} />
                 ))}
+                <div style={{ height: 8, borderRadius: 4, background: "linear-gradient(90deg, var(--purple), var(--accent2))", width: "88%", opacity: 0.55 }} />
               </div>
             </div>
-            <div className="float-slow icon-badge" style={{ width: 60, height: 60, borderRadius: 14, background: "var(--tint)", color: "var(--accent2)" }}>
+            <div className="float-slow icon-badge" style={{ width: 60, height: 60, borderRadius: 14, background: "linear-gradient(135deg, var(--purple-tint), var(--tint))", color: "var(--accent2)" }}>
               <DocumentIcon size={26} />
             </div>
           </div>
-          <div style={{ display: "flex", justifyContent: "center", color: "var(--text3)" }}>
-            <ArrowDownIcon size={22} />
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <GradientArrowDownIcon size={24} />
           </div>
-          <HomeInteractive />
+          <div style={{ boxShadow: "var(--glow-teal)", borderRadius: 18 }}>
+            <HomeInteractive />
+          </div>
         </Reveal>
+      </div>
       </section>
 
       <section style={{ background: "var(--tint)", borderTop: "1px solid var(--border2)", borderBottom: "1px solid var(--border2)" }}>
@@ -145,11 +150,11 @@ export default function HomePage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 12 }}>
             {MOMENTS.map(([icon, title, note], i) => (
               <Reveal key={title} delay={i * 60}>
-                <div className="hover-pop" style={{ background: "var(--card)", border: "1px solid var(--border2)", borderRadius: 12, padding: "18px 16px", display: "flex", flexDirection: "column", gap: 10 }}>
-                  <div className="icon-badge" style={{ width: 34, height: 34, borderRadius: 10, background: "var(--tint)", color: "var(--accent2)" }}>{icon}</div>
+                <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 4px", borderBottom: "1px solid var(--border2)" }}>
+                  <span style={{ color: "var(--accent2)", flex: "none", display: "flex" }}>{icon}</span>
                   <div>
-                    <div style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 14.5, color: "var(--text)" }}>{title}</div>
-                    <div style={{ fontSize: 12.5, color: "var(--text2)" }}>{note}</div>
+                    <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 14.5, color: "var(--text)" }}>{title}</span>
+                    <span style={{ fontSize: 12.5, color: "var(--text2)" }}> — {note}</span>
                   </div>
                 </div>
               </Reveal>
@@ -166,10 +171,10 @@ export default function HomePage() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 16 }}>
           {STEPS.map(([n, icon, color, title, body], i) => (
             <Reveal key={n} delay={i * 80}>
-              <div className="hover-pop" style={{ border: "1px solid var(--border)", borderRadius: 16, padding: "26px 22px", background: "var(--card)", display: "flex", flexDirection: "column", gap: 12, minHeight: 190 }}>
+              <div className="hover-pop" style={{ borderTop: `3px solid ${color}`, borderLeft: "1px solid var(--border)", borderRight: "1px solid var(--border)", borderBottom: "1px solid var(--border)", borderRadius: 16, padding: "24px 22px 26px", background: "var(--card)", display: "flex", flexDirection: "column", gap: 12, minHeight: 190 }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                   <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 12.5, color, letterSpacing: ".04em" }}>{n}</span>
-                  <div className="icon-badge" style={{ background: "var(--tint)", color }}>{icon}</div>
+                  <div className="icon-badge" style={{ width: 44, height: 44, borderRadius: 13, background: `color-mix(in srgb, ${color} 14%, var(--card))`, color }}>{icon}</div>
                 </div>
                 <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 19, letterSpacing: "-.015em" }}>{title}</span>
                 <span style={{ fontSize: 14.5, color: "var(--text2)" }}>{body}</span>
@@ -207,7 +212,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="demo" style={{ maxWidth: 1200, margin: "0 auto", padding: "88px 40px 72px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
+      <section id="demo" style={{ background: "var(--tint-lavender)", borderTop: "1px solid var(--border2)", borderBottom: "1px solid var(--border2)" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "88px 40px 72px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
         <div>
           <div style={{ fontSize: 11.5, letterSpacing: ".16em", textTransform: "uppercase", color: "var(--text3)", marginBottom: 16 }}>Try it before you commit</div>
           <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 36, lineHeight: 1.08, letterSpacing: "-.025em", margin: "0 0 16px" }}>
@@ -222,7 +228,7 @@ export default function HomePage() {
           </Link>
           <p style={{ fontSize: 13, color: "var(--text3)", margin: "14px 0 0" }}>No signup required · Free demo</p>
         </div>
-        <div style={{ border: "1px solid var(--border)", borderRadius: 16, background: "var(--tint)", padding: "26px 28px" }}>
+        <div style={{ border: "1px solid var(--border)", borderRadius: 16, background: "var(--card)", padding: "26px 28px", boxShadow: "var(--glow-purple)" }}>
           <label style={{ display: "block", fontSize: 12.5, fontWeight: 500, color: "var(--text2)", marginBottom: 9 }}>Paste your newsletter link here</label>
           <div style={{ display: "flex", alignItems: "center", gap: 9, border: "1px solid var(--border)", borderRadius: 11, padding: "13px 15px", background: "var(--card)", color: "var(--text3)", fontSize: 15, marginBottom: 14 }}>
             https://yournewsletter.com/edition/128
@@ -231,6 +237,7 @@ export default function HomePage() {
             ✦ Generate Demo
           </div>
         </div>
+      </div>
       </section>
 
       <PricingTeaser />

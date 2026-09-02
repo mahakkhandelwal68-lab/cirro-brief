@@ -24,6 +24,13 @@
   --orange: #ee9c46;
   --orange-tint: #fdf1e3;
   --gradient-hero: linear-gradient(90deg, #4f8ef7, var(--purple));
+
+  /* Distinct, very subtle section tints so alternating light sections don't
+     visually blend into one flat white/grey wash. */
+  --tint-warm: #faf7f1;
+  --tint-lavender: #f5f3fc;
+  --glow-purple: 0 10px 40px rgba(124, 111, 238, 0.16);
+  --glow-teal: 0 10px 40px rgba(73, 139, 117, 0.2);
 }
 
 [data-cirro="dark"] {
@@ -48,6 +55,11 @@
   --orange: #f0ab63;
   --orange-tint: #3a2a17;
   --gradient-hero: linear-gradient(90deg, #6fa5ff, var(--purple));
+
+  --tint-warm: #15130f;
+  --tint-lavender: #14121f;
+  --glow-purple: 0 10px 40px rgba(168, 151, 255, 0.12);
+  --glow-teal: 0 10px 40px rgba(73, 139, 117, 0.25);
 }
 
 * {
