@@ -186,6 +186,30 @@ export function ArrowDownIcon({ size = 20 }: IconProps) {
   );
 }
 
+export function PlusIcon({ size = 16 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+      <path d="M12 5v14M5 12h14" />
+    </svg>
+  );
+}
+export function MinusIcon({ size = 16 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+      <path d="M5 12h14" />
+    </svg>
+  );
+}
+export function CalendarSyncIcon({ size = 20 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+      <rect x="3" y="5" width="18" height="16" rx="1.5" />
+      <path d="M3 10h18M8 3v4M16 3v4" />
+      <path d="M12 14a2.5 2.5 0 1 1-2.4-3.2" />
+    </svg>
+  );
+}
+
 export function ShareUpIcon({ size = 20 }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
