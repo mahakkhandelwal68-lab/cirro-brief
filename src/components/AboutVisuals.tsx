@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   HeadphonesIcon,
   DocumentIcon,
@@ -101,52 +102,12 @@ export function AboutHeroGraphic() {
   );
 }
 
-/* ---- Decorative QR code ---- */
-
-function pseudoRandom(seed: number) {
-  const x = Math.sin(seed * 12.9898) * 43758.5453;
-  return x - Math.floor(x);
-}
+/* ---- QR code ---- */
 
 export function QrCodeGraphic({ size = 132 }: { size?: number }) {
-  const cells = 15;
-  const cell = size / cells;
-  const finder = (cx: number, cy: number) => (
-    <g key={`${cx}-${cy}`}>
-      <rect x={cx * cell} y={cy * cell} width={cell * 3} height={cell * 3} fill="none" stroke="var(--text)" strokeWidth={cell * 0.35} />
-      <rect x={(cx + 1) * cell} y={(cy + 1) * cell} width={cell} height={cell} fill="var(--text)" />
-    </g>
-  );
-  const finderZones = [
-    [0, 0],
-    [cells - 3, 0],
-    [0, cells - 3],
-  ];
-  const inZone = (r: number, c: number) => finderZones.some(([zc, zr]) => c >= zc - 1 && c < zc + 4 && r >= zr - 1 && r < zr + 4);
-
-  const modules: React.ReactNode[] = [];
-  for (let r = 0; r < cells; r++) {
-    for (let c = 0; c < cells; c++) {
-      if (inZone(r, c)) continue;
-      if (pseudoRandom(r * cells + c + 1) > 0.52) {
-        modules.push(<rect key={`${r}-${c}`} x={c * cell} y={r * cell} width={cell} height={cell} fill="var(--text)" />);
-      }
-    }
-  }
-
   return (
-    <div style={{ display: "inline-flex", padding: 12, background: "#fff", borderRadius: 12, border: "1px solid var(--border)" }}>
-      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={{ color: "#0b1512" }}>
-        <rect width={size} height={size} fill="#fff" />
-        {modules}
-        {finderZones.map(([c, r]) => finder(c, r))}
-        <circle cx={size / 2} cy={size / 2} r={size * 0.1} fill="#fff" stroke="#0b1512" strokeWidth={2} />
-        <path
-          d={`M${size / 2 - 6} ${size / 2 + 3} a6 6 0 1 1 1 -6 a4.5 4.5 0 1 1 0 9z`}
-          fill="#0b1512"
-          transform={`translate(0,0) scale(${size / 132})`}
-        />
-      </svg>
+    <div style={{ display: "inline-flex", width: size, height: size, borderRadius: 12, overflow: "hidden", border: "1px solid var(--border)" }}>
+      <Image src="/brand/qr-sample.jpg" alt="Sample QR code" width={size} height={size} style={{ width: size, height: size, objectFit: "cover" }} />
     </div>
   );
 }
