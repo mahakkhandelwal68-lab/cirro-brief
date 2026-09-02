@@ -23,6 +23,8 @@
   --purple-tint: #ece8fd;
   --orange: #e08423;
   --orange-tint: #fce9d1;
+  --blue: #2f7dd6;
+  --blue-tint: #e3edfb;
   --gradient-hero: linear-gradient(90deg, #4f8ef7, var(--purple));
 
   /* Distinct, more visible section tints so alternating light sections
@@ -55,6 +57,8 @@
   --purple-tint: #221d3a;
   --orange: #f0ab63;
   --orange-tint: #3a2a17;
+  --blue: #6fa8ea;
+  --blue-tint: #172436;
   --gradient-hero: linear-gradient(90deg, #6fa5ff, var(--purple));
 
   --tint-warm: #15130f;

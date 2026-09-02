@@ -272,6 +272,47 @@ export function WhatsAppIcon({ size = 20 }: IconProps) {
   );
 }
 
+export function UserIcon({ size = 20 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 21c0-4 3.6-7 8-7s8 3 8 7" />
+    </svg>
+  );
+}
+export function NewspaperIcon({ size = 20 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+      <path d="M4 5h13a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" />
+      <path d="M8 9h6M8 13h9M8 17h9" />
+      <path d="M19 8h1a1 1 0 0 1 1 1v9a1 1 0 0 1-2 0" />
+    </svg>
+  );
+}
+export function TrendingUpIcon({ size = 20 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+      <path d="M3 17l6-6 4 4 8-8" />
+      <path d="M15 6h6v6" />
+    </svg>
+  );
+}
+export function BriefcaseIcon({ size = 20 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+      <rect x="3" y="7.5" width="18" height="12" rx="1.5" />
+      <path d="M8 7.5V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1.5M3 12.5h18" />
+    </svg>
+  );
+}
+export function CodeIcon({ size = 20 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+      <path d="M9 8l-5 4 5 4M15 8l5 4-5 4" />
+    </svg>
+  );
+}
+
 export function GradientArrowDownIcon({ size = 22 }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
