@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/lib/redis";
 import { isValidBusinessEmail } from "@/lib/scrape";
+import { sendTeamNotification } from "@/lib/notify";
 
 export const dynamic = "force-dynamic";
 
@@ -42,9 +43,18 @@ export async function POST(req: NextRequest) {
       { ex: 60 * 60 * 24 * 365 }
     );
 
-    // NOTE: no automatic confirmation/purchase-link email is sent yet - that
-    // needs an email-sending service (e.g. Resend) wired in separately. For
-    // now this just records the request for the team to follow up on.
+    // Internal notification only - no automatic customer-facing
+    // confirmation/purchase-link email yet (that's a separate feature).
+    await sendTeamNotification(`New Custom plan request from ${name}`, [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Publication: ${publication || "-"}`,
+      `Newsletters/month: ${newslettersPerMonth ?? "-"}`,
+      `Billing: ${billing || "-"}`,
+      `Estimated price: ${estimatedPrice != null ? `${currency || ""} ${estimatedPrice}` : "-"}`,
+      `Requirements: ${requirements || "-"}`,
+    ]);
+
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("Custom plan request failed:", err);

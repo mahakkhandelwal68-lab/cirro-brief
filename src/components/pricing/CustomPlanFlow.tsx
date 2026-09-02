@@ -4,6 +4,51 @@ import { useState } from "react";
 import Link from "next/link";
 import { PlusIcon, MinusIcon } from "../icons";
 
+function Modal({ onClose, children }: { onClose: () => void; children: React.ReactNode }) {
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 100,
+        background: "rgba(0,0,0,.55)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "24px",
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          position: "relative",
+          width: "75vw",
+          maxWidth: 640,
+          minWidth: 320,
+          maxHeight: "80vh",
+          overflowY: "auto",
+          background: "var(--card)",
+          border: "1px solid var(--border)",
+          borderRadius: 20,
+          padding: "32px 36px",
+          boxShadow: "0 30px 80px rgba(0,0,0,.4)",
+        }}
+      >
+        <button
+          onClick={onClose}
+          aria-label="Close"
+          className="btn-pop"
+          style={{ position: "absolute", top: 16, right: 16, width: 32, height: 32, borderRadius: "50%", border: "1px solid var(--border)", background: "var(--bg)", color: "var(--text)", cursor: "pointer", fontSize: 15 }}
+        >
+          ✕
+        </button>
+        {children}
+      </div>
+    </div>
+  );
+}
+
 type Step = "closed" | "requirements" | "estimate" | "request" | "confirmed";
 
 interface CustomResult {
@@ -116,9 +161,10 @@ export function CustomPlanFlow() {
   }
 
   return (
-    <div style={{ border: "1px solid var(--border)", borderRadius: 14, background: "var(--bg2)", padding: "18px 20px", marginTop: 4 }}>
+    <Modal onClose={() => setStep("closed")}>
       {step === "requirements" && (
         <>
+          <div style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 20, marginBottom: 20 }}>Tell us what you need</div>
           <div style={{ fontSize: 13, fontWeight: 500, color: "var(--text2)", marginBottom: 12 }}>How many editions do you publish?</div>
           <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 18 }}>
             <button onClick={() => setN((v) => Math.max(1, v - 1))} className="btn-pop" style={{ width: 32, height: 32, borderRadius: 8, border: "1px solid var(--border)", background: "var(--card)", color: "var(--text)", cursor: "pointer" }}>
@@ -223,6 +269,6 @@ export function CustomPlanFlow() {
           </div>
         </div>
       )}
-    </div>
+    </Modal>
   );
 }
