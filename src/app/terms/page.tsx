@@ -8,8 +8,8 @@ export const metadata: Metadata = {
 };
 
 const SUPPORT_EMAIL = "support@cirro.example.com";
-const BUSINESS_ADDRESS = "[Business Name, City, State, India]";
-const JURISDICTION = "[City, State, India]";
+const BUSINESS_ADDRESS = "LumeLush Studio, Bengaluru, India";
+const JURISDICTION = "Bengaluru, India";
 
 function LegalSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
