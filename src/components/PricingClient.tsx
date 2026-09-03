@@ -221,23 +221,37 @@ export function PricingClient() {
               </div>
             ))}
           </div>
-          {[
-            ["Newsletter Brief", 1, 1, 1, 1],
-            ["Audio + voice selection", 1, 1, 1, 1],
-            ["Saved preferences", 0, 1, 1, 1],
-            ["Pronunciation preferences", 1, 1, 1, 1],
-            ["Ready-to-share assets", 1, 1, 1, 1],
-            ["Priority support", 0, 0, 1, 1],
-            ["Custom requirements", 0, 0, 0, 1],
-          ].map(([label, one, month, annual, custom], i) => (
+          {(
+            [
+              ["Newsletter briefings", "1", "4 / month", "48 / year", "Based on plan"],
+              ["Newsletter adapted for listening", 1, 1, 1, 1],
+              ["Audio briefing", 1, 1, 1, 1],
+              ["Choose briefing style", 1, 1, 1, 1],
+              ["Choose script type and tone", 1, 1, 1, 1],
+              ["Optional script review", 1, 1, 1, 1],
+              ["Edit before audio generation", 1, 1, 1, 1],
+              ["180+ voice library", 1, 1, 1, 1],
+              ["Custom voice creation", 0, 1, 1, 1],
+              ["Custom pronunciation guidance", 1, 1, 1, 1],
+              ["Save publication preferences", 0, 1, 1, 1],
+              ["Save pronunciation preferences", 0, 1, 1, 1],
+              ["Personal workspace", 1, 1, 1, 1],
+              ["Audio library", 1, 1, 1, 1],
+              ["Included publishing assets", 1, 1, 1, 1],
+              ["Custom requirement", 0, 0, 0, 1],
+              ["Price", fmt(pricing.symbol, pricing.oneTime), `${fmt(pricing.symbol, pricing.monthly)}/mo`, `${fmt(pricing.symbol, pricing.annual)}/yr`, "Custom"],
+            ] as [string, number | string, number | string, number | string, number | string][]
+          ).map(([label, one, month, annual, custom], i) => (
             <div key={i} style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr 1fr 1fr 1fr", borderTop: "1px solid var(--border2)", minWidth: 600 }}>
-              <div style={{ padding: "12px 20px", fontSize: 13.8 }}>{label as string}</div>
+              <div style={{ padding: "12px 20px", fontSize: 13.8 }}>{label}</div>
               {[one, month, annual, custom].map((v, ci) => (
-                <div key={ci} style={{ padding: "12px 10px", textAlign: "center", background: ci === 2 ? "var(--tint)" : "transparent" }}>
+                <div key={ci} style={{ padding: "12px 10px", textAlign: "center", background: ci === 2 ? "var(--tint)" : "transparent", fontSize: 13.8, fontWeight: typeof v === "string" ? 600 : 400 }}>
                   {v === 1 ? (
                     <span className="icon-glow" style={{ color: "var(--accent2)", display: "inline-flex" }}><CheckCircleIcon size={16} /></span>
-                  ) : (
+                  ) : v === 0 ? (
                     <span style={{ color: "var(--text3)" }}>—</span>
+                  ) : (
+                    <span>{v}</span>
                   )}
                 </div>
               ))}
