@@ -26,7 +26,7 @@ export default async function BillingPage() {
       <div style={{ border: "1px solid var(--border)", borderRadius: 16, background: "var(--card)", padding: "24px 26px" }}>
         <div style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 17, marginBottom: 8 }}>Want to change your plan?</div>
         <p style={{ fontSize: 14.5, color: "var(--text2)", margin: "0 0 16px" }}>
-          Billing management is handled by our team for now — reach out and we&apos;ll take care of upgrades,
+          Billing management is handled by our team for now. Reach out and we&apos;ll take care of upgrades,
           downgrades, or cancellations.
         </p>
         <Link href="/contact" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--btn)", color: "var(--btn-text)", fontSize: 14.5, fontWeight: 500, padding: "12px 20px", borderRadius: 10 }}>

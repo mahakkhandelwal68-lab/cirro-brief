@@ -51,7 +51,7 @@ export function ContactChannels() {
         </span>
         <span style={{ fontSize: 14.5, fontWeight: 500, color: "var(--text)", flex: 1 }}>{email}</span>
         <a
-          href={`mailto:${email}?subject=${encodeURIComponent(intent === "purchase" ? "Cirro Brief - Purchase Request" : "Cirro Brief - Support")}&body=${encodeURIComponent(message)}`}
+          href={`mailto:${email}?subject=${encodeURIComponent(intent === "purchase" ? "Cirro Brief: Purchase Request" : "Cirro Brief: Support")}&body=${encodeURIComponent(message)}`}
           style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8, background: "transparent", border: "1px solid var(--border)", color: "var(--text)", fontSize: 14.5, fontWeight: 500, padding: "12px 16px", borderRadius: 10 }}
         >
           Send us an email →

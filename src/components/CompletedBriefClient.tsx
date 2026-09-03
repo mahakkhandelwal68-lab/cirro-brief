@@ -76,7 +76,7 @@ export function CompletedBriefClient({ id }: { id: string }) {
 
   const publicUrl = brief.public_slug ? `${typeof window !== "undefined" ? window.location.origin : ""}/b/${brief.public_slug}` : null;
   const keyInsight = brief.script ? brief.script.split(". ").slice(0, 2).join(". ") + "." : "";
-  const promoCopy = `🎧 New audio briefing: "${brief.title}" — listen now.`;
+  const promoCopy = `🎧 New audio briefing: "${brief.title}". Listen now.`;
 
   return (
     <main style={{ maxWidth: 800, margin: "0 auto", padding: "40px 40px 80px" }}>

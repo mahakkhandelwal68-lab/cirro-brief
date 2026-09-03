@@ -7,7 +7,7 @@ import { PricingClient } from "@/components/PricingClient";
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "One-Time, Monthly, Annual, or Custom — choose the Cirro Brief plan that fits how often you publish. Regional pricing shown automatically.",
+    "One-Time, Monthly, Annual, or Custom: choose the Cirro Brief plan that fits how often you publish. Regional pricing shown automatically.",
 };
 
 export default function PricingPage() {

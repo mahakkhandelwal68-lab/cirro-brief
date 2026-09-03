@@ -14,9 +14,9 @@ import {
 } from "@/components/icons";
 
 export const metadata: Metadata = {
-  title: "Your newsletter, ready to listen — Cirro Brief",
+  title: "Your newsletter, ready to listen | Cirro Brief",
   description:
-    "Turn every newsletter edition into a ready-to-use Brief—audio, publishing assets, and everything organised for sharing. Try the free demo on your own newsletter.",
+    "Turn every newsletter edition into a ready-to-use Brief: audio, publishing assets, and everything organised for sharing. Try the free demo on your own newsletter.",
 };
 
 const MOMENTS: [React.ReactNode, string, string][] = [
@@ -83,7 +83,7 @@ export default function HomePage() {
             Turn your newsletter into an <span className="gradient-text">audio experience.</span>
           </h1>
           <p style={{ fontSize: 18, lineHeight: 1.6, color: "var(--text2)", margin: "0 0 34px", maxWidth: "30em" }}>
-            Transform every edition into a ready-to-use Brief—with audio, publishing assets, and everything
+            Transform every edition into a ready-to-use Brief, with audio, publishing assets, and everything
             organised for sharing.
           </p>
           <div style={{ display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
@@ -92,7 +92,7 @@ export default function HomePage() {
               className="btn-pop"
               style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "var(--btn)", color: "var(--btn-text)", fontSize: 16, fontWeight: 500, padding: "15px 26px", borderRadius: 12 }}
             >
-              Try Your Newsletter — It&apos;s Free <span style={{ opacity: 0.75 }}>→</span>
+              Try Your Newsletter, It&apos;s Free <span style={{ opacity: 0.75 }}>→</span>
             </Link>
           </div>
           <div style={{ display: "flex", gap: 22, marginTop: 20, fontSize: 13.5, color: "var(--text3)" }}>
@@ -155,7 +155,7 @@ export default function HomePage() {
                   <span className="icon-glow-bare" style={{ color: "var(--accent2)", flex: "none", display: "flex" }}>{icon}</span>
                   <div>
                     <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 14.5, color: "var(--text)" }}>{title}</span>
-                    <span style={{ fontSize: 12.5, color: "var(--text2)" }}> — {note}</span>
+                    <span style={{ fontSize: 12.5, color: "var(--text2)" }}> · {note}</span>
                   </div>
                 </div>
               </Reveal>
@@ -245,7 +245,7 @@ export default function HomePage() {
             ready-to-use Brief.
           </p>
           <Link href="/try-demo" className="btn-pop" style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "var(--btn)", color: "var(--btn-text)", fontSize: 16, fontWeight: 500, padding: "15px 26px", borderRadius: 12 }}>
-            Try Your Newsletter — It&apos;s Free <span style={{ opacity: 0.75 }}>→</span>
+            Try Your Newsletter, It&apos;s Free <span style={{ opacity: 0.75 }}>→</span>
           </Link>
           <p style={{ fontSize: 13, color: "var(--text3)", margin: "14px 0 0" }}>No signup required · Free demo</p>
         </div>
@@ -291,7 +291,7 @@ export default function HomePage() {
           </div>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
             <Link href="/try-demo" className="btn-pop" style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "#fff", color: "var(--accent)", fontSize: 15.5, fontWeight: 500, padding: "14px 24px", borderRadius: 12 }}>
-              Try Your Newsletter — It&apos;s Free <span style={{ opacity: 0.75 }}>→</span>
+              Try Your Newsletter, It&apos;s Free <span style={{ opacity: 0.75 }}>→</span>
             </Link>
             <Link href="/pricing" className="btn-pop" style={{ display: "inline-flex", alignItems: "center", background: "transparent", border: "1px solid rgba(255,255,255,.3)", color: "#fff", fontSize: 15.5, padding: "14px 24px", borderRadius: 12 }}>
               View Pricing

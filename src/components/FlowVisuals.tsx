@@ -41,7 +41,7 @@ export function StyleVoiceCard() {
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", border: "1px solid var(--border)", borderRadius: 11, padding: "10px 14px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <span style={{ width: 28, height: 28, borderRadius: "50%", background: "var(--tint)", color: "var(--accent2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700 }}>M</span>
-            <span style={{ fontSize: 14, fontWeight: 500 }}>Maya — Warm, clear</span>
+            <span style={{ fontSize: 14, fontWeight: 500 }}>Maya · Warm, clear</span>
           </div>
           <ChevronDownIcon size={16} />
         </div>

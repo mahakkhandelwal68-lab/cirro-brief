@@ -9,7 +9,7 @@ interface Message {
 
 const GREETING: Message = {
   role: "model",
-  text: "Hi! I'm the Cirro Brief consultant. Ask me about plans, pricing, or how the process works — I can help you figure out what fits, or point you to purchase or book a call.",
+  text: "Hi! I'm the Cirro Brief consultant. Ask me about plans, pricing, or how the process works. I can help you figure out what fits, or point you to purchase or book a call.",
 };
 
 export function ConsultantWidget() {

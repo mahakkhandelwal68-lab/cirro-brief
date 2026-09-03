@@ -64,7 +64,7 @@ export default async function DashboardHomePage() {
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
             <span style={{ fontSize: 17 }}>✨</span>
-            <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 19 }}>{profile?.default_style || "—"}</span>
+            <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 19 }}>{profile?.default_style || "Not set"}</span>
             <span style={{ fontSize: 12, color: "var(--text3)" }}>Default style</span>
           </div>
         </div>

@@ -86,7 +86,7 @@ export default function TermsPage() {
         </LegalSection>
 
         <LegalSection title="7. Your responsibility to review content">
-          <p>Cirro Brief may use automated systems and other technology to process content. Generated materials may occasionally contain errors. Before publishing, distributing, or relying on an Audio Brief or generated asset, you are responsible for reviewing it — particularly for names, brand names, technical terminology, financial information, dates, numbers, medical information, legal information, or other sensitive or high-impact content.</p>
+          <p>Cirro Brief may use automated systems and other technology to process content. Generated materials may occasionally contain errors. Before publishing, distributing, or relying on an Audio Brief or generated asset, you are responsible for reviewing it, particularly for names, brand names, technical terminology, financial information, dates, numbers, medical information, legal information, or other sensitive or high-impact content.</p>
           <p>Saved pronunciation preferences can help improve future editions, but you remain responsible for reviewing final output.</p>
         </LegalSection>
 

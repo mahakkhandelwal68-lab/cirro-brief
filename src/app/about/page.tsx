@@ -33,7 +33,7 @@ import {
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Cirro Brief turns every newsletter edition into a complete Brief — audio, summaries and everything organised for the way people consume content today.",
+    "Cirro Brief turns every newsletter edition into a complete Brief: audio, summaries and everything organised for the way people consume content today.",
 };
 
 const REAL_MOMENTS: [React.ReactNode, string, string][] = [
@@ -46,7 +46,7 @@ const REAL_MOMENTS: [React.ReactNode, string, string][] = [
 const ASSET_CARDS: [string, string, React.ReactNode, string][] = [
   ["AUDIO BRIEF (MP3)", "var(--accent2)", <AudioBriefVisual key="a" />, "A complete audio experience built around your edition."],
   ["BRIEF SUMMARY", "var(--purple)", <BriefSummaryVisual key="b" />, "Key ideas from your edition in a quick, easy-to-revisit format."],
-  ["READY-TO-SHARE ASSETS", "var(--orange)", <ShareAssetsVisual key="c" />, "Shareable posts, visuals and copy—ready to publish."],
+  ["READY-TO-SHARE ASSETS", "var(--orange)", <ShareAssetsVisual key="c" />, "Shareable posts, visuals and copy, ready to publish."],
   ["BLOG AUDIO EMBED", "var(--blue)", <BlogEmbedVisual key="d" />, "Embed audio in your blog so readers can listen without leaving your site."],
   ["QR CODE TO SHARE", "var(--accent2)", <QrShareVisual key="e" />, "A printable QR code that links directly to your audio Brief."],
 ];
@@ -84,7 +84,7 @@ export default function AboutPage() {
               <span style={{ color: "var(--accent2)" }}>We help more people experience them.</span>
             </h1>
             <p style={{ fontSize: 16.5, color: "var(--text2)", margin: "0 0 28px", maxWidth: 440 }}>
-              Cirro Brief turns every newsletter edition into a complete Brief — audio, summaries and everything
+              Cirro Brief turns every newsletter edition into a complete Brief: audio, summaries and everything
               organised for the way people consume content today.
             </p>
             <Link href="/try-demo" className="btn-pop" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--btn)", color: "var(--btn-text)", fontSize: 15, fontWeight: 500, padding: "13px 22px", borderRadius: 11, marginBottom: 12 }}>

@@ -60,7 +60,7 @@ export default function RefundsPage() {
               "You may cancel future renewals according to the cancellation options available to you.",
               "Cancellation will normally prevent future billing.",
               "Cancellation does not automatically provide a refund for the current billing period.",
-              "Services already made available during a paid billing period — including Annual plans — are not refundable once access to that period has started.",
+              "Services already made available during a paid billing period, including Annual plans, are not refundable once access to that period has started.",
             ]}
           />
           <p>Where a refund is legally required, we will process it in accordance with applicable law.</p>

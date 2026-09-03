@@ -92,7 +92,7 @@ export default function ScriptReviewPage() {
           />
           <div style={{ display: "flex", gap: 10 }}>
             <button onClick={handleContinue} style={{ flex: 1, background: "var(--btn)", color: "var(--btn-text)", border: "none", fontSize: 15.5, fontWeight: 500, padding: 14, borderRadius: 11, cursor: "pointer" }}>
-              Looks Good — Continue →
+              Looks Good, Continue →
             </button>
             <button onClick={() => setChosenIndex(null)} style={{ background: "transparent", border: "1px solid var(--border)", color: "var(--text)", fontSize: 15, padding: "0 20px", borderRadius: 11, cursor: "pointer" }}>
               Back

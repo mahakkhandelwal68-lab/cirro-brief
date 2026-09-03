@@ -57,7 +57,7 @@ export default function CreateBriefStep1() {
       </button>
 
       <p style={{ fontSize: 13, color: "var(--text3)", margin: 0 }}>
-        We only read the content of the page you submit - nothing else is accessed from your account.
+        We only read the content of the page you submit. Nothing else is accessed from your account.
       </p>
     </main>
   );

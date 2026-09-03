@@ -205,7 +205,7 @@ export function PostDemoOfferClient() {
             {MATRIX.map(([label, demo]) => (
               <div key={label} style={{ display: "grid", gridTemplateColumns: "1.3fr 1fr 1fr", borderBottom: "1px solid var(--border2)" }}>
                 <div style={{ padding: "13px 24px", fontSize: 15, color: "var(--text)" }}>{label}</div>
-                <div style={{ padding: "13px 24px", textAlign: "center", borderLeft: "1px solid var(--border2)", color: demo ? "var(--accent2)" : "var(--text3)" }}>{demo ? "✓" : "—"}</div>
+                <div style={{ padding: "13px 24px", textAlign: "center", borderLeft: "1px solid var(--border2)", color: demo ? "var(--accent2)" : "var(--text3)" }}>{demo ? "✓" : "✕"}</div>
                 <div style={{ padding: "13px 24px", textAlign: "center", borderLeft: "1px solid var(--border2)", background: "var(--tint)", color: "var(--accent2)" }}>✓</div>
               </div>
             ))}
@@ -284,7 +284,7 @@ export function PostDemoOfferClient() {
                 style={{ width: "100%", background: "transparent", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 20, padding: "20px 2px", textAlign: "left", color: "var(--text)", fontSize: 17, fontWeight: 500 }}
               >
                 {q}
-                <span style={{ color: "var(--accent2)", fontSize: 16, flex: "none" }}>{openFaq === i ? "–" : "+"}</span>
+                <span style={{ color: "var(--accent2)", fontSize: 16, flex: "none" }}>{openFaq === i ? "×" : "+"}</span>
               </button>
               {openFaq === i && <div style={{ padding: "0 2px 22px", fontSize: 16, color: "var(--text2)", maxWidth: "40em" }}>{a}</div>}
             </div>

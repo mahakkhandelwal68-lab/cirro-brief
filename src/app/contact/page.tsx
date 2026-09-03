@@ -25,7 +25,7 @@ const FAQS = [
     icon: <BookmarkIcon size={16} />,
     color: "var(--purple)",
     q: "Can I try Cirro Brief first?",
-    a: "Yes. You can try Cirro Brief with one of your own newsletter editions before subscribing — no signup or payment required.",
+    a: "Yes. You can try Cirro Brief with one of your own newsletter editions before subscribing. No signup or payment required.",
   },
   {
     icon: <SlidersIcon size={16} />,

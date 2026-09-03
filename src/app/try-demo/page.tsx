@@ -342,7 +342,7 @@ export default function TryDemoPage() {
                 {COMPARE_ROWS.map(([demo, full], i) => (
                   <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 1.15fr", borderBottom: "1px solid var(--border2)" }}>
                     <div style={{ padding: "15px 26px", fontSize: 15.5, color: demo ? "var(--text2)" : "var(--text3)", borderRight: "1px solid var(--border2)" }}>
-                      {demo || "—"}
+                      {demo || "Not included"}
                     </div>
                     <div style={{ padding: "15px 26px", fontSize: 15.5, color: "var(--text)", background: "var(--tint)", display: "flex", gap: 11 }}>
                       <span style={{ color: "var(--accent2)" }}>✓</span>

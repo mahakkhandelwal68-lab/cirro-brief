@@ -40,7 +40,7 @@ const FAQ_DATA = [
   ["What exactly is included in a Brief?", "Every Brief includes the audio briefing, the full script, key insights, and ready-to-share promotional copy."],
   ["Can I use my own voice preferences?", "Yes. Monthly and Annual plans let you save a custom voice and reuse it automatically for every future edition."],
   ["Can I change or cancel my plan?", "Yes. Reach out to our team any time to move between plans or cancel as your publishing needs change."],
-  ["How does Custom pricing work?", "Tell us how many editions you publish and what you need — we'll give you an instant estimate, and our team confirms a final price before sending a payment link."],
+  ["How does Custom pricing work?", "Tell us how many editions you publish and what you need. We'll give you an instant estimate, and our team confirms a final price before sending a payment link."],
   ["Can I speak with someone before choosing?", "Of course. Use Check Custom Plan for an estimate, or reach out on the Contact page to talk it through first."],
 ];
 
@@ -89,7 +89,7 @@ export function PricingClient() {
           </p>
           <p style={{ fontSize: 13, color: "var(--text3)", margin: "0 0 28px" }}>Pricing shown in {pricing.currency} based on your location.</p>
           <Link href="/try-demo" className="btn-pop" style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "var(--btn)", color: "var(--btn-text)", fontSize: 16, fontWeight: 500, padding: "15px 26px", borderRadius: 12 }}>
-            Try Your Newsletter — It&apos;s Free <span style={{ opacity: 0.75 }}>→</span>
+            Try Your Newsletter, It&apos;s Free <span style={{ opacity: 0.75 }}>→</span>
           </Link>
         </Reveal>
       </section>
@@ -249,7 +249,7 @@ export function PricingClient() {
                   {v === 1 ? (
                     <span className="icon-glow" style={{ color: "var(--accent2)", display: "inline-flex" }}><CheckCircleIcon size={16} /></span>
                   ) : v === 0 ? (
-                    <span style={{ color: "var(--text3)" }}>—</span>
+                    <span style={{ color: "var(--text3)" }}>✕</span>
                   ) : (
                     <span>{v}</span>
                   )}
@@ -274,7 +274,7 @@ export function PricingClient() {
                   style={{ width: "100%", background: "transparent", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 20, padding: "18px 2px", textAlign: "left", color: "var(--text)", fontSize: 15.5, fontWeight: 500 }}
                 >
                   {q}
-                  <span style={{ color: "var(--accent2)", fontSize: 16, flex: "none" }}>{openFaq === i ? "–" : "+"}</span>
+                  <span style={{ color: "var(--accent2)", fontSize: 16, flex: "none" }}>{openFaq === i ? "×" : "+"}</span>
                 </button>
                 {openFaq === i && <div style={{ padding: "0 2px 20px", fontSize: 14.5, color: "var(--text2)", maxWidth: "40em" }}>{a}</div>}
               </div>
@@ -294,7 +294,7 @@ export function PricingClient() {
           </p>
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap", justifyContent: "center", marginTop: 4 }}>
             <Link href="/try-demo" className="btn-pop" style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "#fff", color: "var(--band)", fontSize: 16, fontWeight: 500, padding: "15px 26px", borderRadius: 12 }}>
-              Try Your Newsletter — It&apos;s Free <span style={{ opacity: 0.75 }}>→</span>
+              Try Your Newsletter, It&apos;s Free <span style={{ opacity: 0.75 }}>→</span>
             </Link>
             <Link href="/contact" className="btn-pop" style={{ display: "inline-flex", alignItems: "center", background: "transparent", border: "1px solid rgba(255,255,255,.3)", color: "#fff", fontSize: 16, padding: "15px 26px", borderRadius: 12 }}>
               Talk to Us
