@@ -328,14 +328,7 @@ button {
   align-items: start;
 }
 .td-h1 {
-  font-size: clamp(36px, 7.4vw, 54px);
-}
-.td-features {
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  justify-content: start;
-  gap: 22px;
-  margin-bottom: 30px;
+  font-size: clamp(36px, 7.4vw, 48px);
 }
 .td-form {
   padding: 24px 26px 22px;
@@ -386,10 +379,6 @@ button {
   .td-how-grid {
     padding: 40px 20px !important;
   }
-  .td-features {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
   .td-form {
     padding: 20px 18px 18px;
   }
@@ -417,48 +406,6 @@ button {
   }
 }
 
-.td-visual {
-  position: relative;
-  width: 100%;
-  max-width: 520px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-}
-.td-doc {
-  width: 72%;
-  align-self: flex-start;
-  transform: rotate(-2deg);
-}
-.td-mascot {
-  position: absolute;
-  top: 0;
-  right: 2%;
-  width: 27%;
-}
-.td-link {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 4px 0 4px 16%;
-}
-.td-bar {
-  animation: cbWave 1.6s ease-in-out infinite;
-  transform-origin: center;
-}
-@media (max-width: 520px) {
-  .td-doc {
-    width: 78%;
-  }
-  .td-mascot {
-    width: 30%;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .td-bar {
-    animation: none !important;
-  }
-}
 
 /* ---- Site-wide small-screen rules ----
    Most pages lay out with inline multi-column grids, so on narrow screens we
@@ -560,5 +507,46 @@ body > section {
   }
   .about-hero-graphic > div:last-child {
     width: 100%;
+  }
+}
+
+/* Demo page hero image: fades into the dark page; framed card in light theme. */
+.td-hero-grid {
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+}
+.td-hero-img-wrap {
+  align-self: center;
+}
+.td-hero-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  -webkit-mask-image: radial-gradient(ellipse 74% 72% at 50% 50%, #000 60%, transparent 100%);
+  mask-image: radial-gradient(ellipse 74% 72% at 50% 50%, #000 60%, transparent 100%);
+}
+[data-cirro="light"] .td-hero-img {
+  -webkit-mask-image: none;
+  mask-image: none;
+  border-radius: 28px;
+  box-shadow: var(--shadow), var(--glow-teal);
+}
+.td-proof-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .td-hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .td-proof-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 901px) {
+  .td-hero-img {
+    transform: scale(1.1);
   }
 }

@@ -1,11 +1,11 @@
 "use client";
 
-import { useMemo, useRef } from "react";
+import { useRef } from "react";
+import Image from "next/image";
 import { Turnstile } from "./Turnstile";
 import { Reveal } from "./Reveal";
 import { TESTIMONIALS } from "@/lib/testimonials";
 import {
-  LightningIcon,
   SparkleIcon,
   LockIcon,
   LinkIcon,
@@ -32,116 +32,128 @@ const BRAND_STRIP: { name: string; glyph: string | null; color: string }[] = [
 
 const NOTE_FONT = 'Georgia, "Times New Roman", serif';
 
-const FEATURES: [React.ReactNode, string, string][] = [
-  [<LightningIcon key="a" size={20} />, "Fast", "Less than a minute"],
-  [<SparkleIcon key="b" size={20} />, "Personalised", "From your actual content"],
-  [<LockIcon key="c" size={20} />, "100% free", "No signup required"],
-];
-
 const STEPS: [React.ReactNode, string, string][] = [
   [<LinkIcon key="a" size={22} />, "Paste your link", "Add the link to any published newsletter edition."],
   [<SparkleIcon key="b" size={22} />, "We create your brief", "Our AI finds the key ideas and turns them into audio (usually under a minute)."],
   [<HeadphonesIcon key="c" size={22} />, "You listen", "Get a natural-sounding audio brief, ready to play."],
 ];
 
-function ImageGlyph({ size }: { size: number }) {
+const PREVIEW_TAKEAWAYS = [
+  "AI is reshaping how teams work",
+  "Human skills matter more than ever",
+  "Flexible work is here to stay",
+  "Focus and deep work drive results",
+];
+
+const PREVIEW_BARS = Array.from({ length: 56 }, (_, i) => 18 + Math.round(72 * Math.abs(Math.sin(i * 0.62) * Math.cos(i * 0.19))));
+
+function ResultPreview() {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M3 18l6-8 4 5 3-3 5 6z" />
-      <circle cx="16.5" cy="7" r="1.6" />
-    </svg>
-  );
-}
-
-function HeroVisual() {
-  const bars = useMemo(
-    () => Array.from({ length: 40 }, (_, i) => 22 + Math.round(68 * Math.abs(Math.sin(i * 0.7) * Math.cos(i * 0.23)))),
-    []
-  );
-
-  return (
-    <div aria-hidden="true" className="td-visual">
-      <div style={{ fontFamily: NOTE_FONT, fontStyle: "italic", fontSize: 18, color: "var(--accent2)", marginBottom: 8, paddingLeft: 6 }}>From this...</div>
-
-      <div className="td-doc" style={{ border: "1px solid var(--border)", borderRadius: 14, background: "var(--card)", boxShadow: "var(--shadow)", padding: "16px 16px 18px" }}>
-        <div style={{ fontSize: 10.5, color: "var(--text3)", marginBottom: 6 }}>The Daily Insight</div>
-        <div style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 16, lineHeight: 1.2, marginBottom: 12 }}>
-          The future of work in a changing world
+    <section style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "16px 20px 56px" }}>
+      <Reveal>
+        <div style={{ textAlign: "center", maxWidth: 620, margin: "0 auto 32px" }}>
+          <div style={{ display: "inline-flex", fontSize: 11, letterSpacing: ".15em", textTransform: "uppercase", color: "var(--accent2)", border: "1px solid var(--border)", borderRadius: 999, padding: "6px 13px", marginBottom: 16 }}>
+            What you get
+          </div>
+          <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(26px, 5vw, 36px)", lineHeight: 1.15, letterSpacing: "-.02em", margin: "0 0 10px" }}>
+            Your newsletter, <span style={{ color: "var(--accent2)" }}>ready to hear and share.</span>
+          </h2>
+          <p style={{ fontSize: 16, color: "var(--text2)", margin: 0 }}>
+            Audio, key takeaways and ready-to-share assets, all in one place.
+          </p>
         </div>
-        <div style={{ display: "flex", gap: 10 }}>
-          <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 6 }}>
-            {[100, 92, 97, 74, 86, 62].map((w, i) => (
-              <div key={i} style={{ height: 5, width: `${w}%`, borderRadius: 3, background: "var(--border)" }} />
+      </Reveal>
+
+      <Reveal delay={80}>
+        <div style={{ border: "1px solid var(--border)", borderRadius: 22, background: "var(--card)", boxShadow: "var(--shadow), var(--glow-teal)", overflow: "hidden" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 7, padding: "12px 18px", borderBottom: "1px solid var(--border2)", background: "var(--bg2)" }}>
+            {["#e06565", "#e0b458", "#5bbf8a"].map((c) => (
+              <span key={c} style={{ width: 9, height: 9, borderRadius: "50%", background: c, opacity: 0.8 }} />
             ))}
+            <span style={{ marginLeft: 10, fontSize: 12, color: "var(--text3)" }}>Cirro Brief workspace</span>
           </div>
-          <div style={{ width: 70, height: 54, borderRadius: 8, background: "var(--tint)", color: "var(--accent2)", display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}>
-            <ImageGlyph size={28} />
-          </div>
-        </div>
-      </div>
 
-      <div className="float-slow td-mascot">
-        <svg viewBox="0 0 150 130" width="100%" style={{ display: "block" }}>
-          <path d="M30 100a26 26 0 0 1 2-51 34 34 0 0 1 64-6 28 28 0 0 1 22 57z" fill="var(--card)" stroke="var(--border)" strokeWidth={2} />
-          <path d="M38 62a36 36 0 0 1 74 0" fill="none" stroke="var(--accent2)" strokeWidth={7} strokeLinecap="round" />
-          <rect x="28" y="58" width="14" height="30" rx="6" fill="var(--accent2)" />
-          <rect x="108" y="58" width="14" height="30" rx="6" fill="var(--accent2)" />
-          <circle cx="62" cy="76" r="4.5" fill="var(--text)" />
-          <circle cx="90" cy="76" r="4.5" fill="var(--text)" />
-          <path d="M67 88q8 8 16 0" fill="none" stroke="var(--text)" strokeWidth={3} strokeLinecap="round" />
-        </svg>
-      </div>
-
-      <div className="td-link">
-        <svg width="26" height="54" viewBox="0 0 26 54" fill="none" style={{ flex: "none" }}>
-          <path d="M13 2v40" stroke="var(--accent2)" strokeWidth="1.8" strokeDasharray="4 5" strokeLinecap="round" />
-          <path d="M6 38l7 10 7-10" stroke="var(--accent2)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-        <span className="icon-badge icon-glow" style={{ width: 38, height: 38, borderRadius: "50%", background: "var(--tint)", color: "var(--accent2)" }}>
-          <SparkleIcon size={18} />
-        </span>
-        <span style={{ fontFamily: NOTE_FONT, fontStyle: "italic", fontSize: 20, color: "var(--accent2)" }}>To this.</span>
-      </div>
-
-      <div style={{ border: "1px solid var(--border)", borderRadius: 20, background: "var(--card)", boxShadow: "var(--shadow), var(--glow-teal)", padding: "20px 22px 18px" }}>
-        <div style={{ display: "flex", gap: 14, alignItems: "flex-start", marginBottom: 16 }}>
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-              <span className="icon-badge" style={{ width: 28, height: 28, borderRadius: 8, background: "var(--tint)", color: "var(--accent2)" }}>
-                <HeadphonesIcon size={15} />
-              </span>
+          <div style={{ padding: "22px clamp(16px, 3vw, 30px) 26px" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 14, flexWrap: "wrap", marginBottom: 22 }}>
               <div>
-                <div style={{ fontSize: 12.5, fontWeight: 600 }}>The Daily Insight</div>
-                <div style={{ fontSize: 10.5, color: "var(--text3)" }}>Edition 128 · Nov 12, 2024</div>
+                <div style={{ fontSize: 12, color: "var(--text3)", marginBottom: 4 }}>Audio Brief · Edition 128</div>
+                <div style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(20px, 3.4vw, 26px)", letterSpacing: "-.01em" }}>
+                  The Future of Work in a Changing World
+                </div>
+              </div>
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 7, fontSize: 12.5, fontWeight: 600, color: "var(--accent2)", background: "var(--tint)", border: "1px solid var(--border)", borderRadius: 999, padding: "6px 13px" }}>
+                <span style={{ width: 7, height: 7, borderRadius: "50%", background: "var(--accent2)", boxShadow: "0 0 8px var(--accent2)" }} />
+                Brief ready
+              </span>
+            </div>
+
+            <div className="td-proof-grid">
+              <div style={{ display: "flex", flexDirection: "column", gap: 18, minWidth: 0 }}>
+                <div style={{ border: "1px solid var(--border)", borderRadius: 16, background: "var(--bg)", padding: "18px 20px" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+                    <span style={{ width: 48, height: 48, borderRadius: "50%", background: "var(--btn)", color: "var(--btn-text)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 15, flex: "none", boxShadow: "0 0 0 7px color-mix(in srgb, var(--accent2) 16%, transparent)" }}>▶</span>
+                    <div style={{ flex: 1, display: "flex", alignItems: "center", gap: 2, height: 40, minWidth: 0 }}>
+                      {PREVIEW_BARS.map((h, i) => (
+                        <span key={i} style={{ flex: 1, height: `${h}%`, borderRadius: 1, background: "var(--accent2)", opacity: i < 14 ? 1 : 0.42 }} />
+                      ))}
+                    </div>
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10, flexWrap: "wrap", marginTop: 10 }}>
+                    <span style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                      {["Natural voice", "Concise"].map((c) => (
+                        <span key={c} style={{ fontSize: 11.5, color: "var(--accent2)", background: "var(--tint)", borderRadius: 999, padding: "4px 11px" }}>{c}</span>
+                      ))}
+                    </span>
+                    <span style={{ fontSize: 12, color: "var(--text3)" }}>00:00 / 01:32</span>
+                  </div>
+                </div>
+
+                <div>
+                  <div style={{ fontSize: 12.5, fontWeight: 600, color: "var(--text2)", marginBottom: 10 }}>Ready-to-share assets</div>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 12 }}>
+                    <div style={{ border: "1px solid var(--border)", borderTop: "2px solid var(--purple)", borderRadius: 12, background: "var(--bg)", padding: "12px 13px" }}>
+                      <div style={{ fontSize: 10.5, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--purple)", fontWeight: 700, marginBottom: 8 }}>Social post</div>
+                      <div style={{ fontFamily: NOTE_FONT, fontStyle: "italic", fontSize: 13.5, lineHeight: 1.35 }}>&ldquo;The future of work is human.&rdquo;</div>
+                      <div style={{ fontSize: 11, color: "var(--text3)", marginTop: 6 }}>Listen to the full brief</div>
+                    </div>
+                    <div style={{ border: "1px solid var(--border)", borderTop: "2px solid var(--orange)", borderRadius: 12, background: "var(--bg)", padding: "12px 13px" }}>
+                      <div style={{ fontSize: 10.5, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--orange)", fontWeight: 700, marginBottom: 8 }}>Blog audio embed</div>
+                      <div style={{ display: "flex", alignItems: "center", gap: 7, border: "1px solid var(--border2)", borderRadius: 9, padding: "7px 9px" }}>
+                        <span style={{ width: 20, height: 20, borderRadius: "50%", background: "var(--orange)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 8, flex: "none" }}>▶</span>
+                        <span style={{ flex: 1, height: 4, borderRadius: 2, background: "var(--border)" }} />
+                        <span style={{ fontSize: 10, color: "var(--text3)" }}>01:32</span>
+                      </div>
+                    </div>
+                    <div style={{ border: "1px solid var(--border)", borderTop: "2px solid var(--accent2)", borderRadius: 12, background: "var(--bg)", padding: "12px 13px" }}>
+                      <div style={{ fontSize: 10.5, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--accent2)", fontWeight: 700, marginBottom: 8 }}>QR code</div>
+                      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                        <Image src="/brand/qr-sample.jpg" alt="Sample QR code" width={54} height={54} style={{ borderRadius: 8, flex: "none" }} />
+                        <span style={{ fontSize: 11, color: "var(--text3)" }}>Scan to hear this edition</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ border: "1px solid var(--border)", borderRadius: 16, background: "var(--bg)", padding: "18px 20px", minWidth: 0 }}>
+                <div style={{ fontSize: 12.5, fontWeight: 600, color: "var(--text2)", marginBottom: 14 }}>Brief summary</div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 13 }}>
+                  {PREVIEW_TAKEAWAYS.map((t) => (
+                    <div key={t} style={{ display: "flex", gap: 10, fontSize: 14.5, lineHeight: 1.4 }}>
+                      <span style={{ color: "var(--accent2)", flex: "none", marginTop: 2 }}><CheckCircleIcon size={16} /></span>
+                      {t}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-            <div style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 19, lineHeight: 1.2 }}>The future of work in a changing world</div>
-          </div>
-          <div style={{ width: 84, height: 66, borderRadius: 10, background: "var(--tint)", color: "var(--accent2)", display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}>
-            <ImageGlyph size={32} />
           </div>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 6 }}>
-          <span style={{ width: 42, height: 42, borderRadius: "50%", background: "var(--btn)", color: "var(--btn-text)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, flex: "none", boxShadow: "0 0 0 6px color-mix(in srgb, var(--accent2) 18%, transparent)" }}>▶</span>
-          <div style={{ flex: 1, display: "flex", alignItems: "center", gap: 2, height: 32 }}>
-            {bars.map((h, i) => (
-              <span key={i} className="td-bar" style={{ flex: 1, height: `${h}%`, borderRadius: 1, background: "var(--accent2)", opacity: i < 8 ? 1 : 0.5, animationDelay: `${(i % 9) * 0.12}s` }} />
-            ))}
-          </div>
-        </div>
-        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 10.5, color: "var(--text3)", margin: "0 0 14px 54px" }}>
-          <span>00:00</span>
-          <span>01:32</span>
-        </div>
-        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-          {["Concise", "Natural voice", "Real insights"].map((c) => (
-            <span key={c} style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 11.5, color: "var(--accent2)", background: "var(--tint)", borderRadius: 999, padding: "5px 11px" }}>
-              <CheckCircleIcon size={12} /> {c}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
+        <p style={{ textAlign: "center", fontSize: 12.5, color: "var(--text3)", margin: "14px 0 0" }}>
+          Example result shown with sample content.
+        </p>
+      </Reveal>
+    </section>
   );
 }
 
@@ -193,20 +205,6 @@ export function TryDemoLanding({ url, setUrl, email, setEmail, onVerify, error, 
               credit card.
             </p>
 
-            <div className="td-features">
-              {FEATURES.map(([icon, title, sub]) => (
-                <div key={title} style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                  <span className="icon-badge icon-glow" style={{ width: 40, height: 40, borderRadius: "50%", background: "var(--tint)", color: "var(--accent2)" }}>
-                    {icon}
-                  </span>
-                  <div>
-                    <div style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 14 }}>{title}</div>
-                    <div style={{ fontSize: 12.5, color: "var(--text3)" }}>{sub}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
             <div ref={formRef} className="td-form" style={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: 18, boxShadow: "var(--shadow)" }}>
               <label style={{ display: "block", fontSize: 13.5, fontWeight: 600, marginBottom: 9 }}>Paste your newsletter link</label>
               <div style={{ ...fieldStyle, marginBottom: 14 }}>
@@ -257,9 +255,21 @@ export function TryDemoLanding({ url, setUrl, email, setEmail, onVerify, error, 
             </div>
           </div>
 
-          <HeroVisual />
+          <div className="td-hero-img-wrap">
+            <Image
+              src="/brand/demo-hero.png"
+              alt="A newsletter article, The Future of Work in a Changing World, turning into a Cirro Brief audio player with a friendly cloud wearing headphones"
+              width={1536}
+              height={1024}
+              priority
+              sizes="(max-width: 900px) 100vw, 620px"
+              className="td-hero-img"
+            />
+          </div>
         </div>
       </section>
+
+      <ResultPreview />
 
       <section style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "8px 20px 48px", textAlign: "center" }}>
         <div style={{ fontSize: 11, letterSpacing: ".18em", textTransform: "uppercase", color: "var(--text3)", marginBottom: 20 }}>
