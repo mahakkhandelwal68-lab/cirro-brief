@@ -275,7 +275,7 @@ export function TryDemoLanding({ url, setUrl, email, setEmail, onVerify, error, 
               width={1536}
               height={1024}
               priority
-              sizes="(max-width: 900px) 100vw, 620px"
+              sizes="(max-width: 900px) 100vw, 720px"
               className="td-hero-img"
             />
           </div>

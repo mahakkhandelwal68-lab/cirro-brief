@@ -512,7 +512,8 @@ body > section {
 
 /* Demo page hero image: fades into the dark page; framed card in light theme. */
 .td-hero-grid {
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: 32px;
 }
 .td-hero-img-wrap {
   align-self: center;
@@ -546,8 +547,8 @@ body > section {
 }
 
 @media (min-width: 901px) {
-  .td-hero-img {
-    transform: scale(1.1);
+  .td-section {
+    max-width: 1320px;
   }
 }
 
