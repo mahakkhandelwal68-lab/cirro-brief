@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { MountainImage } from "./SampleContent";
 
 export function HomeInteractive() {
   const [playing, setPlaying] = useState(false);
@@ -24,8 +25,11 @@ export function HomeInteractive() {
           {playing ? "❚❚" : "▶"}
         </button>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 15.5 }}>Audio Briefing • Edition 128</div>
-          <div style={{ fontSize: 12.5, color: "var(--text3)" }}>Demo preview</div>
+          <div style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 15.5 }}>The Future of Work in a Changing World</div>
+          <div style={{ fontSize: 12.5, color: "var(--text3)" }}>Audio Brief · Edition 128 · Demo preview</div>
+        </div>
+        <div style={{ width: 64, flex: "none" }}>
+          <MountainImage crop="4/3" radius={10} sizes="64px" />
         </div>
         <span style={{ fontSize: 12.5, color: "var(--text3)" }}>08:42</span>
       </div>

@@ -6,6 +6,7 @@ import { HomeInteractive } from "@/components/HomeInteractive";
 import { PricingTeaser } from "@/components/PricingTeaser";
 import { CompleteBriefGraphic } from "@/components/CompleteBriefGraphic";
 import { Reveal } from "@/components/Reveal";
+import { MountainImage } from "@/components/SampleContent";
 import {
   CarIcon, WalkIcon, LaptopIcon, DumbbellIcon, SparkleIcon, PlaneIcon,
   DocumentIcon, PencilIcon, MicIcon, WaveformIcon,
@@ -113,7 +114,7 @@ export default function HomePage() {
                 <span style={{ fontSize: 11, color: "var(--text3)" }}>1,042 words</span>
               </div>
               <div style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 18, letterSpacing: "-.01em", marginBottom: 14 }}>
-                What the new funding round means for indie media
+                The Future of Work in a Changing World
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
                 {[100, 94].map((w) => (
@@ -122,8 +123,8 @@ export default function HomePage() {
                 <div style={{ height: 8, borderRadius: 4, background: "linear-gradient(90deg, var(--purple), var(--accent2))", width: "88%", opacity: 0.55 }} />
               </div>
             </div>
-            <div className="float-slow icon-badge icon-glow" style={{ width: 60, height: 60, borderRadius: 14, background: "linear-gradient(135deg, var(--purple-tint), var(--tint))", color: "var(--accent2)" }}>
-              <DocumentIcon size={26} />
+            <div className="float-slow" style={{ width: 92, flex: "none", boxShadow: "var(--glow-purple)", borderRadius: 12 }}>
+              <MountainImage crop="4/3" radius={12} sizes="92px" />
             </div>
           </div>
           <div style={{ display: "flex", justifyContent: "center" }}>

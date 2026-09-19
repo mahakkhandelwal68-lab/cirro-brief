@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { TryDemoLanding } from "@/components/TryDemoLanding";
+import { MountainImage } from "@/components/SampleContent";
 
 type Step = "input" | "generating" | "result";
 
@@ -238,6 +239,9 @@ export default function TryDemoPage() {
                     {result.title}
                   </div>
                   <div style={{ fontSize: 12.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--text3)" }}>Cirro Brief</div>
+                </div>
+                <div style={{ width: 84, flex: "none" }}>
+                  <MountainImage crop="4/3" radius={10} sizes="84px" />
                 </div>
               </div>
 

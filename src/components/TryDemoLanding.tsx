@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Turnstile } from "./Turnstile";
 import { Reveal } from "./Reveal";
 import { TESTIMONIALS } from "@/lib/testimonials";
+import { NewsletterCard, MountainImage } from "./SampleContent";
 import {
   SparkleIcon,
   LockIcon,
@@ -49,7 +50,7 @@ const PREVIEW_BARS = Array.from({ length: 56 }, (_, i) => 18 + Math.round(72 * M
 
 function ResultPreview() {
   return (
-    <section style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "16px 20px 56px" }}>
+    <section style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "16px 40px 56px" }}>
       <Reveal>
         <div style={{ textAlign: "center", maxWidth: 620, margin: "0 auto 32px" }}>
           <div style={{ display: "inline-flex", fontSize: 11, letterSpacing: ".15em", textTransform: "uppercase", color: "var(--accent2)", border: "1px solid var(--border)", borderRadius: 999, padding: "6px 13px", marginBottom: 16 }}>
@@ -65,6 +66,12 @@ function ResultPreview() {
       </Reveal>
 
       <Reveal delay={80}>
+        <div className="td-proof-flow">
+          <div className="td-proof-src">
+            <div style={{ fontSize: 12.5, fontWeight: 600, color: "var(--text2)", marginBottom: 10 }}>Your newsletter</div>
+            <NewsletterCard compact sizes="(max-width: 1000px) 340px, 290px" />
+          </div>
+          <div className="td-proof-arrow" aria-hidden="true">&rarr;</div>
         <div style={{ border: "1px solid var(--border)", borderRadius: 22, background: "var(--card)", boxShadow: "var(--shadow), var(--glow-teal)", overflow: "hidden" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 7, padding: "12px 18px", borderBottom: "1px solid var(--border2)", background: "var(--bg2)" }}>
             {["#e06565", "#e0b458", "#5bbf8a"].map((c) => (
@@ -75,10 +82,15 @@ function ResultPreview() {
 
           <div style={{ padding: "22px clamp(16px, 3vw, 30px) 26px" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 14, flexWrap: "wrap", marginBottom: 22 }}>
-              <div>
-                <div style={{ fontSize: 12, color: "var(--text3)", marginBottom: 4 }}>Audio Brief · Edition 128</div>
-                <div style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(20px, 3.4vw, 26px)", letterSpacing: "-.01em" }}>
-                  The Future of Work in a Changing World
+              <div style={{ display: "flex", gap: 14, alignItems: "center", minWidth: 0 }}>
+                <div style={{ width: 84, flex: "none" }}>
+                  <MountainImage crop="4/3" radius={10} sizes="84px" />
+                </div>
+                <div>
+                  <div style={{ fontSize: 12, color: "var(--text3)", marginBottom: 4 }}>Audio Brief · Edition 128</div>
+                  <div style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(18px, 3vw, 26px)", letterSpacing: "-.01em" }}>
+                    The Future of Work in a Changing World
+                  </div>
                 </div>
               </div>
               <span style={{ display: "inline-flex", alignItems: "center", gap: 7, fontSize: 12.5, fontWeight: 600, color: "var(--accent2)", background: "var(--tint)", border: "1px solid var(--border)", borderRadius: 999, padding: "6px 13px" }}>
@@ -110,7 +122,7 @@ function ResultPreview() {
 
                 <div>
                   <div style={{ fontSize: 12.5, fontWeight: 600, color: "var(--text2)", marginBottom: 10 }}>Ready-to-share assets</div>
-                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 12 }}>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))", gap: 10 }}>
                     <div style={{ border: "1px solid var(--border)", borderTop: "2px solid var(--purple)", borderRadius: 12, background: "var(--bg)", padding: "12px 13px" }}>
                       <div style={{ fontSize: 10.5, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--purple)", fontWeight: 700, marginBottom: 8 }}>Social post</div>
                       <div style={{ fontFamily: NOTE_FONT, fontStyle: "italic", fontSize: 13.5, lineHeight: 1.35 }}>&ldquo;The future of work is human.&rdquo;</div>
@@ -148,6 +160,7 @@ function ResultPreview() {
               </div>
             </div>
           </div>
+        </div>
         </div>
         <p style={{ textAlign: "center", fontSize: 12.5, color: "var(--text3)", margin: "14px 0 0" }}>
           Example result shown with sample content.

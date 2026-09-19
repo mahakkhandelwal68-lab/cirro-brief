@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { MountainImage } from "./SampleContent";
 import {
   HeadphonesIcon,
   DocumentIcon,
@@ -36,23 +37,8 @@ export function AboutHeroGraphic() {
           }}
         >
           <div style={{ fontSize: 11, color: "var(--text3)", marginBottom: 10, fontWeight: 500 }}>Your Newsletter</div>
-          <div
-            style={{
-              width: "100%",
-              aspectRatio: "1.3",
-              borderRadius: 9,
-              background: "var(--tint)",
-              color: "var(--accent2)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              marginBottom: 12,
-            }}
-          >
-            <svg width={26} height={26} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
-              <path d="M4 16l5-5 3 3 4-6 4 5" />
-              <circle cx="8" cy="8" r="1.6" />
-            </svg>
+          <div style={{ marginBottom: 12 }}>
+            <MountainImage crop="3/2" radius={9} sizes="168px" />
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
             {[100, 82, 90, 60].map((w, i) => (
@@ -130,7 +116,7 @@ function MiniWaveform({ bars = 24, color = "var(--accent2)" }: { bars?: number; 
 export function AudioBriefVisual() {
   return (
     <div>
-      <div style={{ fontSize: 11.5, color: "var(--text3)", marginBottom: 10 }}>The Future of Work · June 12, 2024 · 12 min</div>
+      <div style={{ fontSize: 11.5, color: "var(--text3)", marginBottom: 10 }}>The Future of Work · Nov 12, 2024 · 01:32</div>
       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
         <span style={{ width: 30, height: 30, borderRadius: "50%", background: "var(--accent2)", color: "var(--btn-text)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, flex: "none" }}>▶</span>
         <div style={{ flex: 1 }}>
@@ -139,7 +125,7 @@ export function AudioBriefVisual() {
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", fontSize: 10.5, color: "var(--text3)", marginTop: 6 }}>
         <span>00:00</span>
-        <span>12:34</span>
+        <span>01:32</span>
       </div>
     </div>
   );
@@ -266,9 +252,9 @@ export function PreviewEditionsPanel() {
 
 export function DeliveryDashboardPanel() {
   const rows: [string, string, string][] = [
-    ["The Future of Work", "Jun 12, 2024", "Published"],
-    ["AI in Everyday Life", "Jun 05, 2024", "Published"],
-    ["Digital Minimalism", "May 29, 2024", "Draft"],
+    ["The Future of Work", "Nov 12, 2024", "Published"],
+    ["AI in Everyday Life", "Nov 05, 2024", "Published"],
+    ["Digital Minimalism", "Oct 29, 2024", "Draft"],
   ];
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>

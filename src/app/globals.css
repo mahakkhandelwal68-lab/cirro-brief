@@ -550,3 +550,33 @@ body > section {
     transform: scale(1.1);
   }
 }
+
+/* Demo page: sample newsletter -> generated Brief */
+.td-proof-flow {
+  display: grid;
+  grid-template-columns: minmax(230px, 290px) 44px minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+}
+.td-proof-arrow {
+  display: flex;
+  justify-content: center;
+  font-size: 28px;
+  color: var(--accent2);
+}
+@media (max-width: 1000px) {
+  .td-proof-flow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+  .td-proof-src {
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+  .td-proof-arrow {
+    transform: rotate(90deg);
+    height: 34px;
+    align-items: center;
+  }
+}

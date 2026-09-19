@@ -5,6 +5,8 @@ import { Footer } from "@/components/Footer";
 import { Reveal } from "@/components/Reveal";
 import { FlowHeroGraphic } from "@/components/FlowHeroGraphic";
 import { StyleVoiceCard, GeneratingCard } from "@/components/FlowVisuals";
+import { NewsletterCard } from "@/components/SampleContent";
+import { AudioBriefCard } from "@/components/SampleAudioCard";
 import {
   LinkIcon, SlidersIcon, BookmarkIcon, WaveformIcon, EyeIcon, ShareUpIcon,
   HeadphonesIcon, DocumentIcon, CheckCircleIcon,
@@ -137,6 +139,10 @@ export default function FlowPage() {
               Continue <span style={{ opacity: 0.75 }}>→</span>
             </div>
           </div>
+          <div style={{ marginTop: 18 }}>
+            <div style={{ fontSize: 12.5, fontWeight: 500, color: "var(--text2)", marginBottom: 10 }}>Your published edition</div>
+            <NewsletterCard compact sizes="(max-width: 700px) 90vw, 420px" style={{ maxWidth: 380 }} />
+          </div>
         </Step>
 
         <Step n="02" title="Make it sound right for your publication." body="Before generating your Brief, choose the voice and style that best fit your publication. Your preferences help keep each edition consistent.">
@@ -161,6 +167,10 @@ export default function FlowPage() {
 
         <Step n="04" title="Generate your complete Brief." body="Once your preferences are ready, we'll turn your newsletter into more than an audio file.">
           <GeneratingCard />
+          <div style={{ marginTop: 18 }}>
+            <div style={{ fontSize: 12.5, fontWeight: 500, color: "var(--text2)", marginBottom: 10 }}>Your Brief, from the same edition</div>
+            <AudioBriefCard />
+          </div>
         </Step>
 
         <Step n="05" title="Everything is ready in one place." body="Your workspace keeps every edition and its assets organised, so they're ready whenever you need them.">
