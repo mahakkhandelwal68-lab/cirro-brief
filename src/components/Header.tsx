@@ -2,10 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { ThemeToggle } from "./ThemeToggle";
 import { LockIcon } from "./icons";
+import { HeaderMenu } from "./HeaderMenu";
 
 export function Header({ ctaLabel = "Try Your Newsletter", ctaHref = "/try-demo" }: { ctaLabel?: string; ctaHref?: string }) {
   return (
     <header
+      className="hdr"
       style={{
         position: "sticky",
         top: 0,
@@ -13,8 +15,6 @@ export function Header({ ctaLabel = "Try Your Newsletter", ctaHref = "/try-demo"
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        gap: 32,
-        padding: "16px 40px",
         background: "var(--bg)",
         borderBottom: "1px solid var(--border2)",
       }}
@@ -39,12 +39,12 @@ export function Header({ ctaLabel = "Try Your Newsletter", ctaHref = "/try-demo"
           <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 16.5, letterSpacing: "-.01em", color: "var(--text)" }}>
             Cirro Brief
           </span>
-          <span style={{ fontSize: 11.5, color: "var(--text3)" }}>
+          <span className="hdr-tagline" style={{ fontSize: 11.5, color: "var(--text3)" }}>
             Turn newsletters into audio experiences
           </span>
         </div>
       </Link>
-      <nav style={{ display: "flex", alignItems: "center", gap: 30, fontSize: 14.5, color: "var(--text2)" }}>
+      <nav className="hdr-nav" style={{ display: "flex", alignItems: "center", gap: 30, fontSize: 14.5, color: "var(--text2)" }}>
         <Link href="/flow" className="link-underline" style={{ color: "inherit" }}>Flow</Link>
         <Link href="/pricing" className="link-underline" style={{ color: "inherit" }}>Pricing</Link>
         <Link href="/about" className="link-underline" style={{ color: "inherit" }}>About</Link>
@@ -52,12 +52,12 @@ export function Header({ ctaLabel = "Try Your Newsletter", ctaHref = "/try-demo"
       </nav>
       <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
         <ThemeToggle />
-        <Link href="/login" className="link-underline" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 14.5, color: "var(--text2)" }}>
+        <Link href="/login" className="link-underline hdr-desktop-only" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 14.5, color: "var(--text2)" }}>
           <LockIcon size={14} /> Access Workspace
         </Link>
         <Link
           href={ctaHref}
-          className="btn-pop"
+          className="btn-pop hdr-desktop-only"
           style={{
             display: "inline-flex",
             alignItems: "center",
@@ -72,6 +72,7 @@ export function Header({ ctaLabel = "Try Your Newsletter", ctaHref = "/try-demo"
         >
           {ctaLabel} <span style={{ opacity: 0.75 }}>→</span>
         </Link>
+        <HeaderMenu ctaLabel={ctaLabel} ctaHref={ctaHref} />
       </div>
     </header>
   );

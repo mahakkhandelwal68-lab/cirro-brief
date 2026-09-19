@@ -131,7 +131,7 @@ export default function FlowPage() {
             <label style={{ display: "block", fontSize: 12.5, fontWeight: 500, color: "var(--text2)", marginBottom: 9 }}>Paste your newsletter link</label>
             <div style={{ display: "flex", alignItems: "center", gap: 9, border: "1px solid var(--border)", borderRadius: 11, padding: "12px 14px", marginBottom: 14 }}>
               <LinkIcon size={15} />
-              <span style={{ color: "var(--text3)", fontSize: 14.5 }}>https://yournewsletter.com/edition/128</span>
+              <span style={{ color: "var(--text3)", fontSize: 14.5, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>https://yournewsletter.com/edition/128</span>
             </div>
             <div className="btn-pop" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--btn)", color: "var(--btn-text)", fontSize: 14.5, fontWeight: 500, padding: "11px 18px", borderRadius: 10 }}>
               Continue <span style={{ opacity: 0.75 }}>→</span>
@@ -210,7 +210,7 @@ export default function FlowPage() {
             </h2>
             <p style={{ fontSize: 14.5, color: "var(--text2)", margin: 0 }}>A simple flow from your published newsletter to a complete Brief.</p>
           </div>
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div style={{ display: "flex", alignItems: "center", overflowX: "auto", paddingBottom: 6, minWidth: 0 }}>
             {FLOW_STEPS.map(([n, icon], i) => (
               <div key={n} style={{ display: "flex", alignItems: "center", flex: 1 }}>
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>

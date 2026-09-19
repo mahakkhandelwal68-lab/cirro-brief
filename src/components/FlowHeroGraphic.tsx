@@ -28,7 +28,7 @@ export function FlowHeroGraphic() {
 
   return (
     <div>
-      <div style={{ position: "relative", width: "100%", maxWidth: 440, height: 220, margin: "0 auto 16px" }}>
+      <div className="flow-graphic" style={{ position: "relative", width: "100%", maxWidth: 440, height: 220, margin: "0 auto 16px" }}>
         <svg viewBox="0 0 440 220" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", overflow: "visible" }}>
           {NODES.map((n, i) => (
             <line key={i} x1={n.left + 18} y1={n.top + 18} x2={220} y2={100} stroke="var(--border)" strokeWidth={1} strokeDasharray="4 5" />
@@ -95,7 +95,7 @@ export function FlowHeroGraphic() {
         </div>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 10 }}>
+      <div className="mini-cards" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 10 }}>
         {MINI_CARDS.map(([icon, title, note]) => (
           <div key={title} style={{ border: "1px solid var(--border)", borderRadius: 12, background: "var(--card)", color: "var(--text)", padding: "12px 10px", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
             <span style={{ color: "var(--accent2)" }}>{icon}</span>

@@ -130,7 +130,7 @@ export default function TryDemoPage() {
       )}
 
       {step === "generating" && (
-        <section style={{ maxWidth: 760, margin: "0 auto", padding: "120px 40px 140px", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <section style={{ width: "100%", maxWidth: 760, margin: "0 auto", padding: "72px 20px 96px", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
           <div style={{ position: "relative", width: 82, height: 82, marginBottom: 32 }}>
             <span style={{ position: "absolute", inset: 0, borderRadius: "50%", border: "2px solid var(--border2)" }} />
             <span
@@ -144,7 +144,7 @@ export default function TryDemoPage() {
               }}
             />
           </div>
-          <h1 style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: 44, letterSpacing: "-.03em", margin: "0 0 14px" }}>
+          <h1 style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: "clamp(30px, 6.5vw, 44px)", letterSpacing: "-.03em", margin: "0 0 14px" }}>
             Creating your audio brief
           </h1>
           <p style={{ fontSize: 18, color: "var(--text2)", margin: "0 0 44px", maxWidth: "28em" }}>
@@ -188,14 +188,12 @@ export default function TryDemoPage() {
       {step === "result" && result && (
         <>
           <section
+            className="td-result-grid"
             style={{
+              width: "100%",
               maxWidth: 1200,
               margin: "0 auto",
-              padding: "76px 40px 56px",
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: 64,
-              alignItems: "center",
+              padding: "56px 20px 40px",
             }}
           >
             <div>
@@ -217,7 +215,7 @@ export default function TryDemoPage() {
                 <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--accent2)", display: "inline-block" }} />
                 Your Cirro Brief is ready
               </div>
-              <h1 style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: 52, letterSpacing: "-.03em", margin: "0 0 18px" }}>
+              <h1 style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: "clamp(32px, 7vw, 52px)", letterSpacing: "-.03em", margin: "0 0 18px" }}>
                 Here&apos;s your newsletter, ready to listen.
               </h1>
               <p style={{ fontSize: 18, color: "var(--text2)", margin: 0, maxWidth: "30em" }}>
@@ -315,13 +313,13 @@ export default function TryDemoPage() {
             </div>
           </section>
 
-          <section style={{ maxWidth: 1200, margin: "0 auto", padding: "72px 40px 88px" }}>
+          <section style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "48px 20px 72px" }}>
             <div
               style={{
                 border: "1px solid var(--border)",
                 borderRadius: 20,
                 background: "var(--tint)",
-                padding: "60px 56px",
+                padding: "44px clamp(20px, 5vw, 56px)",
                 textAlign: "center",
                 display: "flex",
                 flexDirection: "column",
@@ -329,7 +327,7 @@ export default function TryDemoPage() {
                 gap: 16,
               }}
             >
-              <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: 42, letterSpacing: "-.03em", margin: 0, maxWidth: "24em" }}>
+              <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: "clamp(28px, 6vw, 42px)", letterSpacing: "-.03em", margin: 0, maxWidth: "24em" }}>
                 Want to create the complete version?
               </h2>
               <p style={{ fontSize: 17.5, color: "var(--text2)", margin: 0, maxWidth: "36em" }}>

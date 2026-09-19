@@ -37,7 +37,7 @@ export function Footer() {
   const instagram = process.env.NEXT_PUBLIC_SUPPORT_INSTAGRAM_HANDLE;
 
   return (
-    <footer style={{ background: "var(--bg)", padding: "32px 40px 24px" }}>
+    <footer className="ftr" style={{ background: "var(--bg)" }}>
       <div
         style={{
           maxWidth: 1660,
@@ -69,18 +69,8 @@ export function Footer() {
           />
         </svg>
 
-        <div
-          style={{
-            position: "relative",
-            maxWidth: 1200,
-            margin: "0 auto",
-            padding: "64px 48px 56px",
-            display: "grid",
-            gridTemplateColumns: "1.3fr 1fr 1fr 1fr",
-            gap: 48,
-          }}
-        >
-          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+        <div className="ftr-grid" style={{ position: "relative", maxWidth: 1200, margin: "0 auto" }}>
+          <div className="ftr-brand" style={{ display: "flex", flexDirection: "column", gap: 16 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
               <svg width={30} height={30} viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                 <path d="M7 17a4 4 0 0 1 0-8 5 5 0 0 1 9.6-1.6A4.5 4.5 0 0 1 17 17H7z" />
@@ -126,13 +116,11 @@ export function Footer() {
       </div>
 
       <div
+        className="ftr-bottom"
         style={{
           maxWidth: 1660,
           margin: "0 auto",
           padding: "18px 8px 0",
-          display: "flex",
-          justifyContent: "space-between",
-          gap: 20,
           fontSize: 12.5,
           color: "var(--text3)",
         }}

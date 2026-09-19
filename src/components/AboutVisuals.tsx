@@ -24,8 +24,8 @@ export function AboutHeroGraphic() {
   const rowH = 68;
   const startY = 8;
   return (
-    <div style={{ position: "relative", display: "flex", alignItems: "flex-start", gap: 28, maxWidth: 560, margin: "0 auto" }}>
-      <div style={{ flex: "none", width: 168, position: "sticky", top: 90 }}>
+    <div className="about-hero-graphic" style={{ position: "relative", display: "flex", alignItems: "flex-start", gap: 28, maxWidth: 560, margin: "0 auto" }}>
+      <div className="about-hero-doc" style={{ flex: "none", width: 168, position: "sticky", top: 90 }}>
         <div
           style={{
             border: "1px solid var(--border)",

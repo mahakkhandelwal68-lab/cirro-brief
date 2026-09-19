@@ -21,12 +21,13 @@ const BRAND_PATHS: Record<string, string> = {
   Ghost: "M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm.256 2.313c2.47.005 5.116 2.008 5.898 2.962l.244.3c1.64 1.994 3.569 4.34 3.569 6.966 0 3.719-2.98 5.808-6.158 7.508-1.433.766-2.98 1.508-4.748 1.508-4.543 0-8.366-3.569-8.366-8.112 0-.706.17-1.425.342-2.15.122-.515.244-1.033.307-1.549.548-4.539 2.967-6.795 8.422-7.408a4.29 4.29 0 01.49-.026Z",
 };
 
-const BRAND_STRIP: [string, string | null][] = [
-  ["Substack", "Substack"],
-  ["beehiiv", null],
-  ["Kit", "Kit"],
-  ["Medium", "Medium"],
-  ["Ghost", "Ghost"],
+// Brand colours are each platform's own; Medium, Ghost and Kit are black by brand.
+const BRAND_STRIP: { name: string; glyph: string | null; color: string }[] = [
+  { name: "Substack", glyph: "Substack", color: "#FF6719" },
+  { name: "beehiiv", glyph: null, color: "#111111" },
+  { name: "Kit", glyph: "Kit", color: "#111111" },
+  { name: "Medium", glyph: "Medium", color: "#111111" },
+  { name: "Ghost", glyph: "Ghost", color: "#15171A" },
 ];
 
 const NOTE_FONT = 'Georgia, "Times New Roman", serif';
@@ -43,63 +44,44 @@ const STEPS: [React.ReactNode, string, string][] = [
   [<HeadphonesIcon key="c" size={22} />, "You listen", "Get a natural-sounding audio brief, ready to play."],
 ];
 
+function ImageGlyph({ size }: { size: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 18l6-8 4 5 3-3 5 6z" />
+      <circle cx="16.5" cy="7" r="1.6" />
+    </svg>
+  );
+}
+
 function HeroVisual() {
   const bars = useMemo(
-    () => Array.from({ length: 44 }, (_, i) => 20 + Math.round(70 * Math.abs(Math.sin(i * 0.7) * Math.cos(i * 0.23)))),
+    () => Array.from({ length: 40 }, (_, i) => 22 + Math.round(68 * Math.abs(Math.sin(i * 0.7) * Math.cos(i * 0.23)))),
     []
   );
 
   return (
-    <div aria-hidden="true" style={{ position: "relative", width: "100%", maxWidth: 540, height: 470, margin: "0 auto" }}>
-      <div style={{ position: "absolute", top: 0, left: 24, fontFamily: NOTE_FONT, fontStyle: "italic", fontSize: 19, color: "var(--accent2)" }}>
-        From this...
-      </div>
-      <div style={{ position: "absolute", top: 4, left: 200, fontFamily: NOTE_FONT, fontStyle: "italic", fontSize: 21, color: "var(--accent2)" }}>
-        To this.
-      </div>
-      <div style={{ position: "absolute", top: 0, right: 0, textAlign: "right", fontFamily: NOTE_FONT, fontStyle: "italic", fontSize: 14, color: "var(--accent2)", lineHeight: 1.35 }}>
-        Same content.
-        <br />
-        A whole new way
-        <br />
-        to experience it.
-      </div>
+    <div aria-hidden="true" className="td-visual">
+      <div style={{ fontFamily: NOTE_FONT, fontStyle: "italic", fontSize: 18, color: "var(--accent2)", marginBottom: 8, paddingLeft: 6 }}>From this...</div>
 
-      <div
-        style={{
-          position: "absolute",
-          top: 46,
-          left: 8,
-          width: 190,
-          transform: "rotate(-4deg)",
-          border: "1px solid var(--border)",
-          borderRadius: 12,
-          background: "var(--card)",
-          boxShadow: "var(--shadow)",
-          padding: "14px 14px 18px",
-        }}
-      >
-        <div style={{ fontSize: 9.5, color: "var(--text3)", marginBottom: 6 }}>The Daily Insight</div>
-        <div style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 14, lineHeight: 1.2, marginBottom: 10 }}>
+      <div className="td-doc" style={{ border: "1px solid var(--border)", borderRadius: 14, background: "var(--card)", boxShadow: "var(--shadow)", padding: "16px 16px 18px" }}>
+        <div style={{ fontSize: 10.5, color: "var(--text3)", marginBottom: 6 }}>The Daily Insight</div>
+        <div style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 16, lineHeight: 1.2, marginBottom: 12 }}>
           The future of work in a changing world
         </div>
-        <div style={{ display: "flex", gap: 8 }}>
-          <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 5 }}>
-            {[100, 90, 96, 70, 84, 60].map((w, i) => (
-              <div key={i} style={{ height: 4, width: `${w}%`, borderRadius: 2, background: "var(--border)" }} />
+        <div style={{ display: "flex", gap: 10 }}>
+          <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 6 }}>
+            {[100, 92, 97, 74, 86, 62].map((w, i) => (
+              <div key={i} style={{ height: 5, width: `${w}%`, borderRadius: 3, background: "var(--border)" }} />
             ))}
           </div>
-          <div style={{ width: 62, height: 48, borderRadius: 6, background: "var(--tint)", color: "var(--accent2)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <svg width={26} height={26} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
-              <path d="M3 18l6-8 4 5 3-3 5 6z" />
-              <circle cx="16.5" cy="7" r="1.6" />
-            </svg>
+          <div style={{ width: 70, height: 54, borderRadius: 8, background: "var(--tint)", color: "var(--accent2)", display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}>
+            <ImageGlyph size={28} />
           </div>
         </div>
       </div>
 
-      <div className="float-slow" style={{ position: "absolute", top: 34, right: 40, width: 150, height: 130 }}>
-        <svg viewBox="0 0 150 130" width={150} height={130}>
+      <div className="float-slow td-mascot">
+        <svg viewBox="0 0 150 130" width="100%" style={{ display: "block" }}>
           <path d="M30 100a26 26 0 0 1 2-51 34 34 0 0 1 64-6 28 28 0 0 1 22 57z" fill="var(--card)" stroke="var(--border)" strokeWidth={2} />
           <path d="M38 62a36 36 0 0 1 74 0" fill="none" stroke="var(--accent2)" strokeWidth={7} strokeLinecap="round" />
           <rect x="28" y="58" width="14" height="30" rx="6" fill="var(--accent2)" />
@@ -110,58 +92,50 @@ function HeroVisual() {
         </svg>
       </div>
 
-      <div
-        style={{
-          position: "absolute",
-          left: 60,
-          right: 0,
-          bottom: 20,
-          border: "1px solid var(--border)",
-          borderRadius: 18,
-          background: "var(--card)",
-          boxShadow: "var(--shadow), var(--glow-teal)",
-          padding: "20px 22px",
-        }}
-      >
-        <div style={{ display: "flex", gap: 14, alignItems: "flex-start", marginBottom: 14 }}>
+      <div className="td-link">
+        <svg width="26" height="54" viewBox="0 0 26 54" fill="none" style={{ flex: "none" }}>
+          <path d="M13 2v40" stroke="var(--accent2)" strokeWidth="1.8" strokeDasharray="4 5" strokeLinecap="round" />
+          <path d="M6 38l7 10 7-10" stroke="var(--accent2)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+        <span className="icon-badge icon-glow" style={{ width: 38, height: 38, borderRadius: "50%", background: "var(--tint)", color: "var(--accent2)" }}>
+          <SparkleIcon size={18} />
+        </span>
+        <span style={{ fontFamily: NOTE_FONT, fontStyle: "italic", fontSize: 20, color: "var(--accent2)" }}>To this.</span>
+      </div>
+
+      <div style={{ border: "1px solid var(--border)", borderRadius: 20, background: "var(--card)", boxShadow: "var(--shadow), var(--glow-teal)", padding: "20px 22px 18px" }}>
+        <div style={{ display: "flex", gap: 14, alignItems: "flex-start", marginBottom: 16 }}>
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-              <span className="icon-badge" style={{ width: 26, height: 26, borderRadius: 8, background: "var(--tint)", color: "var(--accent2)" }}>
-                <HeadphonesIcon size={14} />
+              <span className="icon-badge" style={{ width: 28, height: 28, borderRadius: 8, background: "var(--tint)", color: "var(--accent2)" }}>
+                <HeadphonesIcon size={15} />
               </span>
               <div>
                 <div style={{ fontSize: 12.5, fontWeight: 600 }}>The Daily Insight</div>
                 <div style={{ fontSize: 10.5, color: "var(--text3)" }}>Edition 128 · Nov 12, 2024</div>
               </div>
             </div>
-            <div style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 19, lineHeight: 1.2 }}>
-              The future of work in a changing world
-            </div>
+            <div style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 19, lineHeight: 1.2 }}>The future of work in a changing world</div>
           </div>
-          <div style={{ width: 92, height: 72, borderRadius: 10, background: "var(--tint)", color: "var(--accent2)", display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}>
-            <svg width={34} height={34} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
-              <path d="M3 18l6-8 4 5 3-3 5 6z" />
-              <circle cx="16.5" cy="7" r="1.6" />
-            </svg>
+          <div style={{ width: 84, height: 66, borderRadius: 10, background: "var(--tint)", color: "var(--accent2)", display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}>
+            <ImageGlyph size={32} />
           </div>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 6 }}>
-          <span style={{ width: 40, height: 40, borderRadius: "50%", background: "var(--btn)", color: "var(--btn-text)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, flex: "none" }}>
-            ▶
-          </span>
-          <div style={{ flex: 1, display: "flex", alignItems: "center", gap: 2, height: 28 }}>
+          <span style={{ width: 42, height: 42, borderRadius: "50%", background: "var(--btn)", color: "var(--btn-text)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, flex: "none", boxShadow: "0 0 0 6px color-mix(in srgb, var(--accent2) 18%, transparent)" }}>▶</span>
+          <div style={{ flex: 1, display: "flex", alignItems: "center", gap: 2, height: 32 }}>
             {bars.map((h, i) => (
-              <span key={i} style={{ flex: 1, height: `${h}%`, borderRadius: 1, background: "var(--accent2)", opacity: i < 6 ? 1 : 0.55 }} />
+              <span key={i} className="td-bar" style={{ flex: 1, height: `${h}%`, borderRadius: 1, background: "var(--accent2)", opacity: i < 8 ? 1 : 0.5, animationDelay: `${(i % 9) * 0.12}s` }} />
             ))}
           </div>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 10.5, color: "var(--text3)", margin: "0 0 12px 52px" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 10.5, color: "var(--text3)", margin: "0 0 14px 54px" }}>
           <span>00:00</span>
           <span>01:32</span>
         </div>
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
           {["Concise", "Natural voice", "Real insights"].map((c) => (
-            <span key={c} style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 11, color: "var(--accent2)", background: "var(--tint)", borderRadius: 999, padding: "5px 11px" }}>
+            <span key={c} style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 11.5, color: "var(--accent2)", background: "var(--tint)", borderRadius: 999, padding: "5px 11px" }}>
               <CheckCircleIcon size={12} /> {c}
             </span>
           ))}
@@ -203,25 +177,23 @@ export function TryDemoLanding({ url, setUrl, email, setEmail, onVerify, error, 
 
   return (
     <>
-      <section style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "56px 40px 48px", position: "relative" }}>
-        <div aria-hidden="true" style={{ position: "absolute", right: 0, top: 20, width: 620, height: 520, background: "radial-gradient(closest-side, color-mix(in srgb, var(--accent2) 16%, transparent), transparent)", pointerEvents: "none" }} />
-        <div style={{ position: "relative", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "start" }}>
+      <section className="td-section">
+        <div aria-hidden="true" style={{ position: "absolute", right: 0, top: 20, width: "min(620px, 100%)", height: 520, background: "radial-gradient(closest-side, color-mix(in srgb, var(--accent2) 16%, transparent), transparent)", pointerEvents: "none" }} />
+        <div className="td-hero-grid">
           <div>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 11.5, letterSpacing: ".15em", textTransform: "uppercase", color: "var(--accent2)", border: "1px solid var(--border)", borderRadius: 999, padding: "7px 14px", marginBottom: 24 }}>
               <HeadphonesIcon size={13} />
               Listen to any newsletter
             </div>
-            <h1 style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: 54, lineHeight: 1.05, letterSpacing: "-.03em", margin: "0 0 18px" }}>
-              Your newsletter
-              <br />
-              deserves to be <span style={{ color: "var(--accent2)" }}>heard.</span>
+            <h1 className="td-h1" style={{ fontFamily: "var(--font-heading)", fontWeight: 900, lineHeight: 1.05, letterSpacing: "-.03em", margin: "0 0 18px" }}>
+              Your newsletter deserves to be <span style={{ color: "var(--accent2)" }}>heard.</span>
             </h1>
             <p style={{ fontSize: 18, lineHeight: 1.55, color: "var(--text2)", margin: "0 0 28px", maxWidth: "28em" }}>
               Paste a link to your newsletter and get a personalised audio brief in under a minute. No signup. No
               credit card.
             </p>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, auto)", justifyContent: "start", gap: 22, marginBottom: 30 }}>
+            <div className="td-features">
               {FEATURES.map(([icon, title, sub]) => (
                 <div key={title} style={{ display: "flex", alignItems: "center", gap: 10 }}>
                   <span className="icon-badge icon-glow" style={{ width: 40, height: 40, borderRadius: "50%", background: "var(--tint)", color: "var(--accent2)" }}>
@@ -235,13 +207,14 @@ export function TryDemoLanding({ url, setUrl, email, setEmail, onVerify, error, 
               ))}
             </div>
 
-            <div ref={formRef} style={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: 18, padding: "24px 26px 22px", boxShadow: "var(--shadow)" }}>
+            <div ref={formRef} className="td-form" style={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: 18, boxShadow: "var(--shadow)" }}>
               <label style={{ display: "block", fontSize: 13.5, fontWeight: 600, marginBottom: 9 }}>Paste your newsletter link</label>
               <div style={{ ...fieldStyle, marginBottom: 14 }}>
                 <span style={{ color: "var(--text3)", display: "flex" }}><LinkIcon size={17} /></span>
                 <input
                   ref={urlInputRef}
                   type="url"
+                  inputMode="url"
                   value={url}
                   onChange={(e) => setUrl(e.target.value)}
                   placeholder="https://yournewsletter.com/edition/128"
@@ -260,7 +233,7 @@ export function TryDemoLanding({ url, setUrl, email, setEmail, onVerify, error, 
                 />
               </div>
 
-              <div style={{ marginBottom: 16 }}>
+              <div style={{ marginBottom: 16, maxWidth: "100%", overflow: "hidden" }}>
                 <Turnstile onVerify={onVerify} />
               </div>
 
@@ -274,7 +247,7 @@ export function TryDemoLanding({ url, setUrl, email, setEmail, onVerify, error, 
                 Generate My Audio Brief <span style={{ opacity: 0.75 }}>→</span>
               </button>
 
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16, marginTop: 16, fontSize: 13, color: "var(--text3)" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10, flexWrap: "wrap", marginTop: 16, fontSize: 13, color: "var(--text3)" }}>
                 <a href="#how-it-works" style={{ color: "var(--accent2)", flex: "none" }}>See how it works →</a>
                 <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
                   <span style={{ color: "var(--accent2)", display: "flex" }}><LockIcon size={14} /></span>
@@ -288,27 +261,30 @@ export function TryDemoLanding({ url, setUrl, email, setEmail, onVerify, error, 
         </div>
       </section>
 
-      <section style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "8px 40px 48px", textAlign: "center" }}>
+      <section style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "8px 20px 48px", textAlign: "center" }}>
         <div style={{ fontSize: 11, letterSpacing: ".18em", textTransform: "uppercase", color: "var(--text3)", marginBottom: 20 }}>
           Works with newsletters from
         </div>
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 44, flexWrap: "wrap", color: "var(--text2)" }}>
-          {BRAND_STRIP.map(([name, key]) => (
-            <span key={name} style={{ display: "inline-flex", alignItems: "center", gap: 9, fontFamily: "var(--font-heading)", fontWeight: 600, fontSize: 19 }}>
-              {key && (
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
+          {BRAND_STRIP.map(({ name, glyph, color }) => (
+            <span
+              key={name}
+              style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "#fff", color, border: "1px solid rgba(0,0,0,.08)", borderRadius: 12, padding: "10px 18px", fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 18, boxShadow: "0 4px 14px rgba(0,0,0,.12)" }}
+            >
+              {glyph && (
                 <svg width={22} height={22} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d={BRAND_PATHS[key]} />
+                  <path d={BRAND_PATHS[glyph]} />
                 </svg>
               )}
               {name}
             </span>
           ))}
-          <span style={{ fontSize: 14, color: "var(--text3)" }}>and many more</span>
+          <span style={{ fontSize: 14, color: "var(--text3)", padding: "0 6px" }}>and many more</span>
         </div>
       </section>
 
       <section id="how-it-works" style={{ width: "100%", background: "var(--tint)", borderTop: "1px solid var(--border2)", borderBottom: "1px solid var(--border2)" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "56px 40px", display: "grid", gridTemplateColumns: "0.8fr 2fr", gap: 40, alignItems: "center" }}>
+        <div className="td-how-grid" style={{ maxWidth: 1200, margin: "0 auto", padding: "56px 40px" }}>
           <Reveal>
             <div style={{ display: "inline-flex", fontSize: 11, letterSpacing: ".15em", textTransform: "uppercase", color: "var(--accent2)", border: "1px solid var(--border)", borderRadius: 999, padding: "6px 13px", marginBottom: 16 }}>
               How it works
@@ -319,7 +295,7 @@ export function TryDemoLanding({ url, setUrl, email, setEmail, onVerify, error, 
               in <span style={{ color: "var(--accent2)" }}>3 simple steps.</span>
             </h2>
           </Reveal>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr auto 1fr", gap: 14, alignItems: "stretch" }}>
+          <div className="td-steps">
             {STEPS.flatMap(([icon, title, body], i) => {
               const card = (
                 <Reveal key={title} delay={i * 90} style={{ height: "100%" }}>
@@ -333,12 +309,12 @@ export function TryDemoLanding({ url, setUrl, email, setEmail, onVerify, error, 
                       </span>
                     </div>
                     <div style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 15.5, marginBottom: 4 }}>{title}</div>
-                    <div style={{ fontSize: 12.5, color: "var(--text3)" }}>{body}</div>
+                    <div style={{ fontSize: 13, color: "var(--text3)" }}>{body}</div>
                   </div>
                 </Reveal>
               );
               return i < STEPS.length - 1
-                ? [card, <span key={`a${i}`} style={{ color: "var(--accent2)", fontSize: 20, alignSelf: "center" }}>→</span>]
+                ? [card, <span key={`a${i}`} className="td-steps-arrow" style={{ color: "var(--accent2)", fontSize: 20, alignSelf: "center" }}>→</span>]
                 : [card];
             })}
           </div>
@@ -346,10 +322,10 @@ export function TryDemoLanding({ url, setUrl, email, setEmail, onVerify, error, 
       </section>
 
       {TESTIMONIALS.length > 0 && (
-        <section style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "64px 40px 8px" }}>
+        <section style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "64px 20px 8px" }}>
           <Reveal>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 24, flexWrap: "wrap", marginBottom: 28 }}>
-              <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 36, letterSpacing: "-.02em", margin: 0 }}>
+              <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(28px, 5vw, 36px)", letterSpacing: "-.02em", margin: 0 }}>
                 Loved by newsletter <span style={{ color: "var(--accent2)" }}>creators.</span>
               </h2>
               <p style={{ fontSize: 13.5, color: "var(--text3)", margin: 0, maxWidth: 300 }}>
@@ -357,21 +333,16 @@ export function TryDemoLanding({ url, setUrl, email, setEmail, onVerify, error, 
               </p>
             </div>
           </Reveal>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 250px), 1fr))", gap: 16 }}>
             {TESTIMONIALS.map((t, i) => (
               <Reveal key={t.name} delay={i * 80} style={{ height: "100%" }}>
                 <figure className="hover-pop" style={{ margin: 0, height: "100%", border: "1px solid var(--border)", borderRadius: 16, background: "var(--card)", padding: "22px 22px 20px", display: "flex", flexDirection: "column", gap: 18 }}>
                   <span style={{ fontFamily: NOTE_FONT, fontSize: 38, lineHeight: 0.6, color: "var(--accent2)" }}>&ldquo;</span>
                   <blockquote style={{ margin: 0, fontSize: 15, lineHeight: 1.55, color: "var(--text)", flex: 1 }}>{t.quote}</blockquote>
                   <figcaption style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                    {t.image ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={t.image} alt={t.name} width={40} height={40} style={{ borderRadius: "50%", objectFit: "cover" }} />
-                    ) : (
-                      <span style={{ width: 40, height: 40, borderRadius: "50%", background: "var(--tint)", color: "var(--accent2)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 14 }}>
-                        {t.name.split(" ").map((p) => p[0]).slice(0, 2).join("")}
-                      </span>
-                    )}
+                    <span style={{ width: 40, height: 40, borderRadius: "50%", background: "var(--tint)", color: "var(--accent2)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 14, flex: "none" }}>
+                      {t.name.split(" ").map((p) => p[0]).slice(0, 2).join("")}
+                    </span>
                     <span>
                       <span style={{ display: "block", fontSize: 14, fontWeight: 600 }}>{t.name}</span>
                       <span style={{ display: "block", fontSize: 12.5, color: "var(--text3)" }}>{t.role}</span>
@@ -384,25 +355,26 @@ export function TryDemoLanding({ url, setUrl, email, setEmail, onVerify, error, 
         </section>
       )}
 
-      <section style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "64px 40px 80px" }}>
+      <section style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "64px 20px 80px" }}>
         <Reveal>
-          <div style={{ position: "relative", overflow: "hidden", border: "1px solid var(--border)", borderRadius: 24, background: "var(--band)", color: "#fff", padding: "48px 48px 40px" }}>
-            <div aria-hidden="true" style={{ position: "absolute", right: 48, top: 44, display: "flex", alignItems: "center", gap: 14, color: "rgba(255,255,255,.8)" }}>
+          <div className="td-band" style={{ position: "relative", overflow: "hidden", border: "1px solid var(--border)", borderRadius: 24, background: "var(--band)", color: "#fff" }}>
+            <div aria-hidden="true" className="td-band-note" style={{ display: "flex", alignItems: "center", gap: 14, color: "rgba(255,255,255,.8)" }}>
               <span style={{ fontFamily: NOTE_FONT, fontStyle: "italic", fontSize: 17, lineHeight: 1.35, maxWidth: 170 }}>Good ideas travel further when people can listen.</span>
               <svg width={44} height={44} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round"><path d="M7 17a4 4 0 0 1 0-8 5 5 0 0 1 9.6-1.6A4.5 4.5 0 0 1 17 17H7z" /></svg>
             </div>
             <div style={{ fontSize: 11, letterSpacing: ".15em", textTransform: "uppercase", opacity: 0.7, marginBottom: 12 }}>Hear the difference</div>
-            <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: 44, lineHeight: 1.1, letterSpacing: "-.03em", margin: "0 0 12px", paddingRight: 260 }}>
+            <h2 className="td-band-title" style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: "clamp(30px, 6vw, 44px)", lineHeight: 1.1, letterSpacing: "-.03em", margin: "0 0 12px" }}>
               Try your newsletter now.
             </h2>
             <p style={{ fontSize: 17, opacity: 0.85, margin: "0 0 26px", maxWidth: "30em" }}>
               Turn your latest edition into an audio experience, free, fast and easy.
             </p>
-            <div style={{ display: "flex", gap: 0, maxWidth: 640, background: "var(--card)", borderRadius: 14, overflow: "hidden", color: "var(--text)", marginBottom: 20 }}>
+            <div className="td-band-input" style={{ background: "var(--card)", borderRadius: 14, overflow: "hidden", color: "var(--text)", marginBottom: 20 }}>
               <div style={{ flex: 1, display: "flex", alignItems: "center", gap: 10, padding: "0 16px", minWidth: 0 }}>
                 <span style={{ color: "var(--text3)", display: "flex" }}><LinkIcon size={17} /></span>
                 <input
                   type="url"
+                  inputMode="url"
                   value={url}
                   onChange={(e) => setUrl(e.target.value)}
                   placeholder="https://yournewsletter.com/edition/128"
@@ -417,7 +389,7 @@ export function TryDemoLanding({ url, setUrl, email, setEmail, onVerify, error, 
                 Generate My Audio Brief →
               </button>
             </div>
-            <div style={{ display: "flex", gap: 22, flexWrap: "wrap", fontSize: 13.5 }}>
+            <div style={{ display: "flex", gap: "10px 22px", flexWrap: "wrap", fontSize: 13.5 }}>
               {["No signup required", "No credit card", "Works with any public newsletter"].map((t) => (
                 <span key={t} style={{ display: "inline-flex", alignItems: "center", gap: 7 }}>
                   <span style={{ color: "#7fd3ad", display: "flex" }}><CheckCircleIcon size={16} /></span>

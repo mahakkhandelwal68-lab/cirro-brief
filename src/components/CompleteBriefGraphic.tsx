@@ -11,7 +11,7 @@ const NODES = [
 
 export function CompleteBriefGraphic() {
   return (
-    <div style={{ position: "relative", width: "100%", height: 340, maxWidth: 460, margin: "0 auto" }}>
+    <div className="brief-graphic" style={{ position: "relative", width: "100%", height: 340, maxWidth: 460, margin: "0 auto" }}>
       <svg
         viewBox="0 0 460 340"
         style={{ position: "absolute", inset: 0, width: "100%", height: "100%", overflow: "visible" }}
