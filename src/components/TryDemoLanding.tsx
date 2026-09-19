@@ -3,6 +3,7 @@
 import { useMemo, useRef } from "react";
 import { Turnstile } from "./Turnstile";
 import { Reveal } from "./Reveal";
+import { TESTIMONIALS } from "@/lib/testimonials";
 import {
   LightningIcon,
   SparkleIcon,
@@ -202,8 +203,9 @@ export function TryDemoLanding({ url, setUrl, email, setEmail, onVerify, error, 
 
   return (
     <>
-      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "56px 40px 48px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "start" }}>
+      <section style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "56px 40px 48px", position: "relative" }}>
+        <div aria-hidden="true" style={{ position: "absolute", right: 0, top: 20, width: 620, height: 520, background: "radial-gradient(closest-side, color-mix(in srgb, var(--accent2) 16%, transparent), transparent)", pointerEvents: "none" }} />
+        <div style={{ position: "relative", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "start" }}>
           <div>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 11.5, letterSpacing: ".15em", textTransform: "uppercase", color: "var(--accent2)", border: "1px solid var(--border)", borderRadius: 999, padding: "7px 14px", marginBottom: 24 }}>
               <HeadphonesIcon size={13} />
@@ -219,7 +221,7 @@ export function TryDemoLanding({ url, setUrl, email, setEmail, onVerify, error, 
               credit card.
             </p>
 
-            <div style={{ display: "flex", gap: 26, flexWrap: "wrap", marginBottom: 30 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, auto)", justifyContent: "start", gap: 22, marginBottom: 30 }}>
               {FEATURES.map(([icon, title, sub]) => (
                 <div key={title} style={{ display: "flex", alignItems: "center", gap: 10 }}>
                   <span className="icon-badge icon-glow" style={{ width: 40, height: 40, borderRadius: "50%", background: "var(--tint)", color: "var(--accent2)" }}>
@@ -286,7 +288,7 @@ export function TryDemoLanding({ url, setUrl, email, setEmail, onVerify, error, 
         </div>
       </section>
 
-      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "8px 40px 48px", textAlign: "center" }}>
+      <section style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "8px 40px 48px", textAlign: "center" }}>
         <div style={{ fontSize: 11, letterSpacing: ".18em", textTransform: "uppercase", color: "var(--text3)", marginBottom: 20 }}>
           Works with newsletters from
         </div>
@@ -305,7 +307,7 @@ export function TryDemoLanding({ url, setUrl, email, setEmail, onVerify, error, 
         </div>
       </section>
 
-      <section id="how-it-works" style={{ background: "var(--tint)", borderTop: "1px solid var(--border2)", borderBottom: "1px solid var(--border2)" }}>
+      <section id="how-it-works" style={{ width: "100%", background: "var(--tint)", borderTop: "1px solid var(--border2)", borderBottom: "1px solid var(--border2)" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", padding: "56px 40px", display: "grid", gridTemplateColumns: "0.8fr 2fr", gap: 40, alignItems: "center" }}>
           <Reveal>
             <div style={{ display: "inline-flex", fontSize: 11, letterSpacing: ".15em", textTransform: "uppercase", color: "var(--accent2)", border: "1px solid var(--border)", borderRadius: 999, padding: "6px 13px", marginBottom: 16 }}>
@@ -317,10 +319,10 @@ export function TryDemoLanding({ url, setUrl, email, setEmail, onVerify, error, 
               in <span style={{ color: "var(--accent2)" }}>3 simple steps.</span>
             </h2>
           </Reveal>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr auto 1fr", gap: 14, alignItems: "center" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr auto 1fr", gap: 14, alignItems: "stretch" }}>
             {STEPS.flatMap(([icon, title, body], i) => {
               const card = (
-                <Reveal key={title} delay={i * 90}>
+                <Reveal key={title} delay={i * 90} style={{ height: "100%" }}>
                   <div style={{ border: "1px solid var(--border)", borderRadius: 14, background: "var(--card)", padding: "18px 18px 20px", height: "100%" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
                       <span style={{ width: 26, height: 26, borderRadius: "50%", background: "var(--tint)", color: "var(--accent2)", fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 12, display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -336,21 +338,61 @@ export function TryDemoLanding({ url, setUrl, email, setEmail, onVerify, error, 
                 </Reveal>
               );
               return i < STEPS.length - 1
-                ? [card, <span key={`a${i}`} style={{ color: "var(--accent2)", fontSize: 20 }}>→</span>]
+                ? [card, <span key={`a${i}`} style={{ color: "var(--accent2)", fontSize: 20, alignSelf: "center" }}>→</span>]
                 : [card];
             })}
           </div>
         </div>
       </section>
 
-      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "64px 40px 80px" }}>
+      {TESTIMONIALS.length > 0 && (
+        <section style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "64px 40px 8px" }}>
+          <Reveal>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 24, flexWrap: "wrap", marginBottom: 28 }}>
+              <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 36, letterSpacing: "-.02em", margin: 0 }}>
+                Loved by newsletter <span style={{ color: "var(--accent2)" }}>creators.</span>
+              </h2>
+              <p style={{ fontSize: 13.5, color: "var(--text3)", margin: 0, maxWidth: 300 }}>
+                Newsletters, blogs, and publications use Cirro Brief to reach more people, in more places.
+              </p>
+            </div>
+          </Reveal>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16 }}>
+            {TESTIMONIALS.map((t, i) => (
+              <Reveal key={t.name} delay={i * 80} style={{ height: "100%" }}>
+                <figure className="hover-pop" style={{ margin: 0, height: "100%", border: "1px solid var(--border)", borderRadius: 16, background: "var(--card)", padding: "22px 22px 20px", display: "flex", flexDirection: "column", gap: 18 }}>
+                  <span style={{ fontFamily: NOTE_FONT, fontSize: 38, lineHeight: 0.6, color: "var(--accent2)" }}>&ldquo;</span>
+                  <blockquote style={{ margin: 0, fontSize: 15, lineHeight: 1.55, color: "var(--text)", flex: 1 }}>{t.quote}</blockquote>
+                  <figcaption style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                    {t.image ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={t.image} alt={t.name} width={40} height={40} style={{ borderRadius: "50%", objectFit: "cover" }} />
+                    ) : (
+                      <span style={{ width: 40, height: 40, borderRadius: "50%", background: "var(--tint)", color: "var(--accent2)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 14 }}>
+                        {t.name.split(" ").map((p) => p[0]).slice(0, 2).join("")}
+                      </span>
+                    )}
+                    <span>
+                      <span style={{ display: "block", fontSize: 14, fontWeight: 600 }}>{t.name}</span>
+                      <span style={{ display: "block", fontSize: 12.5, color: "var(--text3)" }}>{t.role}</span>
+                    </span>
+                  </figcaption>
+                </figure>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <section style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "64px 40px 80px" }}>
         <Reveal>
           <div style={{ position: "relative", overflow: "hidden", border: "1px solid var(--border)", borderRadius: 24, background: "var(--band)", color: "#fff", padding: "48px 48px 40px" }}>
-            <div style={{ position: "absolute", right: 48, top: 40, textAlign: "left", fontFamily: NOTE_FONT, fontStyle: "italic", fontSize: 17, lineHeight: 1.35, color: "rgba(255,255,255,.75)", maxWidth: 200 }}>
-              Good ideas travel further when people can listen.
+            <div aria-hidden="true" style={{ position: "absolute", right: 48, top: 44, display: "flex", alignItems: "center", gap: 14, color: "rgba(255,255,255,.8)" }}>
+              <span style={{ fontFamily: NOTE_FONT, fontStyle: "italic", fontSize: 17, lineHeight: 1.35, maxWidth: 170 }}>Good ideas travel further when people can listen.</span>
+              <svg width={44} height={44} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round"><path d="M7 17a4 4 0 0 1 0-8 5 5 0 0 1 9.6-1.6A4.5 4.5 0 0 1 17 17H7z" /></svg>
             </div>
             <div style={{ fontSize: 11, letterSpacing: ".15em", textTransform: "uppercase", opacity: 0.7, marginBottom: 12 }}>Hear the difference</div>
-            <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: 44, lineHeight: 1.1, letterSpacing: "-.03em", margin: "0 0 12px" }}>
+            <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: 44, lineHeight: 1.1, letterSpacing: "-.03em", margin: "0 0 12px", paddingRight: 260 }}>
               Try your newsletter now.
             </h2>
             <p style={{ fontSize: 17, opacity: 0.85, margin: "0 0 26px", maxWidth: "30em" }}>
