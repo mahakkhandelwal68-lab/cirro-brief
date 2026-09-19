@@ -270,13 +270,22 @@ export function TryDemoLanding({ url, setUrl, email, setEmail, onVerify, error, 
 
           <div className="td-hero-img-wrap">
             <Image
-              src="/brand/demo-hero.png"
+              src="/brand/demo-hero-dark.webp"
               alt="A newsletter article, The Future of Work in a Changing World, turning into a Cirro Brief audio player with a friendly cloud wearing headphones"
               width={1536}
               height={1024}
               priority
-              sizes="(max-width: 900px) 100vw, 720px"
-              className="td-hero-img"
+              unoptimized
+              className="td-hero-img td-hero-dark"
+            />
+            <Image
+              src="/brand/demo-hero-light.webp"
+              alt=""
+              aria-hidden="true"
+              width={1536}
+              height={1024}
+              unoptimized
+              className="td-hero-img td-hero-light"
             />
           </div>
         </div>

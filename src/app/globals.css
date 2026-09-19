@@ -510,7 +510,9 @@ body > section {
   }
 }
 
-/* Demo page hero image: fades into the dark page; framed card in light theme. */
+/* Demo page hero image. The dark-theme file has its soft edge fade baked in
+   (no CSS mask, so it also survives full-page screenshots); light theme uses an
+   opaque copy shown as a rounded card. */
 .td-hero-grid {
   grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
   gap: 32px;
@@ -522,12 +524,15 @@ body > section {
   display: block;
   width: 100%;
   height: auto;
-  -webkit-mask-image: radial-gradient(ellipse 74% 72% at 50% 50%, #000 60%, transparent 100%);
-  mask-image: radial-gradient(ellipse 74% 72% at 50% 50%, #000 60%, transparent 100%);
 }
-[data-cirro="light"] .td-hero-img {
-  -webkit-mask-image: none;
-  mask-image: none;
+.td-hero-light {
+  display: none;
+}
+[data-cirro="light"] .td-hero-dark {
+  display: none;
+}
+[data-cirro="light"] .td-hero-light {
+  display: block;
   border-radius: 28px;
   box-shadow: var(--shadow), var(--glow-teal);
 }
