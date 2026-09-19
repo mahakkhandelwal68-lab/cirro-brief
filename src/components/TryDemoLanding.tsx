@@ -13,6 +13,21 @@ import {
   MailIcon,
 } from "./icons";
 
+const BRAND_PATHS: Record<string, string> = {
+  Substack: "M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z",
+  Kit: "m3.5 11.633-2.434 2.408V8.687a.53.53 0 0 0-.533-.527.53.53 0 0 0-.533.527v6.624a.528.528 0 0 0 .532.526.533.533 0 0 0 .377-.153l2.974-2.939 2.974 2.94a.535.535 0 0 0 .754 0 .522.522 0 0 0 0-.746l-2.974-2.938L7.61 9.06a.522.522 0 0 0 0-.745.538.538 0 0 0-.753 0l-3.344 3.307c-.003 0-.005.003-.007.005l-.007.006v-.001zm8.826 4.206a.53.53 0 0 1-.533-.526V8.688a.53.53 0 0 1 .533-.528.53.53 0 0 1 .533.528v6.624a.53.53 0 0 1-.533.526v.001zm7.257-6.624v6.098c0 .29.238.526.532.526a.53.53 0 0 0 .533-.526V9.215h2.818A.53.53 0 0 0 24 8.688a.53.53 0 0 0-.533-.527h-6.702a.53.53 0 0 0-.533.527.53.53 0 0 0 .533.527h2.819-.001z",
+  Medium: "M4.21 0A4.201 4.201 0 0 0 0 4.21v15.58A4.201 4.201 0 0 0 4.21 24h15.58A4.201 4.201 0 0 0 24 19.79v-1.093c-.137.013-.278.02-.422.02-2.577 0-4.027-2.146-4.09-4.832a7.592 7.592 0 0 1 .022-.708c.093-1.186.475-2.241 1.105-3.022a3.885 3.885 0 0 1 1.395-1.1c.468-.237 1.127-.367 1.664-.367h.023c.101 0 .202.004.303.01V4.211A4.201 4.201 0 0 0 19.79 0Zm.198 5.583h4.165l3.588 8.435 3.59-8.435h3.864v.146l-.019.004c-.705.16-1.063.397-1.063 1.254h-.003l.003 10.274c.06.676.424.885 1.063 1.03l.02.004v.145h-4.923v-.145l.019-.005c.639-.144.994-.353 1.054-1.03V7.267l-4.745 11.15h-.261L6.15 7.569v9.445c0 .857.358 1.094 1.063 1.253l.02.004v.147H4.405v-.147l.019-.004c.705-.16 1.065-.397 1.065-1.253V6.987c0-.857-.358-1.094-1.064-1.254l-.018-.004zm19.25 3.668c-1.086.023-1.733 1.323-1.813 3.124H24V9.298a1.378 1.378 0 0 0-.342-.047Zm-1.862 3.632c-.1 1.756.86 3.239 2.204 3.634v-3.634z",
+  Ghost: "M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm.256 2.313c2.47.005 5.116 2.008 5.898 2.962l.244.3c1.64 1.994 3.569 4.34 3.569 6.966 0 3.719-2.98 5.808-6.158 7.508-1.433.766-2.98 1.508-4.748 1.508-4.543 0-8.366-3.569-8.366-8.112 0-.706.17-1.425.342-2.15.122-.515.244-1.033.307-1.549.548-4.539 2.967-6.795 8.422-7.408a4.29 4.29 0 01.49-.026Z",
+};
+
+const BRAND_STRIP: [string, string | null][] = [
+  ["Substack", "Substack"],
+  ["beehiiv", null],
+  ["Kit", "Kit"],
+  ["Medium", "Medium"],
+  ["Ghost", "Ghost"],
+];
+
 const NOTE_FONT = 'Georgia, "Times New Roman", serif';
 
 const FEATURES: [React.ReactNode, string, string][] = [
@@ -268,6 +283,25 @@ export function TryDemoLanding({ url, setUrl, email, setEmail, onVerify, error, 
           </div>
 
           <HeroVisual />
+        </div>
+      </section>
+
+      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "8px 40px 48px", textAlign: "center" }}>
+        <div style={{ fontSize: 11, letterSpacing: ".18em", textTransform: "uppercase", color: "var(--text3)", marginBottom: 20 }}>
+          Works with newsletters from
+        </div>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 44, flexWrap: "wrap", color: "var(--text2)" }}>
+          {BRAND_STRIP.map(([name, key]) => (
+            <span key={name} style={{ display: "inline-flex", alignItems: "center", gap: 9, fontFamily: "var(--font-heading)", fontWeight: 600, fontSize: 19 }}>
+              {key && (
+                <svg width={22} height={22} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d={BRAND_PATHS[key]} />
+                </svg>
+              )}
+              {name}
+            </span>
+          ))}
+          <span style={{ fontSize: 14, color: "var(--text3)" }}>and many more</span>
         </div>
       </section>
 
