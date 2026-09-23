@@ -7,7 +7,8 @@ import { Reveal } from "@/components/Reveal";
 import { ContactChannels } from "@/components/ContactChannels";
 import { SupportForm } from "@/components/SupportForm";
 import { SupportHeroGraphic, FaqAccordion } from "@/components/SupportVisuals";
-import { WhatsAppIcon, BookmarkIcon, SlidersIcon, ChatIcon, HeadsetIcon } from "@/components/icons";
+import { WhatsAppIcon, BookmarkIcon, SlidersIcon, ChatIcon } from "@/components/icons";
+import { CloudMascot } from "@/components/CloudMascot";
 
 export const metadata: Metadata = {
   title: "Support",
@@ -133,9 +134,7 @@ export default function ContactPage() {
         <Reveal>
           <div style={{ border: "1px solid var(--border)", borderRadius: 20, background: "var(--tint)", padding: "36px 40px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24, flexWrap: "wrap" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-              <span className="icon-badge icon-glow" style={{ width: 52, height: 52, borderRadius: "50%", background: "var(--card)", border: "1px solid var(--border)", color: "var(--accent2)" }}>
-                <HeadsetIcon size={24} />
-              </span>
+              <CloudMascot variant="support" size={52} radius="50%" glow />
               <div>
                 <div style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 20, marginBottom: 4 }}>Still need help?</div>
                 <div style={{ fontSize: 14.5, color: "var(--text2)" }}>Our team is here to make sure you get the most out of Cirro Brief.</div>

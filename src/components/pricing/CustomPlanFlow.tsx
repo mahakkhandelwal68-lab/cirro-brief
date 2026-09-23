@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { PlusIcon, MinusIcon, DocumentIcon, CheckCircleIcon, MegaphoneIcon } from "../icons";
+import { CloudMascot } from "../CloudMascot";
 
 type Step = "closed" | "requirements" | "estimate" | "request" | "confirmed";
 
@@ -294,9 +295,8 @@ export function CustomPlanFlow() {
 
       {step === "confirmed" && (
         <div style={{ textAlign: "center", padding: "8px 0" }}>
-          <div style={{ position: "relative", width: 64, height: 64, margin: "0 auto 18px" }}>
-            <div style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "var(--tint)" }} />
-            <div className="icon-glow" style={{ position: "absolute", inset: 10, borderRadius: "50%", background: "var(--accent2)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>✓</div>
+          <div style={{ margin: "0 auto 18px", display: "flex", justifyContent: "center" }}>
+            <CloudMascot variant="success" size={64} radius="50%" glow />
           </div>
           <div style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 20, marginBottom: 8 }}>We&apos;ve got it!</div>
           <p style={{ fontSize: 14, color: "var(--text2)", margin: "0 0 22px" }}>

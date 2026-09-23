@@ -6,6 +6,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { TryDemoLanding } from "@/components/TryDemoLanding";
 import { MountainImage } from "@/components/SampleContent";
+import { CloudMascot } from "@/components/CloudMascot";
 
 type Step = "input" | "generating" | "result";
 
@@ -132,7 +133,7 @@ export default function TryDemoPage() {
 
       {step === "generating" && (
         <section style={{ width: "100%", maxWidth: 760, margin: "0 auto", padding: "72px 20px 96px", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
-          <div style={{ position: "relative", width: 82, height: 82, marginBottom: 32 }}>
+          <div style={{ position: "relative", width: 92, height: 92, marginBottom: 32, display: "flex", alignItems: "center", justifyContent: "center" }}>
             <span style={{ position: "absolute", inset: 0, borderRadius: "50%", border: "2px solid var(--border2)" }} />
             <span
               style={{
@@ -144,6 +145,7 @@ export default function TryDemoPage() {
                 animation: "cbSpin 1.1s linear infinite",
               }}
             />
+            <CloudMascot variant="idea" size={70} radius="50%" />
           </div>
           <h1 style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: "clamp(30px, 6.5vw, 44px)", letterSpacing: "-.03em", margin: "0 0 14px" }}>
             Creating your audio brief
@@ -280,6 +282,7 @@ export default function TryDemoPage() {
                     textAlign: "center",
                   }}
                 >
+                  <CloudMascot variant="success" size={56} radius={16} />
                   <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 16 }}>
                     Enter your phone number to listen
                   </span>

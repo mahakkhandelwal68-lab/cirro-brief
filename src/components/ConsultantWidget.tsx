@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { CloudMascot } from "./CloudMascot";
 
 interface Message {
   role: "user" | "model";
@@ -64,8 +65,9 @@ export function ConsultantWidget() {
           zIndex: 50,
           width: 56,
           height: 56,
+          padding: 0,
           borderRadius: "50%",
-          background: "var(--btn)",
+          background: open ? "var(--btn)" : "transparent",
           color: "var(--btn-text)",
           border: "none",
           boxShadow: "var(--shadow)",
@@ -76,7 +78,7 @@ export function ConsultantWidget() {
           justifyContent: "center",
         }}
       >
-        {open ? "✕" : "💬"}
+        {open ? "✕" : <CloudMascot variant="support" size={56} radius="50%" />}
       </button>
 
       {open && (

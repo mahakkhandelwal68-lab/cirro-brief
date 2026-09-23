@@ -8,6 +8,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { createClient } from "@/lib/supabase/client";
 import { MailIcon, LockIcon, EyeIcon, SparkleIcon } from "@/components/icons";
+import { CloudMascot } from "@/components/CloudMascot";
 
 function LoginForm() {
   const router = useRouter();
@@ -108,14 +109,7 @@ function LoginForm() {
         }}
       >
         <div style={{ display: "flex", justifyContent: "center", marginBottom: 22 }}>
-          <span
-            className="icon-badge icon-glow"
-            style={{ width: 60, height: 60, borderRadius: "50%", border: "1px solid var(--border)", background: "var(--tint)", color: "var(--accent2)" }}
-          >
-            <svg width={26} height={26} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
-              <path d="M7 17a4 4 0 0 1 0-8 5 5 0 0 1 9.6-1.6A4.5 4.5 0 0 1 17 17H7z" />
-            </svg>
-          </span>
+          <CloudMascot variant="primary" size={64} radius="50%" glow />
         </div>
 
         <h1 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 30, letterSpacing: "-.02em", margin: "0 0 10px", textAlign: "center" }}>

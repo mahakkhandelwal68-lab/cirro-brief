@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { MountainImage } from "./SampleContent";
+import { CloudMascot } from "./CloudMascot";
 import { TESTIMONIALS } from "@/lib/testimonials";
 import {
   CheckCircleIcon,
@@ -303,9 +304,12 @@ export function PostDemoOfferClient() {
       {/* Testimonials */}
       {TESTIMONIALS.length > 0 && (
         <section className="pdo-section">
-          <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(24px, 4vw, 30px)", letterSpacing: "-.02em", margin: "0 0 22px" }}>
-            Loved by newsletter <span style={{ color: "var(--accent2)" }}>creators.</span>
-          </h2>
+          <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 22 }}>
+            <CloudMascot variant="emotional" size={48} radius={14} />
+            <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(24px, 4vw, 30px)", letterSpacing: "-.02em", margin: 0 }}>
+              Loved by newsletter <span style={{ color: "var(--accent2)" }}>creators.</span>
+            </h2>
+          </div>
           <div className="pdo-testimonial-row">
             {TESTIMONIALS.map((t) => (
               <figure key={t.name} style={{ flex: "none", width: "min(320px, 84vw)", scrollSnapAlign: "start", margin: 0, border: "1px solid var(--border)", borderRadius: 16, background: "var(--card)", padding: "20px 20px 18px", display: "flex", flexDirection: "column", gap: 14 }}>
@@ -347,11 +351,7 @@ export function PostDemoOfferClient() {
       {/* Final CTA */}
       <section className="pdo-section">
         <div style={{ border: "1px solid var(--border)", borderRadius: 20, background: "var(--band)", color: "#fff", padding: "clamp(32px, 5vw, 48px)", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: 16 }}>
-          <span className="icon-badge icon-glow" style={{ width: 52, height: 52, borderRadius: "50%", background: "rgba(255,255,255,.1)", border: "1px solid rgba(255,255,255,.22)", color: "#7fd3ad" }}>
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
-              <path d="M7 17a4 4 0 0 1 0-8 5 5 0 0 1 9.6-1.6A4.5 4.5 0 0 1 17 17H7z" />
-            </svg>
-          </span>
+          <CloudMascot variant="primary" size={72} radius={18} glow style={{ border: "1px solid rgba(255,255,255,.22)" }} />
           <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: "clamp(24px, 5vw, 36px)", lineHeight: 1.12, letterSpacing: "-.03em", margin: 0, maxWidth: "24em" }}>
             Your newsletter already has the content. Now give people another way to experience it.
           </h2>

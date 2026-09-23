@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ChatIcon, MailIcon, InstagramIcon, ChevronDownIcon } from "./icons";
+import { CloudMascot } from "./CloudMascot";
 
 export function SupportHeroGraphic() {
   return (
@@ -45,27 +46,8 @@ export function SupportHeroGraphic() {
         <InstagramIcon size={24} />
       </div>
 
-      <div
-        style={{
-          position: "absolute",
-          top: 92,
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: 76,
-          height: 76,
-          borderRadius: "50%",
-          background: "var(--card)",
-          border: "1px solid var(--border)",
-          boxShadow: "var(--shadow), var(--glow-teal)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          color: "var(--accent2)",
-        }}
-      >
-        <svg width={32} height={32} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
-          <path d="M7 17a4 4 0 0 1 0-8 5 5 0 0 1 9.6-1.6A4.5 4.5 0 0 1 17 17H7z" />
-        </svg>
+      <div style={{ position: "absolute", top: 92, left: "50%", transform: "translateX(-50%)" }}>
+        <CloudMascot variant="support" size={76} radius="50%" glow style={{ boxShadow: "var(--shadow), var(--glow-teal)" }} />
       </div>
     </div>
   );
