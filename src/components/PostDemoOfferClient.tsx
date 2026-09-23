@@ -1,8 +1,24 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { MountainImage } from "./SampleContent";
+import { TESTIMONIALS } from "@/lib/testimonials";
+import {
+  CheckCircleIcon,
+  HeadphonesIcon,
+  DocumentIcon,
+  ShareUpIcon,
+  CodeIcon,
+  GridIcon,
+  SlidersIcon,
+  BookmarkIcon,
+  ChevronDownIcon,
+  LightningIcon,
+  CalendarIcon,
+  CrownIcon,
+} from "./icons";
 
 interface RegionPricing {
   symbol: string;
@@ -11,59 +27,84 @@ interface RegionPricing {
   annual: number;
 }
 
-const DECIDE_LIST = [
-  "How the briefing is written",
-  "What style it follows",
-  "Which voice represents your publication",
-  "Whether you want to review the script",
-  "How names and important words are pronounced",
+const DISCOUNT_PERCENT = 60;
+
+const PREVIEW_INCLUDES = ["Audio preview (1-2 minutes)", "Generated from your newsletter", "One voice", "Quick listening experience"];
+
+const COMPLETE_INCLUDES = [
+  "Full 2-3 minute Brief",
+  "Choose from multiple briefing styles",
+  "Multiple voice options (or your brand voice)",
+  "Script review and editing",
+  "Saved pronunciation preferences",
+  "Brief summary",
+  "Ready-to-share assets (social posts, images, quotes)",
+  "Blog audio embed",
+  "QR code for easy sharing",
+  "Personal workspace",
 ];
 
-const UNLOCK_LIST = [
-  "Choose your briefing style",
-  "Choose your voice",
-  "Optional script review",
-  "Edit before audio generation",
-  "Add custom pronunciation preferences",
-  "Receive the complete included assets",
-  "Access your customer workspace",
-];
-
-const AFTER_STEPS: [string, string, string, string[] | null][] = [
-  ["01", "Choose your preferences", "Select how you want your briefing to sound.", ["Briefing style", "Voice", "Optional script review"]],
-  ["02", "Add special preferences", "If necessary, add pronunciation guidance for brand names, names and industry terms. Preferences can be saved for future briefings.", null],
-  ["03", "Generate", "Cirro Brief creates your complete audio briefing and included assets. Your workspace keeps everything organised.", null],
-];
-
-const MATRIX: [string, boolean][] = [
-  ["AI-generated brief", true],
-  ["Audio preview", true],
-  ["Choose script style", false],
-  ["Choose voice", false],
-  ["Script review option", false],
-  ["Edit script", false],
-  ["Custom pronunciation", false],
-  ["Saved preferences", false],
-  ["Customer workspace", false],
-  ["Additional assets", false],
+const USES: [React.ReactNode, string][] = [
+  [<HeadphonesIcon key="a" size={18} />, "Audio Brief"],
+  [<DocumentIcon key="b" size={18} />, "Brief Summary"],
+  [<ShareUpIcon key="c" size={18} />, "Ready-to-share assets"],
+  [<CodeIcon key="d" size={18} />, "Blog audio embed"],
+  [<GridIcon key="e" size={18} />, "QR code"],
+  [<SlidersIcon key="f" size={18} />, "Brand voice"],
+  [<BookmarkIcon key="g" size={18} />, "Saved pronunciations"],
+  [<GridIcon key="h" size={18} />, "Your workspace"],
 ];
 
 const FAQ_DATA = [
-  ["Is this the same as the demo?", "No. The demo is a simplified automatic preview. The complete version gives you additional choices and control over the briefing and audio generation."],
-  ["Do I need a subscription?", "No. You can purchase a one-time complete briefing. Monthly and annual plans are available if you plan to create regularly."],
-  ["Can I review the script?", "Yes. During setup, you can choose whether you want to review the briefing before audio generation."],
-  ["Can I use the same voice again?", "Your preferred voice and other settings can be saved according to your plan."],
-  ["How quickly will my briefing be ready?", "Standard automated briefings are designed for fast delivery once all preferences are provided."],
+  ["Is this really a one-time purchase?", "Yes. Your first complete Brief is a single one-time purchase at the discounted price. There's no subscription unless you choose a Monthly or Annual plan."],
+  ["What do I get with the discount?", "The full Cirro Brief experience for the newsletter you just previewed: your choice of style and voice, script review, saved pronunciations, and the complete set of ready-to-share assets."],
+  ["Can I use my own voice or brand voice?", "Yes. During setup you can choose from the voice library or use a saved brand voice, according to your plan."],
+  ["How is this different from the free preview?", "The preview is a short, automatic, single-voice version. The complete Brief gives you control over style, voice, script, and pronunciation, plus the full set of publishing assets and a personal workspace."],
+  ["How quickly will my Brief be ready?", "Once your preferences are set, generation is designed to be fast. You can track progress from your workspace."],
 ];
 
 function fmt(symbol: string, n: number) {
-  return `${symbol}${n.toLocaleString()}`;
+  return `${symbol}${Math.round(n).toLocaleString()}`;
+}
+
+function IncludesBox({ title, badge, badgeColor, items, muted }: { title: string; badge: string; badgeColor: string; items: string[]; muted?: boolean }) {
+  const [open, setOpen] = useState(true);
+  return (
+    <div style={{ border: `1px solid ${muted ? "var(--border)" : "var(--accent2)"}`, borderRadius: 18, background: muted ? "var(--card)" : "var(--tint)", overflow: "hidden" }}>
+      <button
+        onClick={() => setOpen((o) => !o)}
+        className="pdo-accordion-btn"
+        style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, padding: "22px 24px", background: "transparent", border: "none", cursor: "pointer", textAlign: "left" }}
+      >
+        <span style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 18 }}>{title}</span>
+          <span style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: ".08em", textTransform: "uppercase", color: badgeColor, background: "var(--card)", border: `1px solid var(--border)`, borderRadius: 999, padding: "4px 10px" }}>
+            {badge}
+          </span>
+        </span>
+        <span className="pdo-accordion-chevron" style={{ color: "var(--text3)", flex: "none", transform: open ? "rotate(180deg)" : "none", transition: "transform .2s ease" }}>
+          <ChevronDownIcon size={18} />
+        </span>
+      </button>
+      {open && (
+        <div style={{ padding: "0 24px 24px", display: "flex", flexDirection: "column", gap: 11 }}>
+          {items.map((it) => (
+            <div key={it} style={{ display: "flex", gap: 10, fontSize: 15, color: "var(--text)" }}>
+              <span style={{ color: "var(--accent2)", flex: "none", marginTop: 1 }}>
+                <CheckCircleIcon size={16} />
+              </span>
+              {it}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
 export function PostDemoOfferClient() {
   const params = useSearchParams();
   const name = params.get("name") || "your newsletter";
-  const url = params.get("url") || "";
   const [pricing, setPricing] = useState<RegionPricing | null>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
@@ -71,241 +112,263 @@ export function PostDemoOfferClient() {
     fetch("/api/pricing").then((r) => r.json()).then(setPricing);
   }, []);
 
-  const discounted = pricing ? Math.round(pricing.oneTime / 2) : null;
+  const discounted = useMemo(() => (pricing ? Math.round((pricing.oneTime * (100 - DISCOUNT_PERCENT)) / 100) : null), [pricing]);
+  const monthlyEquivalent = pricing ? Math.round(pricing.annual / 12) : null;
+
+  const plans = pricing
+    ? [
+        { key: "one", icon: <LightningIcon size={20} />, name: "One-Time", note: "For occasional publishing.", price: fmt(pricing.symbol, pricing.oneTime), per: "/ edition", cta: "Create One Brief", href: "/pricing" },
+        { key: "monthly", icon: <CalendarIcon size={20} />, name: "Monthly", note: "For regular publishing.", price: fmt(pricing.symbol, pricing.monthly), per: "/ month", cta: "Start Monthly", href: "/pricing" },
+        { key: "annual", icon: <CrownIcon size={20} />, name: "Annual", note: "For frequent publishing at the best value.", price: fmt(pricing.symbol, pricing.annual), per: "/ year", sub: monthlyEquivalent ? `${fmt(pricing.symbol, monthlyEquivalent)}/month when billed annually` : undefined, cta: "Choose Annual", href: "/pricing", best: true },
+      ]
+    : [];
+
+  const purchaseHref = `/contact?intent=purchase&plan=one&discount=${DISCOUNT_PERCENT}&nl=${encodeURIComponent(name)}`;
 
   return (
     <>
-      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "76px 40px 60px", display: "grid", gridTemplateColumns: "1.1fr .9fr", gap: 64, alignItems: "center" }}>
+      {/* Hero */}
+      <section className="pdo-section pdo-hero-grid">
         <div>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 11.5, letterSpacing: ".15em", textTransform: "uppercase", color: "var(--accent2)", border: "1px solid var(--border)", borderRadius: 999, padding: "7px 14px", marginBottom: 24 }}>
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--accent2)", display: "inline-block" }} />
-            Your demo is complete
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 11.5, letterSpacing: ".15em", textTransform: "uppercase", color: "var(--accent2)", border: "1px solid var(--border)", borderRadius: 999, padding: "7px 14px", marginBottom: 22 }}>
+            <CheckCircleIcon size={13} />
+            Your Brief is ready
           </div>
-          <h1 style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: 52, lineHeight: 1.06, letterSpacing: "-.03em", margin: "0 0 20px" }}>
-            You just heard what {name} can sound like.
+          <h1 className="pdo-h1" style={{ fontFamily: "var(--font-heading)", fontWeight: 900, lineHeight: 1.08, letterSpacing: "-.03em", margin: "0 0 16px" }}>
+            {name}
           </h1>
-          <p style={{ fontSize: 17.5, color: "var(--text2)", margin: "0 0 8px", maxWidth: "32em" }}>That was a quick automated preview based on your newsletter.</p>
-          <p style={{ fontSize: 17.5, color: "var(--text2)", margin: 0, maxWidth: "32em" }}>
-            With the full Cirro Brief experience, you get more control over how {name} is transformed, written, and
-            voiced.
+          <p style={{ fontSize: 17, color: "var(--text2)", margin: "0 0 22px", maxWidth: "30em" }}>
+            We&apos;ve turned your newsletter into a concise, engaging audio experience.
           </p>
-        </div>
-        <div style={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: 18, padding: "24px 26px", boxShadow: "var(--shadow)" }}>
-          <div style={{ fontSize: 10.5, letterSpacing: ".16em", textTransform: "uppercase", color: "var(--text3)", marginBottom: 14 }}>📰 Your newsletter</div>
-          <div style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 21, letterSpacing: "-.015em", marginBottom: 4 }}>{name}</div>
-          {url && <div style={{ fontSize: 14.5, color: "var(--text3)", marginBottom: 16, wordBreak: "break-all" }}>{url}</div>}
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 13.5, color: "var(--accent2)", border: "1px solid var(--border)", borderRadius: 999, padding: "7px 13px", background: "var(--tint)" }}>
-            <span>✓</span>Demo generated successfully
-          </div>
-        </div>
-      </section>
-
-      <section style={{ background: "var(--bg2)", borderTop: "1px solid var(--border2)", borderBottom: "1px solid var(--border2)" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "64px 40px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start" }}>
-          <div>
-            <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 32, lineHeight: 1.1, letterSpacing: "-.025em", margin: "0 0 14px" }}>
-              The demo showed you the starting point.
-            </h2>
-            <p style={{ fontSize: 17, color: "var(--text2)", margin: "0 0 8px" }}>Now imagine creating every briefing around your publication.</p>
-            <p style={{ fontSize: 15, color: "var(--text3)", margin: 0 }}>The demo was generated automatically.</p>
-          </div>
-          <div>
-            <div style={{ fontSize: 15.5, color: "var(--text2)", marginBottom: 14 }}>With the complete version, you can decide:</div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 11 }}>
-              {DECIDE_LIST.map((d) => (
-                <div key={d} style={{ display: "flex", gap: 11, fontSize: 16, color: "var(--text)" }}>
-                  <span style={{ color: "var(--accent2)" }}>✓</span>
-                  {d}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 40px 56px" }}>
-        <div style={{ textAlign: "center", maxWidth: "40em", margin: "0 auto 40px" }}>
-          <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: 38, lineHeight: 1.1, letterSpacing: "-.025em", margin: "0 0 14px" }}>
-            Try your first complete Cirro Brief for 50% less.
-          </h2>
-          <p style={{ fontSize: 17, color: "var(--text2)", margin: 0 }}>Create a complete briefing for {name} and experience the full workflow.</p>
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr auto", border: "1px solid var(--accent2)", borderRadius: 20, overflow: "hidden", boxShadow: "var(--shadow)", maxWidth: 920, margin: "0 auto" }}>
-          <div style={{ background: "var(--card)", padding: "32px 36px", display: "flex", flexDirection: "column", gap: 8 }}>
-            <div style={{ fontSize: 15.5, fontWeight: 500, color: "var(--text2)", marginBottom: 6 }}>What you&apos;ll unlock:</div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 9 }}>
-              {UNLOCK_LIST.map((u) => (
-                <div key={u} style={{ display: "flex", gap: 9, fontSize: 15, color: "var(--text)" }}>
-                  <span style={{ color: "var(--accent2)", flex: "none" }}>✓</span>
-                  {u}
-                </div>
-              ))}
-            </div>
-          </div>
-          <div style={{ background: "var(--tint)", borderLeft: "1px solid var(--border)", padding: "32px 34px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12, minWidth: 250 }}>
-            <div style={{ fontSize: 11, letterSpacing: ".16em", textTransform: "uppercase", color: "var(--accent2)" }}>First complete brief</div>
-            {pricing && discounted !== null ? (
-              <div style={{ display: "flex", alignItems: "baseline", gap: 10 }}>
-                <span style={{ fontSize: 19, color: "var(--text3)", textDecoration: "line-through" }}>{fmt(pricing.symbol, pricing.oneTime)}</span>
-                <span style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: 44, letterSpacing: "-.03em" }}>{fmt(pricing.symbol, discounted)}</span>
-              </div>
-            ) : (
-              <span style={{ color: "var(--text3)", fontSize: 14 }}>Loading...</span>
-            )}
-            <div style={{ fontSize: 13.5, color: "var(--text3)", textAlign: "center" }}>
-              One newsletter edition
-              <br />
-              Full Cirro Brief experience
-            </div>
-            <Link
-              href={`/contact?intent=purchase&plan=one&discount=50&nl=${encodeURIComponent(name)}`}
-              style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "var(--btn)", color: "var(--btn-text)", fontSize: 15.5, fontWeight: 500, padding: "14px 22px", borderRadius: 12, marginTop: 6, width: "100%", justifyContent: "center" }}
-            >
-              Create My Full Brief <span style={{ opacity: 0.75 }}>→</span>
-            </Link>
-            <div style={{ fontSize: 12, color: "var(--text3)" }}>One-time purchase. No subscription required.</div>
-          </div>
-        </div>
-      </section>
-
-      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "56px 40px 72px" }}>
-        <div style={{ maxWidth: "40em", marginBottom: 36 }}>
-          <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 32, lineHeight: 1.1, letterSpacing: "-.025em", margin: 0 }}>Your complete briefing, your way.</h2>
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16 }}>
-          {AFTER_STEPS.map(([n, title, body, tags]) => (
-            <div key={n} style={{ border: "1px solid var(--border)", borderRadius: 16, background: "var(--card)", padding: "26px 24px", display: "flex", flexDirection: "column", gap: 10, minHeight: 190 }}>
-              <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 12.5, color: "var(--accent2)" }}>{n}</span>
-              <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 19, letterSpacing: "-.015em" }}>{title}</span>
-              <span style={{ fontSize: 14.8, color: "var(--text2)" }}>{body}</span>
-              {tags && (
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: "auto" }}>
-                  {tags.map((tag) => (
-                    <span key={tag} style={{ fontSize: 12, color: "var(--accent2)", background: "var(--tint)", border: "1px solid var(--border2)", borderRadius: 999, padding: "5px 11px" }}>
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section style={{ background: "var(--bg2)", borderTop: "1px solid var(--border2)", borderBottom: "1px solid var(--border2)" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "72px 40px" }}>
-          <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 34, lineHeight: 1.1, letterSpacing: "-.025em", margin: "0 0 8px" }}>Demo vs. Complete Experience</h2>
-          <p style={{ fontSize: 16, color: "var(--text2)", margin: "0 0 26px" }}>The demo lets you hear the idea. The complete version lets you shape the result.</p>
-          <div style={{ border: "1px solid var(--border)", borderRadius: 18, background: "var(--card)", overflow: "hidden", boxShadow: "var(--shadow)" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "1.3fr 1fr 1fr", borderBottom: "1px solid var(--border)" }}>
-              <div style={{ padding: "15px 24px" }} />
-              <div style={{ padding: "15px 24px", textAlign: "center", fontSize: 10.5, letterSpacing: ".16em", textTransform: "uppercase", color: "var(--text3)", borderLeft: "1px solid var(--border2)" }}>Demo</div>
-              <div style={{ padding: "15px 24px", textAlign: "center", fontSize: 10.5, letterSpacing: ".16em", textTransform: "uppercase", color: "var(--accent2)", background: "var(--tint)", borderLeft: "1px solid var(--border2)" }}>Complete Brief</div>
-            </div>
-            {MATRIX.map(([label, demo]) => (
-              <div key={label} style={{ display: "grid", gridTemplateColumns: "1.3fr 1fr 1fr", borderBottom: "1px solid var(--border2)" }}>
-                <div style={{ padding: "13px 24px", fontSize: 15, color: "var(--text)" }}>{label}</div>
-                <div style={{ padding: "13px 24px", textAlign: "center", borderLeft: "1px solid var(--border2)", color: demo ? "var(--accent2)" : "var(--text3)" }}>{demo ? "✓" : "✕"}</div>
-                <div style={{ padding: "13px 24px", textAlign: "center", borderLeft: "1px solid var(--border2)", background: "var(--tint)", color: "var(--accent2)" }}>✓</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 26 }}>
+            {["Generated from your newsletter", "About a minute to preview", "Same story, a new way to experience it"].map((t) => (
+              <div key={t} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 15, color: "var(--text)" }}>
+                <span className="icon-badge" style={{ width: 26, height: 26, borderRadius: "50%", background: "var(--tint)", color: "var(--accent2)" }}>
+                  <CheckCircleIcon size={13} />
+                </span>
+                {t}
               </div>
             ))}
           </div>
+          <Link href={purchaseHref} className="btn-pop" style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "var(--btn)", color: "var(--btn-text)", fontSize: 15.5, fontWeight: 500, padding: "14px 24px", borderRadius: 12 }}>
+            Try Another Newsletter <span style={{ opacity: 0.75 }}>→</span>
+          </Link>
+        </div>
+
+        <div style={{ border: "1px solid var(--border)", borderRadius: 20, background: "var(--card)", boxShadow: "var(--shadow), var(--glow-teal)", padding: "22px 24px", position: "relative" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
+            <span className="icon-badge" style={{ width: 26, height: 26, borderRadius: 8, background: "var(--tint)", color: "var(--accent2)" }}>
+              <HeadphonesIcon size={14} />
+            </span>
+            <span style={{ fontSize: 12.5, fontWeight: 600 }}>Cirro Brief</span>
+            <span style={{ fontSize: 11.5, color: "var(--text3)", marginLeft: "auto" }}>Generated from your newsletter</span>
+          </div>
+          <div style={{ display: "flex", gap: 14, alignItems: "center", marginBottom: 16 }}>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div className="pdo-card-title" style={{ fontFamily: "var(--font-heading)", fontWeight: 700, lineHeight: 1.2 }}>{name}</div>
+            </div>
+            <div style={{ width: "34%", maxWidth: 150, minWidth: 90, flex: "none" }}>
+              <MountainImage crop="4/3" radius={12} sizes="150px" />
+            </div>
+          </div>
+          <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 18 }}>
+            {["Concise", "Natural voice", "Key insights"].map((c) => (
+              <span key={c} style={{ fontSize: 11, color: "var(--accent2)", background: "var(--tint)", borderRadius: 999, padding: "4px 10px" }}>{c}</span>
+            ))}
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <span style={{ width: 44, height: 44, flex: "none", borderRadius: "50%", background: "var(--btn)", color: "var(--btn-text)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, boxShadow: "0 0 0 6px color-mix(in srgb, var(--accent2) 16%, transparent)" }}>▶</span>
+            <div style={{ flex: 1, display: "flex", alignItems: "center", gap: 2, height: 30, minWidth: 0 }}>
+              {Array.from({ length: 40 }, (_, i) => 18 + Math.round(70 * Math.abs(Math.sin(i * 0.7) * Math.cos(i * 0.21)))).map((h, i) => (
+                <span key={i} style={{ flex: 1, height: `${h}%`, borderRadius: 1, background: "var(--accent2)", opacity: i < 9 ? 1 : 0.5 }} />
+              ))}
+            </div>
+            <span style={{ fontSize: 11.5, color: "var(--text3)", flex: "none" }}>0:00 / 1:32</span>
+          </div>
         </div>
       </section>
 
-      <section id="pricing" style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 40px 64px" }}>
-        <div style={{ textAlign: "center", maxWidth: "36em", margin: "0 auto 40px" }}>
-          <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 34, lineHeight: 1.1, letterSpacing: "-.025em", margin: "0 0 10px" }}>Planning to create audio regularly?</h2>
-          <p style={{ fontSize: 17, color: "var(--text2)", margin: 0 }}>Get more value with a recurring plan.</p>
+      {/* Preview vs complete */}
+      <section style={{ background: "var(--bg2)", borderTop: "1px solid var(--border2)", borderBottom: "1px solid var(--border2)" }}>
+        <div className="pdo-section">
+          <div style={{ maxWidth: "38em", margin: "0 auto 32px", textAlign: "center" }}>
+            <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(26px, 4.4vw, 34px)", lineHeight: 1.15, letterSpacing: "-.02em", margin: "0 0 10px" }}>
+              You just heard the audio version of your newsletter.
+            </h2>
+            <p style={{ fontSize: 16, color: "var(--text2)", margin: 0 }}>
+              The free preview lets you hear the core experience. The complete Brief gives you more control over the
+              audio, publishing assets, and your own workspace.
+            </p>
+          </div>
+          <div className="pdo-compare-grid">
+            <IncludesBox title="What you just tried" badge="Free preview" badgeColor="var(--text3)" items={PREVIEW_INCLUDES} muted />
+            <IncludesBox title="What you get with a complete Brief" badge="Much more" badgeColor="var(--accent2)" items={COMPLETE_INCLUDES} />
+          </div>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, maxWidth: 820, margin: "0 auto" }}>
-          {[
-            { name: "Monthly", note: "For publishers who want to create audio editions regularly.", save: "Save 20%", best: false },
-            { name: "Annual", note: "For publications planning to make audio part of their regular experience.", save: "Save 40%", best: true },
-          ].map((p) => (
-            <div
-              key={p.name}
-              style={{
-                position: "relative",
-                border: `2px solid ${p.best ? "var(--accent2)" : "var(--border)"}`,
-                borderRadius: 18,
-                background: "var(--card)",
-                padding: "30px 28px",
-                display: "flex",
-                flexDirection: "column",
-                gap: 12,
-              }}
+      </section>
+
+      {/* Limited time offer */}
+      <section className="pdo-section">
+        <div className="pdo-offer-band">
+          <div>
+            <div style={{ display: "inline-flex", fontSize: 10.5, fontWeight: 700, letterSpacing: ".1em", textTransform: "uppercase", color: "#06120f", background: "#f0ab63", borderRadius: 999, padding: "5px 12px", marginBottom: 16 }}>
+              Limited time offer
+            </div>
+            <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: "clamp(24px, 4vw, 32px)", lineHeight: 1.15, letterSpacing: "-.02em", margin: "0 0 12px" }}>
+              Get your first complete Brief for {DISCOUNT_PERCENT}% off.
+            </h2>
+            <p style={{ fontSize: 15.5, opacity: 0.85, margin: 0, maxWidth: "30em" }}>
+              You just tried Cirro Brief with your own newsletter. Unlock the full experience for a one-time special
+              price.
+            </p>
+          </div>
+          <div className="pdo-offer-price">
+            {pricing && discounted !== null ? (
+              <>
+                <div style={{ display: "flex", alignItems: "baseline", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
+                  <span style={{ fontSize: 18, opacity: 0.6, textDecoration: "line-through" }}>{fmt(pricing.symbol, pricing.oneTime)}</span>
+                  <span style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: 40, letterSpacing: "-.02em" }}>{fmt(pricing.symbol, discounted)}</span>
+                </div>
+                <div style={{ fontSize: 12.5, opacity: 0.75, marginBottom: 16 }}>Your first complete Brief</div>
+              </>
+            ) : (
+              <div style={{ fontSize: 14, opacity: 0.7, marginBottom: 16 }}>Loading...</div>
+            )}
+            <Link
+              href={purchaseHref}
+              className="btn-pop"
+              style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 9, background: "#fff", color: "var(--band)", fontSize: 15, fontWeight: 500, padding: "13px 22px", borderRadius: 11, width: "100%" }}
             >
-              {p.best && (
-                <span style={{ position: "absolute", top: -12, left: 28, fontSize: 11, letterSpacing: ".1em", textTransform: "uppercase", background: "var(--accent)", color: "#fff", borderRadius: 999, padding: "5px 12px" }}>
-                  Best value
-                </span>
-              )}
-              <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 12, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--accent2)" }}>{p.name}</span>
-              <span style={{ fontSize: 15.5, color: "var(--text2)" }}>{p.note}</span>
-              <span style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: 26, letterSpacing: "-.02em", color: "var(--text)" }}>{p.save}</span>
-              <Link
-                href="/pricing"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 8,
-                  background: p.best ? "var(--btn)" : "transparent",
-                  color: p.best ? "var(--btn-text)" : "var(--text)",
-                  border: `1px solid ${p.best ? "var(--accent2)" : "var(--border)"}`,
-                  fontSize: 15,
-                  fontWeight: 500,
-                  padding: "13px 18px",
-                  borderRadius: 11,
-                  marginTop: "auto",
-                }}
-              >
-                View {p.name} Plans
-              </Link>
+              Get My Complete Brief <span style={{ opacity: 0.75 }}>→</span>
+            </Link>
+            <div style={{ fontSize: 11.5, opacity: 0.65, marginTop: 10 }}>
+              One-time purchase · No subscription · Includes the complete Brief experience
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Uses grid */}
+      <section className="pdo-section">
+        <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(24px, 4vw, 30px)", letterSpacing: "-.02em", margin: "0 0 6px" }}>One Brief. More ways to use it.</h2>
+        <p style={{ fontSize: 15, color: "var(--text2)", margin: "0 0 28px" }}>Turn your newsletter into a complete content package, ready to share.</p>
+        <div className="pdo-uses-grid">
+          {USES.map(([icon, label]) => (
+            <div key={label} className="hover-pop" style={{ border: "1px solid var(--border)", borderRadius: 14, background: "var(--card)", padding: "16px 14px", display: "flex", flexDirection: "column", gap: 10 }}>
+              <span className="icon-badge icon-glow" style={{ width: 36, height: 36, borderRadius: 10, background: "var(--tint)", color: "var(--accent2)" }}>{icon}</span>
+              <span style={{ fontSize: 13.5, fontWeight: 600 }}>{label}</span>
             </div>
           ))}
         </div>
-        <p style={{ textAlign: "center", fontSize: 14, color: "var(--text3)", margin: "26px 0 0" }}>
-          Already know you want to create regularly? Choose a recurring plan and set up your publication from the
-          start.
-        </p>
       </section>
 
-      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "64px 40px 88px", display: "grid", gridTemplateColumns: ".8fr 1.2fr", gap: 64, alignItems: "start" }}>
-        <div>
-          <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 32, lineHeight: 1.1, letterSpacing: "-.025em", margin: 0 }}>Before you create your complete brief.</h2>
+      {/* Other plans */}
+      <section style={{ background: "var(--bg2)", borderTop: "1px solid var(--border2)", borderBottom: "1px solid var(--border2)" }}>
+        <div className="pdo-section">
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 16, flexWrap: "wrap", marginBottom: 28 }}>
+            <div>
+              <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(24px, 4vw, 30px)", letterSpacing: "-.02em", margin: "0 0 6px" }}>Publishing regularly?</h2>
+              <p style={{ fontSize: 15, color: "var(--text2)", margin: 0 }}>If you publish more than once, choose a plan that works for you.</p>
+            </div>
+            <Link href="/pricing" style={{ fontSize: 14, color: "var(--accent2)", flex: "none" }}>See full pricing →</Link>
+          </div>
+          <div className="pdo-plans-grid">
+            {plans.map((p) => (
+              <div key={p.key} style={{ position: "relative", border: `1px solid ${p.best ? "var(--accent2)" : "var(--border)"}`, borderRadius: 16, background: "var(--card)", padding: "20px 22px", display: "flex", flexDirection: "column", gap: 8 }}>
+                {p.best && (
+                  <span style={{ position: "absolute", top: -11, left: 20, fontSize: 10.5, letterSpacing: ".08em", textTransform: "uppercase", background: "var(--orange)", color: "#3a2a17", borderRadius: 999, padding: "4px 10px", fontWeight: 700 }}>
+                    Best value
+                  </span>
+                )}
+                <span className="icon-badge" style={{ width: 34, height: 34, borderRadius: 10, background: "var(--tint)", color: "var(--accent2)" }}>{p.icon}</span>
+                <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 15 }}>{p.name}</span>
+                <span style={{ fontSize: 13, color: "var(--text2)" }}>{p.note}</span>
+                <div style={{ margin: "4px 0" }}>
+                  <span style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: 24 }}>{p.price}</span>
+                  <span style={{ fontSize: 13, color: "var(--text3)" }}> {p.per}</span>
+                  {p.sub && <div style={{ fontSize: 11.5, color: "var(--text3)", marginTop: 2 }}>{p.sub}</div>}
+                </div>
+                <Link href={p.href} style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8, border: "1px solid var(--border)", color: "var(--text)", fontSize: 13.5, fontWeight: 500, padding: "10px 14px", borderRadius: 10, marginTop: "auto" }}>
+                  {p.cta} →
+                </Link>
+              </div>
+            ))}
+          </div>
+          <p style={{ textAlign: "center", fontSize: 12.5, color: "var(--text3)", margin: "18px 0 0" }}>
+            Your {DISCOUNT_PERCENT}% offer applies only to your first complete one-time Brief. You can choose any plan later.
+          </p>
         </div>
+      </section>
+
+      {/* Testimonials */}
+      {TESTIMONIALS.length > 0 && (
+        <section className="pdo-section">
+          <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(24px, 4vw, 30px)", letterSpacing: "-.02em", margin: "0 0 22px" }}>
+            Loved by newsletter <span style={{ color: "var(--accent2)" }}>creators.</span>
+          </h2>
+          <div className="pdo-testimonial-row">
+            {TESTIMONIALS.map((t) => (
+              <figure key={t.name} style={{ flex: "none", width: "min(320px, 84vw)", scrollSnapAlign: "start", margin: 0, border: "1px solid var(--border)", borderRadius: 16, background: "var(--card)", padding: "20px 20px 18px", display: "flex", flexDirection: "column", gap: 14 }}>
+                <blockquote style={{ margin: 0, fontSize: 14.5, lineHeight: 1.5, color: "var(--text)" }}>&ldquo;{t.quote}&rdquo;</blockquote>
+                <figcaption style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                  <span style={{ width: 34, height: 34, borderRadius: "50%", background: "var(--tint)", color: "var(--accent2)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 12, flex: "none" }}>
+                    {t.name.split(" ").map((p) => p[0]).slice(0, 2).join("")}
+                  </span>
+                  <span>
+                    <span style={{ display: "block", fontSize: 13.5, fontWeight: 600 }}>{t.name}</span>
+                    <span style={{ display: "block", fontSize: 12, color: "var(--text3)" }}>{t.role}</span>
+                  </span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* FAQ */}
+      <section className="pdo-section" style={{ maxWidth: 800 }}>
+        <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(24px, 4vw, 30px)", letterSpacing: "-.02em", margin: "0 0 22px" }}>Frequently asked questions.</h2>
         <div style={{ borderTop: "1px solid var(--border2)" }}>
           {FAQ_DATA.map(([q, a], i) => (
             <div key={q} style={{ borderBottom: "1px solid var(--border2)" }}>
               <button
                 onClick={() => setOpenFaq((cur) => (cur === i ? null : i))}
-                style={{ width: "100%", background: "transparent", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 20, padding: "20px 2px", textAlign: "left", color: "var(--text)", fontSize: 17, fontWeight: 500 }}
+                style={{ width: "100%", background: "transparent", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 20, padding: "18px 2px", textAlign: "left", color: "var(--text)", fontSize: 15.5, fontWeight: 500 }}
               >
                 {q}
                 <span style={{ color: "var(--accent2)", fontSize: 16, flex: "none" }}>{openFaq === i ? "×" : "+"}</span>
               </button>
-              {openFaq === i && <div style={{ padding: "0 2px 22px", fontSize: 16, color: "var(--text2)", maxWidth: "40em" }}>{a}</div>}
+              {openFaq === i && <div style={{ padding: "0 2px 20px", fontSize: 14.5, color: "var(--text2)", maxWidth: "40em" }}>{a}</div>}
             </div>
           ))}
         </div>
       </section>
 
-      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "24px 40px 96px" }}>
-        <div style={{ border: "1px solid var(--border)", borderRadius: 20, background: "var(--tint)", padding: "60px 56px", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: 16 }}>
-          <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: 40, lineHeight: 1.08, letterSpacing: "-.03em", margin: 0, maxWidth: "24em" }}>
-            Your newsletter already has something to say.
+      {/* Final CTA */}
+      <section className="pdo-section">
+        <div style={{ border: "1px solid var(--border)", borderRadius: 20, background: "var(--band)", color: "#fff", padding: "clamp(32px, 5vw, 48px)", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: 16 }}>
+          <span className="icon-badge icon-glow" style={{ width: 52, height: 52, borderRadius: "50%", background: "rgba(255,255,255,.1)", border: "1px solid rgba(255,255,255,.22)", color: "#7fd3ad" }}>
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+              <path d="M7 17a4 4 0 0 1 0-8 5 5 0 0 1 9.6-1.6A4.5 4.5 0 0 1 17 17H7z" />
+            </svg>
+          </span>
+          <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: "clamp(24px, 5vw, 36px)", lineHeight: 1.12, letterSpacing: "-.03em", margin: 0, maxWidth: "24em" }}>
+            Your newsletter already has the content. Now give people another way to experience it.
           </h2>
-          <p style={{ fontSize: 17, color: "var(--text2)", margin: 0, maxWidth: "30em" }}>Now give your audience another way to experience it.</p>
-          <div style={{ display: "flex", gap: 14, flexWrap: "wrap", justifyContent: "center", marginTop: 8 }}>
-            <Link href={`/contact?intent=purchase&plan=one&discount=50&nl=${encodeURIComponent(name)}`} style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "var(--btn)", color: "var(--btn-text)", fontSize: 16, fontWeight: 500, padding: "15px 26px", borderRadius: 12 }}>
-              Create My Complete Brief <span style={{ opacity: 0.75 }}>→</span>
-            </Link>
-            <Link href="/pricing" style={{ display: "inline-flex", alignItems: "center", background: "transparent", border: "1px solid var(--border)", color: "var(--text)", fontSize: 16, padding: "15px 26px", borderRadius: 12 }}>
-              View All Plans
+          <div style={{ display: "flex", gap: 14, flexWrap: "wrap", justifyContent: "center", marginTop: 4 }}>
+            <Link href={purchaseHref} className="btn-pop" style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "#fff", color: "var(--band)", fontSize: 15.5, fontWeight: 500, padding: "14px 24px", borderRadius: 12 }}>
+              {pricing && discounted !== null ? `Get My Complete Brief — ${fmt(pricing.symbol, discounted)}` : "Get My Complete Brief"} <span style={{ opacity: 0.75 }}>→</span>
             </Link>
           </div>
+          <div style={{ display: "flex", gap: "10px 22px", flexWrap: "wrap", justifyContent: "center", fontSize: 13, opacity: 0.85 }}>
+            {["Fast and easy", "No credit card needed for demo", "Loved by creators"].map((t) => (
+              <span key={t} style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+                <span style={{ color: "#7fd3ad", display: "flex" }}><CheckCircleIcon size={14} /></span>
+                {t}
+              </span>
+            ))}
+          </div>
+          <div style={{ fontSize: 12, opacity: 0.65 }}>{DISCOUNT_PERCENT}% off your first one-time Brief.</div>
         </div>
       </section>
     </>

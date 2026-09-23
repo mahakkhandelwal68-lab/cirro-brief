@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function PostDemoOfferPage() {
   return (
     <>
-      <Header />
+      <Header ctaLabel="Try Another Newsletter" ctaHref="/try-demo" />
       <Suspense fallback={<div style={{ padding: "80px 40px", textAlign: "center", color: "var(--text3)" }}>Loading...</div>}>
         <PostDemoOfferClient />
       </Suspense>
