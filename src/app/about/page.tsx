@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Reveal } from "@/components/Reveal";
+import { CloudMascot } from "@/components/CloudMascot";
 import {
   CarIcon,
   WalkIcon,
@@ -248,11 +249,7 @@ export default function AboutPage() {
                 justifyContent: "center",
               }}
             >
-              <span className="icon-badge icon-glow" style={{ width: 64, height: 64, borderRadius: "50%", background: "var(--card)", border: "1px solid var(--border)", color: "var(--accent2)" }}>
-                <svg width={30} height={30} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M7 17a4 4 0 0 1 0-8 5 5 0 0 1 9.6-1.6A4.5 4.5 0 0 1 17 17H7z" />
-                </svg>
-              </span>
+              <CloudMascot variant="primary" size={84} radius={20} glow />
             </div>
             <div style={{ padding: "44px 48px" }}>
               <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 26, lineHeight: 1.3, letterSpacing: "-.01em", margin: "0 0 14px" }}>

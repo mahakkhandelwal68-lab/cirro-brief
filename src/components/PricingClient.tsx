@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Reveal } from "./Reveal";
+import { CloudMascot } from "./CloudMascot";
 import { CustomPlanFlow } from "./pricing/CustomPlanFlow";
 import {
   LightningIcon, CalendarIcon, CrownIcon, ChatIcon, CheckCircleIcon,
@@ -264,6 +265,7 @@ export function PricingClient() {
       <section style={{ background: "var(--bg2)", borderTop: "1px solid var(--border2)", borderBottom: "1px solid var(--border2)" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto", padding: "72px 40px", display: "grid", gridTemplateColumns: ".8fr 1.2fr", gap: 56, alignItems: "start" }}>
           <div>
+            <CloudMascot variant="guidance" size={56} radius={16} style={{ marginBottom: 16 }} />
             <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 28, letterSpacing: "-.025em", margin: 0 }}>Before you choose.</h2>
           </div>
           <div style={{ borderTop: "1px solid var(--border2)" }}>

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCreateBrief } from "../CreateBriefContext";
+import { CloudMascot } from "@/components/CloudMascot";
 
 export default function NewsletterProcessingPage() {
   const router = useRouter();
@@ -55,9 +56,10 @@ export default function NewsletterProcessingPage() {
     <main style={{ maxWidth: 560, margin: "0 auto", padding: "96px 40px", textAlign: "center" }}>
       {loading && (
         <>
-          <div style={{ position: "relative", width: 60, height: 60, margin: "0 auto 28px" }}>
+          <div style={{ position: "relative", width: 72, height: 72, margin: "0 auto 28px", display: "flex", alignItems: "center", justifyContent: "center" }}>
             <span style={{ position: "absolute", inset: 0, borderRadius: "50%", border: "2px solid var(--border2)" }} />
             <span style={{ position: "absolute", inset: 0, borderRadius: "50%", border: "2px solid transparent", borderTopColor: "var(--accent)", animation: "cbSpin 1.1s linear infinite" }} />
+            <CloudMascot variant="idea" size={54} radius="50%" />
           </div>
           <h1 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 22, margin: "0 0 8px" }}>Reading your newsletter...</h1>
           <p style={{ fontSize: 15, color: "var(--text2)", margin: 0 }}>This usually takes a few seconds.</p>

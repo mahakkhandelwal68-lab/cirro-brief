@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { CloudMascot } from "./CloudMascot";
 
 const REASONS = ["Choosing a plan", "Existing Brief", "Account or Workspace", "Billing", "Custom requirement", "Something else"];
 const COUNTRY_CODES = ["+91", "+1", "+44", "+971"];
@@ -48,8 +49,8 @@ export function SupportForm() {
 
   if (sent) {
     return (
-      <div style={{ border: "1px solid var(--accent2)", borderRadius: 18, background: "var(--tint)", padding: "40px 34px", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
-        <span style={{ fontSize: 26 }}>✓</span>
+      <div style={{ border: "1px solid var(--accent2)", borderRadius: 18, background: "var(--tint)", padding: "40px 34px", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: 10 }}>
+        <CloudMascot variant="success" size={64} radius="50%" glow />
         <div style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 19 }}>We&apos;ve received your request.</div>
         <div style={{ fontSize: 15, color: "var(--text2)" }}>We&apos;ll review it and send a meeting booking link to your email within 24 hours.</div>
       </div>

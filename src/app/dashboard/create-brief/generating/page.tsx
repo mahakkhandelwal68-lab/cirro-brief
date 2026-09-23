@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCreateBrief } from "../CreateBriefContext";
+import { CloudMascot } from "@/components/CloudMascot";
 
 const STAGES = [
   "Preparing your newsletter",
@@ -71,11 +72,12 @@ export default function GeneratingPage() {
 
   return (
     <main style={{ maxWidth: 500, margin: "0 auto", padding: "100px 40px", textAlign: "center" }}>
-      <div style={{ position: "relative", width: 72, height: 72, margin: "0 auto 28px" }}>
+      <div style={{ position: "relative", width: 82, height: 82, margin: "0 auto 28px", display: "flex", alignItems: "center", justifyContent: "center" }}>
         <span style={{ position: "absolute", inset: 0, borderRadius: "50%", border: "2px solid var(--border2)" }} />
         {!error && (
           <span style={{ position: "absolute", inset: 0, borderRadius: "50%", border: "2px solid transparent", borderTopColor: "var(--accent)", animation: "cbSpin 1.1s linear infinite" }} />
         )}
+        <CloudMascot variant="idea" size={62} radius="50%" />
       </div>
 
       {error ? (

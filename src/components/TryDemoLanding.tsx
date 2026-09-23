@@ -6,6 +6,7 @@ import { Turnstile } from "./Turnstile";
 import { Reveal } from "./Reveal";
 import { TESTIMONIALS } from "@/lib/testimonials";
 import { NewsletterCard, MountainImage } from "./SampleContent";
+import { CloudMascot } from "./CloudMascot";
 import {
   SparkleIcon,
   LockIcon,
@@ -357,9 +358,12 @@ export function TryDemoLanding({ url, setUrl, email, setEmail, onVerify, error, 
         <section style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "64px 20px 8px" }}>
           <Reveal>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 24, flexWrap: "wrap", marginBottom: 28 }}>
-              <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(28px, 5vw, 36px)", letterSpacing: "-.02em", margin: 0 }}>
-                Loved by newsletter <span style={{ color: "var(--accent2)" }}>creators.</span>
-              </h2>
+              <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+                <CloudMascot variant="emotional" size={48} radius={14} />
+                <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(28px, 5vw, 36px)", letterSpacing: "-.02em", margin: 0 }}>
+                  Loved by newsletter <span style={{ color: "var(--accent2)" }}>creators.</span>
+                </h2>
+              </div>
               <p style={{ fontSize: 13.5, color: "var(--text3)", margin: 0, maxWidth: 300 }}>
                 Newsletters, blogs, and publications use Cirro Brief to reach more people, in more places.
               </p>
