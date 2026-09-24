@@ -224,6 +224,9 @@ export function PostDemoOfferClient() {
             </p>
           </div>
           <div className="pdo-offer-price">
+            <div style={{ display: "flex", justifyContent: "center", marginBottom: 12 }}>
+              <CloudMascot variant="primary" size={64} radius={16} glow style={{ border: "1px solid rgba(255,255,255,.22)" }} />
+            </div>
             {pricing && discounted !== null ? (
               <>
                 <div style={{ display: "flex", alignItems: "baseline", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
@@ -237,8 +240,8 @@ export function PostDemoOfferClient() {
             )}
             <Link
               href={purchaseHref}
-              className="btn-pop"
-              style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 9, background: "#fff", color: "var(--band)", fontSize: 15, fontWeight: 500, padding: "13px 22px", borderRadius: 11, width: "100%" }}
+              className="btn-pop pdo-band-btn"
+              style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 9, fontSize: 15, fontWeight: 500, padding: "13px 22px", borderRadius: 11, width: "100%" }}
             >
               Get My Complete Brief <span style={{ opacity: 0.75 }}>→</span>
             </Link>
@@ -356,7 +359,7 @@ export function PostDemoOfferClient() {
             Your newsletter already has the content. Now give people another way to experience it.
           </h2>
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap", justifyContent: "center", marginTop: 4 }}>
-            <Link href={purchaseHref} className="btn-pop" style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "#fff", color: "var(--band)", fontSize: 15.5, fontWeight: 500, padding: "14px 24px", borderRadius: 12 }}>
+            <Link href={purchaseHref} className="btn-pop pdo-band-btn" style={{ display: "inline-flex", alignItems: "center", gap: 9, fontSize: 15.5, fontWeight: 500, padding: "14px 24px", borderRadius: 12 }}>
               {pricing && discounted !== null ? `Get My Complete Brief — ${fmt(pricing.symbol, discounted)}` : "Get My Complete Brief"} <span style={{ opacity: 0.75 }}>→</span>
             </Link>
           </div>

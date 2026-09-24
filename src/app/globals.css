@@ -690,3 +690,15 @@ body > section {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* Post-demo offer: buttons sitting on the always-dark band. White reads
+   best against it in dark theme; in light theme the page's own accent
+   green keeps enough contrast and matches the light-theme reference. */
+.pdo-band-btn {
+  background: #fff;
+  color: var(--band);
+}
+[data-cirro="light"] .pdo-band-btn {
+  background: #2fd480;
+  color: #06120f;
+}
