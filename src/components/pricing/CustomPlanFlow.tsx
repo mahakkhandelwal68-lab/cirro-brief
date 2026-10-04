@@ -296,7 +296,7 @@ export function CustomPlanFlow() {
       {step === "confirmed" && (
         <div style={{ textAlign: "center", padding: "8px 0" }}>
           <div style={{ margin: "0 auto 18px", display: "flex", justifyContent: "center" }}>
-            <CloudMascot variant="success" size={64} radius="50%" glow />
+            <CloudMascot variant="success" size={110} glow />
           </div>
           <div style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 20, marginBottom: 8 }}>We&apos;ve got it!</div>
           <p style={{ fontSize: 14, color: "var(--text2)", margin: "0 0 22px" }}>

@@ -47,7 +47,7 @@ export function SupportHeroGraphic() {
       </div>
 
       <div style={{ position: "absolute", top: 92, left: "50%", transform: "translateX(-50%)" }}>
-        <CloudMascot variant="support" size={76} radius="50%" glow style={{ boxShadow: "var(--shadow), var(--glow-teal)" }} />
+        <CloudMascot variant="support" size={124} glow />
       </div>
     </div>
   );

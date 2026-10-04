@@ -145,7 +145,7 @@ export default function TryDemoPage() {
                 animation: "cbSpin 1.1s linear infinite",
               }}
             />
-            <CloudMascot variant="idea" size={70} radius="50%" />
+            <CloudMascot variant="idea" size={66} />
           </div>
           <h1 style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: "clamp(30px, 6.5vw, 44px)", letterSpacing: "-.03em", margin: "0 0 14px" }}>
             Creating your audio brief
@@ -243,7 +243,7 @@ export default function TryDemoPage() {
                   <div style={{ fontSize: 12.5, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--text3)" }}>Cirro Brief</div>
                 </div>
                 <div style={{ width: 84, flex: "none" }}>
-                  <MountainImage crop="4/3" radius={10} sizes="84px" />
+                  <MountainImage crop="4/3" sizes="84px" />
                 </div>
               </div>
 
@@ -282,7 +282,7 @@ export default function TryDemoPage() {
                     textAlign: "center",
                   }}
                 >
-                  <CloudMascot variant="success" size={56} radius={16} />
+                  <CloudMascot variant="success" size={84} />
                   <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 16 }}>
                     Enter your phone number to listen
                   </span>

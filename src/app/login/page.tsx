@@ -109,7 +109,7 @@ function LoginForm() {
         }}
       >
         <div style={{ display: "flex", justifyContent: "center", marginBottom: 22 }}>
-          <CloudMascot variant="primary" size={64} radius="50%" glow />
+          <CloudMascot variant="primary" size={150} glow />
         </div>
 
         <h1 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 30, letterSpacing: "-.02em", margin: "0 0 10px", textAlign: "center" }}>

@@ -169,7 +169,7 @@ export function PostDemoOfferClient() {
               <div className="pdo-card-title" style={{ fontFamily: "var(--font-heading)", fontWeight: 700, lineHeight: 1.2 }}>{name}</div>
             </div>
             <div style={{ width: "34%", maxWidth: 150, minWidth: 90, flex: "none" }}>
-              <MountainImage crop="4/3" radius={12} sizes="150px" />
+              <MountainImage crop="4/3" sizes="150px" />
             </div>
           </div>
           <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 18 }}>
@@ -225,7 +225,7 @@ export function PostDemoOfferClient() {
           </div>
           <div className="pdo-offer-price">
             <div style={{ display: "flex", justifyContent: "center", marginBottom: 12 }}>
-              <CloudMascot variant="primary" size={64} radius={16} glow style={{ border: "1px solid rgba(255,255,255,.22)" }} />
+              <CloudMascot variant="primary" size={170} glow />
             </div>
             {pricing && discounted !== null ? (
               <>
@@ -308,7 +308,7 @@ export function PostDemoOfferClient() {
       {TESTIMONIALS.length > 0 && (
         <section className="pdo-section">
           <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 22 }}>
-            <CloudMascot variant="emotional" size={48} radius={14} />
+            <CloudMascot variant="emotional" size={76} />
             <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(24px, 4vw, 30px)", letterSpacing: "-.02em", margin: 0 }}>
               Loved by newsletter <span style={{ color: "var(--accent2)" }}>creators.</span>
             </h2>
@@ -354,7 +354,7 @@ export function PostDemoOfferClient() {
       {/* Final CTA */}
       <section className="pdo-section">
         <div style={{ border: "1px solid var(--border)", borderRadius: 20, background: "var(--band)", color: "#fff", padding: "clamp(32px, 5vw, 48px)", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: 16 }}>
-          <CloudMascot variant="primary" size={72} radius={18} glow style={{ border: "1px solid rgba(255,255,255,.22)" }} />
+          <CloudMascot variant="primary" size={210} glow />
           <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 900, fontSize: "clamp(24px, 5vw, 36px)", lineHeight: 1.12, letterSpacing: "-.03em", margin: 0, maxWidth: "24em" }}>
             Your newsletter already has the content. Now give people another way to experience it.
           </h2>

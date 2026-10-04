@@ -249,7 +249,7 @@ export default function AboutPage() {
                 justifyContent: "center",
               }}
             >
-              <CloudMascot variant="primary" size={84} radius={20} glow />
+              <CloudMascot variant="primary" size={176} glow />
             </div>
             <div style={{ padding: "44px 48px" }}>
               <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 26, lineHeight: 1.3, letterSpacing: "-.01em", margin: "0 0 14px" }}>

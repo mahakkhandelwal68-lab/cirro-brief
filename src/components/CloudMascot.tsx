@@ -1,18 +1,16 @@
 import Image from "next/image";
 
-/* Cropped straight from the supplied Cirro Cloud asset board (public/brand/
-   cloud-*.webp) - never redrawn. Each crop keeps its own dark background
-   (there's no way to lift clean alpha from a soft-glow 3D render here), so it
-   is always shown inside a framed chip: that reads as a deliberate sticker/
-   avatar treatment in both themes instead of a stray rectangle. */
+/* Transparent cutouts of the Cirro Cloud character (public/brand/cloud-*.webp),
+   supplied artwork, never redrawn. They float free on any background; `size`
+   is the longest edge, the aspect ratio is kept. */
 
 const VARIANTS = {
-  primary: { file: "cloud-primary.webp", w: 318, h: 345, alt: "Cirro Cloud mascot wearing headphones next to a glowing audio player" },
-  emotional: { file: "cloud-emotional.webp", w: 284, h: 270, alt: "Cirro Cloud mascot hugging a heart" },
-  idea: { file: "cloud-idea.webp", w: 165, h: 170, alt: "Cirro Cloud mascot under a glowing lightbulb, thinking" },
-  success: { file: "cloud-success.webp", w: 172, h: 213, alt: "Cirro Cloud mascot with a checkmark, celebrating with confetti" },
-  guidance: { file: "cloud-guidance.webp", w: 155, h: 212, alt: "Cirro Cloud mascot gesturing toward a checklist" },
-  support: { file: "cloud-support.webp", w: 155, h: 211, alt: "Cirro Cloud mascot beside a chat bubble" },
+  primary: { file: "cloud-primary.webp", w: 508, h: 327, alt: "Cirro Cloud mascot wearing headphones next to a glowing audio player" },
+  emotional: { file: "cloud-emotional.webp", w: 339, h: 252, alt: "Cirro Cloud mascot hugging a heart" },
+  idea: { file: "cloud-idea.webp", w: 223, h: 216, alt: "Cirro Cloud mascot under a glowing lightbulb, thinking" },
+  success: { file: "cloud-success.webp", w: 270, h: 194, alt: "Cirro Cloud mascot with a checkmark, celebrating with confetti" },
+  guidance: { file: "cloud-guidance.webp", w: 278, h: 163, alt: "Cirro Cloud mascot gesturing toward a checklist" },
+  support: { file: "cloud-support.webp", w: 245, h: 194, alt: "Cirro Cloud mascot beside a chat bubble" },
 } as const;
 
 export type CloudVariant = keyof typeof VARIANTS;
@@ -20,34 +18,32 @@ export type CloudVariant = keyof typeof VARIANTS;
 export function CloudMascot({
   variant,
   size = 64,
-  radius = "50%",
   glow = false,
   style,
 }: {
   variant: CloudVariant;
   size?: number;
-  radius?: number | string;
   glow?: boolean;
   style?: React.CSSProperties;
 }) {
   const v = VARIANTS[variant];
+  const ratio = v.w / v.h;
+  const width = ratio >= 1 ? size : Math.round(size * ratio);
+  const height = ratio >= 1 ? Math.round(size / ratio) : size;
   return (
-    <span
-      className={glow ? "icon-glow" : undefined}
+    <Image
+      src={`/brand/${v.file}`}
+      alt={v.alt}
+      width={v.w}
+      height={v.h}
       style={{
-        display: "inline-flex",
-        width: size,
-        height: size,
-        borderRadius: radius,
-        overflow: "hidden",
+        width,
+        height,
         flex: "none",
-        border: "1px solid var(--border)",
-        boxShadow: "var(--shadow)",
-        background: "#0a1513",
+        objectFit: "contain",
+        filter: glow ? "drop-shadow(0 6px 16px color-mix(in srgb, var(--accent2) 45%, transparent))" : "drop-shadow(0 4px 10px rgba(0,0,0,.28))",
         ...style,
       }}
-    >
-      <Image src={`/brand/${v.file}`} alt={v.alt} width={v.w} height={v.h} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-    </span>
+    />
   );
 }

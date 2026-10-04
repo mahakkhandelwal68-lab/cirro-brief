@@ -85,7 +85,7 @@ function ResultPreview() {
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 14, flexWrap: "wrap", marginBottom: 22 }}>
               <div style={{ display: "flex", gap: 14, alignItems: "center", minWidth: 0 }}>
                 <div style={{ width: 84, flex: "none" }}>
-                  <MountainImage crop="4/3" radius={10} sizes="84px" />
+                  <MountainImage crop="4/3" sizes="84px" />
                 </div>
                 <div>
                   <div style={{ fontSize: 12, color: "var(--text3)", marginBottom: 4 }}>Audio Brief · Edition 128</div>
@@ -359,7 +359,7 @@ export function TryDemoLanding({ url, setUrl, email, setEmail, onVerify, error, 
           <Reveal>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 24, flexWrap: "wrap", marginBottom: 28 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-                <CloudMascot variant="emotional" size={48} radius={14} />
+                <CloudMascot variant="emotional" size={76} />
                 <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(28px, 5vw, 36px)", letterSpacing: "-.02em", margin: 0 }}>
                   Loved by newsletter <span style={{ color: "var(--accent2)" }}>creators.</span>
                 </h2>

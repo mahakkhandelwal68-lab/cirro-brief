@@ -77,7 +77,7 @@ export default function GeneratingPage() {
         {!error && (
           <span style={{ position: "absolute", inset: 0, borderRadius: "50%", border: "2px solid transparent", borderTopColor: "var(--accent)", animation: "cbSpin 1.1s linear infinite" }} />
         )}
-        <CloudMascot variant="idea" size={62} radius="50%" />
+        <CloudMascot variant="idea" size={62} />
       </div>
 
       {error ? (

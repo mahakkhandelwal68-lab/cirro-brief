@@ -134,7 +134,7 @@ export default function ContactPage() {
         <Reveal>
           <div style={{ border: "1px solid var(--border)", borderRadius: 20, background: "var(--tint)", padding: "36px 40px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24, flexWrap: "wrap" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-              <CloudMascot variant="support" size={52} radius="50%" glow />
+              <CloudMascot variant="support" size={72} glow />
               <div>
                 <div style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: 20, marginBottom: 4 }}>Still need help?</div>
                 <div style={{ fontSize: 14.5, color: "var(--text2)" }}>Our team is here to make sure you get the most out of Cirro Brief.</div>

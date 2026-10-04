@@ -63,14 +63,14 @@ export function ConsultantWidget() {
           bottom: 24,
           right: 24,
           zIndex: 50,
-          width: 56,
+          width: open ? 56 : 76,
           height: 56,
           padding: 0,
-          borderRadius: "50%",
+          borderRadius: open ? "50%" : 16,
           background: open ? "var(--btn)" : "transparent",
           color: "var(--btn-text)",
           border: "none",
-          boxShadow: "var(--shadow)",
+          boxShadow: open ? "var(--shadow)" : "none",
           fontSize: 22,
           cursor: "pointer",
           display: "flex",
@@ -78,7 +78,7 @@ export function ConsultantWidget() {
           justifyContent: "center",
         }}
       >
-        {open ? "✕" : <CloudMascot variant="support" size={56} radius="50%" />}
+        {open ? "✕" : <CloudMascot variant="support" size={76} />}
       </button>
 
       {open && (
